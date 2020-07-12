@@ -26,7 +26,7 @@
     }
   },
   "projects": {
-    "ng-basis": {
+    "kanban": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -40,7 +40,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ng-basis",
+            "outputPath": "dist/kanban",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -95,18 +95,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ng-basis:build"
+            "browserTarget": "kanban:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ng-basis:build:production"
+              "browserTarget": "kanban:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ng-basis:build"
+            "browserTarget": "kanban:build"
           }
         },
         "test": {
@@ -144,11 +144,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ng-basis:serve"
+            "devServerTarget": "kanban:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ng-basis:serve:production"
+              "devServerTarget": "kanban:serve:production"
             }
           }
         },
@@ -159,7 +159,7 @@
       }
     }
   },
-  "defaultProject": "ng-basis",
+  "defaultProject": "kanban",
   "cli": {
     "analytics": false
   }

@@ -1,6 +1,6 @@
 # NgBasis
 
-![](https://github.com/kasaharu/ng-basis/workflows/Node%20CI/badge.svg)
+![](https://github.com/kasaharu/kanban/workflows/Node%20CI/badge.svg)
 
 ## 使い方
 
