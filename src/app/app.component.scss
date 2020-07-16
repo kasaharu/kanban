@@ -1,0 +1,21 @@
+@import '../assets/styles/properties';
+
+.wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.main {
+  width: 80%;
+  margin: 2rem auto;
+  flex: 1;
+}
+
+@media screen and (max-width: $p-breakpoint-xsmall) {
+  .main {
+    width: 90%;
+    margin: 1rem auto;
+  }
+}
