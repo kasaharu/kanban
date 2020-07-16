@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "knbn-board"
+  },
+  "targets": {
+    "knbn-board": {
+      "hosting": {
+        "kanban": [
+          "knbn-board"
+        ]
+      }
+    }
   }
 }
