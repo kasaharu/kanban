@@ -3,7 +3,9 @@
   "version": "10.0.0",
   "scripts": {
     "ng": "ng",
+    "prestart": "yarn prebuild",
     "start": "ng serve",
+    "prebuild": "ts-node scripts/prebuild.ts && ts-node scripts/prebuild.ts prod",
     "build": "ng build",
     "test": "ng test --code-coverage --watch false --progress false",
     "test:ci": "yarn test --browsers=ChromeHeadlessCI",
