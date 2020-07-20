@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { HomeUsecase } from '../../applications/home.usecase';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,17 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  constructor(private homeUsecase: HomeUsecase) {}
+
+  user$ = this.homeUsecase.user$;
 
   ngOnInit(): void {}
+
+  login() {
+    this.homeUsecase.login();
+  }
+
+  logout() {
+    this.homeUsecase.logout();
+  }
 }
