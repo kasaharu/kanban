@@ -1,5 +1,10 @@
 <div *ngIf="user$ | async as user; else unLoggedInUser">
   <h2>Hello {{ user.displayName }}!</h2>
+
+  <div>
+    <a routerLink="/board">ボードへ</a>
+  </div>
+
   <button (click)="logout()">Logout</button>
 </div>
 <ng-template #unLoggedInUser>

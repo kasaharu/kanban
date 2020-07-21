@@ -4,8 +4,7 @@ import { BoardComponent } from './pages/board/board.component';
 
 @NgModule({
   declarations: [BoardComponent],
-  imports: [
-    CommonModule,
-  ],
+  imports: [CommonModule],
+  exports: [BoardComponent],
 })
-export class BoardModule { }
+export class BoardModule {}
