@@ -16,7 +16,10 @@ export const actions = { saveAppShell };
 const actionsUnion = union(actions);
 
 // NOTE: Reducer
-const appShellReducer = createReducer(initialState, on(saveAppShell, (state, { appShell }) => ({ ...state, appShell })));
+const appShellReducer = createReducer(
+  initialState,
+  on(saveAppShell, (state, { appShell }) => ({ ...state, appShell })),
+);
 
 export default function reducer(state: State, action: typeof actionsUnion): State {
   return appShellReducer(state, action);
