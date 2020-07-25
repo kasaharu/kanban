@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgWorkboxComponentsModule } from '@kasaharu/ng-workbox/components';
+import { StoreModule } from '@ngrx/store';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AppShellModule } from './features/app-shell/app-shell.module';
 import { BoardModule } from './features/board/board.module';
 import { HomeModule } from './features/home/home.module';
 import { HeaderComponent } from './shared/components/header/header.component';
@@ -15,7 +17,9 @@ import { HeaderComponent } from './shared/components/header/header.component';
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
+    StoreModule.forRoot({}),
     NgWorkboxComponentsModule,
+    AppShellModule,
     HomeModule,
     BoardModule,
   ],
