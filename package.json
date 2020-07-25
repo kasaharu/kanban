@@ -30,6 +30,7 @@
     "@angular/router": "~10.0.4",
     "@kasaharu/ng-workbox": "^0.2.0",
     "@ngrx/store": "^9.2.0",
+    "@ngrx/store-devtools": "^9.2.0",
     "angular-cli-ghpages": "0.6.2",
     "firebase": "^7.13.1",
     "rxjs": "~6.5.4",
