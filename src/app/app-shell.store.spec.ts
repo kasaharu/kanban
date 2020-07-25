@@ -1,11 +1,11 @@
 import reducer, { actions, State } from './app-shell.store';
 
 describe('appShell reducer', () => {
-  it('action type : saveAppShell', () => {
-    const state: State = { appShell: null };
+  it('action type : initialize', () => {
+    const state: State = { loggedInUser: null, readyApp: false };
     const updatedState = null;
-    const result = reducer(state, actions.saveAppShell({ appShell: updatedState }));
+    const result = reducer(state, actions.initialize({ loggedInUser: updatedState }));
 
-    expect(result).toEqual({ appShell: updatedState });
+    expect(result).toEqual({ loggedInUser: updatedState, readyApp: true });
   });
 });
