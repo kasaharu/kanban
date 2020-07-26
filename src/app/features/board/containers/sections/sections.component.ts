@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { BoardQuery } from '../../applications/board.query';
 
 @Component({
   selector: 'app-sections',
@@ -7,7 +8,9 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SectionsComponent implements OnInit {
-  constructor() {}
+  constructor(private query: BoardQuery) {}
+
+  sections$ = this.query.sections$;
 
   ngOnInit(): void {}
 }

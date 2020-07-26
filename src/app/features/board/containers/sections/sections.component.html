@@ -1,1 +1,7 @@
-<p>sections works!</p>
+<ng-container *ngIf="sections$ | async as sections">
+  <div class="sections">
+    <div class="section" *ngFor="let section of sections">
+      <div class="name">{{ section.name }}</div>
+    </div>
+  </div>
+</ng-container>

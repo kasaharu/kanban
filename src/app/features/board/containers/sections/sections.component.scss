@@ -1,3 +1,17 @@
 :host {
   display: block;
 }
+
+.sections {
+  display: flex;
+}
+
+.section {
+  border: 1px solid;
+  width: 320px;
+  margin: 12px;
+}
+
+.name {
+  font-size: 24px;
+}
