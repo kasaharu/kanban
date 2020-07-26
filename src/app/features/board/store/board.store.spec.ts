@@ -1,11 +1,12 @@
 import reducer, { actions, State } from './board.store';
+import { Section } from '../../../domain/models';
 
 describe('board reducer', () => {
   it('action type : saveBoard', () => {
-    const state: State = { board: null };
-    const updatedState = null;
-    const result = reducer(state, actions.saveBoard({ board: updatedState }));
+    const state: State = { sections: [] };
+    const updatedState: Section[] = [{ id: '1', userId: '1', name: 'test', orderId: 1 }];
+    const result = reducer(state, actions.saveSections({ sections: updatedState }));
 
-    expect(result).toEqual({ board: updatedState });
+    expect(result).toEqual({ sections: updatedState });
   });
 });

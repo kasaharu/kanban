@@ -7,3 +7,10 @@ export interface User {
   providerId: string;
   uid: string;
 }
+
+export interface Section {
+  id: string;
+  name: string;
+  userId: string;
+  orderId: number;
+}
