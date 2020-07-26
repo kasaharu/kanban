@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
+import { User } from 'src/app/domain/models';
 import { Authenticator } from '../../../infrastructures/adapters/authenticator';
 import { actions } from '../store/app-shell.store';
-import { User } from 'src/app/domain/models';
 
 @Injectable({
   providedIn: 'root',

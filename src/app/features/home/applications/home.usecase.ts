@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { User } from '../../../domain/models';
-import { actions } from '../../app-shell/store/app-shell.store';
 import { Authenticator } from '../../../infrastructures/adapters/authenticator';
+import { actions } from '../../app-shell/store/app-shell.store';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +21,7 @@ export class HomeUsecase {
         this.store.dispatch(actions.login({ loggedInUser: user }));
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 

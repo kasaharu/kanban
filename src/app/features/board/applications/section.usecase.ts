@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
+import { Section } from 'src/app/domain/models';
 import { DatabaseAdapter } from '../../../infrastructures/adapters/database.adapter';
 import { selectStore as selectAppShellStore } from '../../app-shell/store/app-shell.store';
 import { actions, selectStore } from '../store/board.store';
-import { Section } from 'src/app/domain/models';
 
 @Injectable({
   providedIn: 'root',
