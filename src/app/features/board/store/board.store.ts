@@ -12,15 +12,17 @@ export const initialState: State = {
 };
 
 // NOTE: Actions
-export const saveSections = createAction('[Board] save sections', props<{ sections: Section[] }>());
+const saveSections = createAction('[Board] save sections', props<{ sections: Section[] }>());
+const createSection = createAction('[Board] create sections', props<{ section: Section }>());
 
-export const actions = { saveSections };
+export const actions = { saveSections, createSection };
 const actionsUnion = union(actions);
 
 // NOTE: Reducer
 const boardReducer = createReducer(
   initialState,
   on(saveSections, (state, { sections }) => ({ ...state, sections })),
+  on(createSection, (state, { section }) => ({ ...state, sections: [...state.sections, section] })),
 );
 
 export default function reducer(state: State, action: typeof actionsUnion): State {
