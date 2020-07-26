@@ -14,15 +14,19 @@ export const initialState: State = {
 };
 
 // NOTE: Actions
-export const initialize = createAction('[AppShell] initialize', props<{ loggedInUser: User | null }>());
+const initialize = createAction('[AppShell] initialize', props<{ loggedInUser: User | null }>());
+const login = createAction('[AppShell] login', props<{ loggedInUser: User | null }>());
+const logout = createAction('[AppShell] logout');
 
-export const actions = { initialize };
+export const actions = { initialize, login, logout };
 const actionsUnion = union(actions);
 
 // NOTE: Reducer
 const appShellReducer = createReducer(
   initialState,
   on(initialize, (state, { loggedInUser }) => ({ ...state, loggedInUser, readyApp: true })),
+  on(login, (state, { loggedInUser }) => ({ ...state, loggedInUser })),
+  on(logout, (state) => ({ ...state, loggedInUser: null })),
 );
 
 export default function reducer(state: State, action: typeof actionsUnion): State {
