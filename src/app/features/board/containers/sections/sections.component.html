@@ -1,8 +1,8 @@
+<app-section-form class="new-section" (requestCreateSection)="addSection($event)"></app-section-form>
 <ng-container *ngIf="sections$ | async as sections">
   <div class="sections">
     <div class="section" *ngFor="let section of sections">
       <div class="name">{{ section.name }}</div>
     </div>
-    <app-section-form class="new-section" (requestCreateSection)="addSection($event)"></app-section-form>
   </div>
 </ng-container>
