@@ -4,9 +4,10 @@ import { StoreModule } from '@ngrx/store';
 import { SectionsComponent } from './containers/sections/sections.component';
 import { BoardComponent } from './pages/board/board.component';
 import { default as reducer, featureName } from './store/board.store';
+import { SectionFormComponent } from './ui/components/section-form/section-form.component';
 
 @NgModule({
-  declarations: [BoardComponent, SectionsComponent],
+  declarations: [BoardComponent, SectionsComponent, SectionFormComponent],
   imports: [CommonModule, StoreModule.forFeature(featureName, reducer)],
   exports: [BoardComponent],
 })
