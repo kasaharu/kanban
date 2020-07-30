@@ -26,7 +26,7 @@ export class SectionUsecase {
     this.store.dispatch(actions.saveSections({ sections }));
   }
 
-  async addSection() {
+  async addSection(addingSection: Section) {
     const user = await selectAppShellStore(this.store, (state) => state.loggedInUser)
       .pipe(take(1))
       .toPromise();
@@ -40,7 +40,7 @@ export class SectionUsecase {
       .toPromise();
     const createdSection = await this.databaseAdapter.createDocument<Section>('sections', {
       userId: user.uid,
-      name: `さんぷる ${sections.length + 1}`,
+      name: addingSection.name,
       orderId: sections.length + 1,
       id: 'temporary',
     });

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Section } from '../../../../domain/models';
 import { BoardQuery } from '../../applications/board.query';
 import { SectionUsecase } from '../../applications/section.usecase';
 
@@ -15,7 +16,7 @@ export class SectionsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  addSection() {
-    this.usecase.addSection();
+  addSection(section: Section) {
+    this.usecase.addSection(section);
   }
 }

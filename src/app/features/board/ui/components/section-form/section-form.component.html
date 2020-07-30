@@ -1,1 +1,3 @@
-<p>section-form works!</p>
+<form [formGroup]="sectionForm" (ngSubmit)="onSubmit()">
+  <input type="text" formControlName="name" [placeholder]="placeholderText" />
+</form>

@@ -3,6 +3,6 @@
     <div class="section" *ngFor="let section of sections">
       <div class="name">{{ section.name }}</div>
     </div>
-    <button class="add-section-button" (click)="addSection()">Section の追加</button>
+    <app-section-form class="new-section" (requestCreateSection)="addSection($event)"></app-section-form>
   </div>
 </ng-container>
