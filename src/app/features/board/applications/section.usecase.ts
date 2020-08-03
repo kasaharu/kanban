@@ -31,7 +31,7 @@ export class SectionUsecase {
   }
 
   private async fetchTasksBySectionId(sectionId: string) {
-    const tasks$ = this.databaseAdapter.fetchCollectionWhere<Task>('sections', { key: 'sectionId', value: sectionId });
+    const tasks$ = this.databaseAdapter.fetchCollectionWhere<Task>('tasks', { key: 'sectionId', value: sectionId });
     const tasks = await tasks$.pipe(take(1)).toPromise();
     this.store.dispatch(actions.saveTasks({ sectionId, tasks }));
   }
