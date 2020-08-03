@@ -14,3 +14,15 @@ export interface Section {
   userId: string;
   orderId: number;
 }
+
+export interface Task {
+  id: string;
+  name: string;
+  sectionId: string;
+  userId: string;
+  orderId: string;
+}
+
+export interface TasksBySectionId {
+  [x: string]: Task[];
+}

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
-import { Section } from 'src/app/domain/models';
+import { Section, Task } from '../../../domain/models';
 import { DatabaseAdapter } from '../../../infrastructures/adapters/database.adapter';
 import { selectStore as selectAppShellStore } from '../../app-shell/store/app-shell.store';
 import { actions, selectStore } from '../store/board.store';
@@ -24,6 +24,16 @@ export class SectionUsecase {
     const sections$ = this.databaseAdapter.fetchCollectionWhere<Section>('sections', { key: 'userId', value: loggedInUser.uid });
     const sections = await sections$.pipe(take(1)).toPromise();
     this.store.dispatch(actions.saveSections({ sections }));
+
+    sections.forEach(async (section) => {
+      await this.fetchTasksBySectionId(section.id);
+    });
+  }
+
+  private async fetchTasksBySectionId(sectionId: string) {
+    const tasks$ = this.databaseAdapter.fetchCollectionWhere<Task>('sections', { key: 'sectionId', value: sectionId });
+    const tasks = await tasks$.pipe(take(1)).toPromise();
+    this.store.dispatch(actions.saveTasks({ sectionId, tasks }));
   }
 
   async addSection(addingSection: Section) {
