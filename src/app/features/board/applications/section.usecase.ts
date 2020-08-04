@@ -25,15 +25,13 @@ export class SectionUsecase {
     const sections = await sections$.pipe(take(1)).toPromise();
     this.store.dispatch(actions.saveSections({ sections }));
 
-    sections.forEach(async (section) => {
-      await this.fetchTasksBySectionId(section.id);
-    });
+    await this.fetchTasks(loggedInUser.uid);
   }
 
-  private async fetchTasksBySectionId(sectionId: string) {
-    const tasks$ = this.databaseAdapter.fetchCollectionWhere<Task>('tasks', { key: 'sectionId', value: sectionId });
+  private async fetchTasks(userId: string) {
+    const tasks$ = this.databaseAdapter.fetchCollectionWhere<Task>('tasks', { key: 'userId', value: userId });
     const tasks = await tasks$.pipe(take(1)).toPromise();
-    this.store.dispatch(actions.saveTasks({ sectionId, tasks }));
+    this.store.dispatch(actions.saveTasks({ tasks }));
   }
 
   async addSection(addingSection: Section) {

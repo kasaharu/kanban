@@ -22,7 +22,3 @@ export interface Task {
   userId: string;
   orderId: string;
 }
-
-export interface TasksBySectionId {
-  [x: string]: Task[];
-}
