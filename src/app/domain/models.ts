@@ -20,5 +20,5 @@ export interface Task {
   name: string;
   sectionId: string;
   userId: string;
-  orderId: string;
+  orderId: number;
 }
