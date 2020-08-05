@@ -6,9 +6,10 @@ import { SectionsComponent } from './containers/sections/sections.component';
 import { BoardComponent } from './pages/board/board.component';
 import { default as reducer, featureName } from './store/board.store';
 import { SectionFormComponent } from './ui/components/section-form/section-form.component';
+import { TaskCardComponent } from './ui/components/task-card/task-card.component';
 
 @NgModule({
-  declarations: [BoardComponent, SectionsComponent, SectionFormComponent],
+  declarations: [BoardComponent, SectionsComponent, SectionFormComponent, TaskCardComponent],
   imports: [CommonModule, ReactiveFormsModule, StoreModule.forFeature(featureName, reducer)],
   exports: [BoardComponent],
 })
