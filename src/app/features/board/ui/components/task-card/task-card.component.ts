@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { Task } from '../../../../../domain/models';
 
 @Component({
   selector: 'app-task-card',
@@ -8,6 +9,9 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 })
 export class TaskCardComponent implements OnInit {
   constructor() {}
+
+  @Input()
+  task!: Task;
 
   ngOnInit(): void {}
 }

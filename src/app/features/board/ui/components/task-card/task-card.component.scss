@@ -1,3 +1,21 @@
 :host {
   display: block;
 }
+
+.task-card {
+  height: 80px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  position: relative;
+}
+
+.task-name {
+  margin-top: 8px;
+}
+
+.delete-button {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+}
