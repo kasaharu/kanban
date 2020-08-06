@@ -7,16 +7,20 @@
 }
 
 .section {
-  border: 1px solid;
-  width: 320px;
+  width: 280px;
   margin: 12px;
 }
 
-.name {
+.section-name {
   font-size: 24px;
+  margin-bottom: 12px;
 }
 
 .new-section {
   height: 24px;
   margin: 12px;
+}
+
+.task {
+  margin-bottom: 12px;
 }

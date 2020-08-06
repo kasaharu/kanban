@@ -12,7 +12,7 @@ import { SectionUsecase } from '../../applications/section.usecase';
 export class SectionsComponent implements OnInit {
   constructor(private query: BoardQuery, private usecase: SectionUsecase) {}
 
-  sections$ = this.query.sections$;
+  sectionsHasTasks$ = this.query.sectionsHasTasks$;
 
   ngOnInit(): void {}
 

@@ -22,3 +22,9 @@ export interface Task {
   userId: string;
   orderId: number;
 }
+
+export interface SectionHasTasks {
+  id: string;
+  name: string;
+  tasks: Task[];
+}
