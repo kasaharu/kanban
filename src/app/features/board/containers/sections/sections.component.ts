@@ -19,4 +19,8 @@ export class SectionsComponent implements OnInit {
   addSection(section: Section) {
     this.usecase.addSection(section);
   }
+
+  deleteTask(taskId: string) {
+    this.usecase.deleteTask(taskId);
+  }
 }

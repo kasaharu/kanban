@@ -4,7 +4,7 @@
     <div class="section" *ngFor="let section of sections">
       <div class="section-name">{{ section.name }}</div>
       <div *ngFor="let task of section.tasks">
-        <app-task-card class="task" [task]="task"></app-task-card>
+        <app-task-card class="task" [task]="task" (requestClick)="deleteTask($event)"></app-task-card>
       </div>
     </div>
   </div>

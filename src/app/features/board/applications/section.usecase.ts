@@ -55,4 +55,9 @@ export class SectionUsecase {
 
     this.store.dispatch(actions.createSection({ section: createdSection }));
   }
+
+  async deleteTask(taskId: string) {
+    const deletedTaskId = await this.databaseAdapter.deleteDocument<Task>('tasks', taskId);
+    this.store.dispatch(actions.deleteTask({ taskId: deletedTaskId }));
+  }
 }

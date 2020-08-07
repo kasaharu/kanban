@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Task } from '../../../../../domain/models';
 
 @Component({
@@ -12,6 +12,12 @@ export class TaskCardComponent implements OnInit {
 
   @Input()
   task!: Task;
+  @Output()
+  requestClick = new EventEmitter<string>();
 
   ngOnInit(): void {}
+
+  onClick(taskId: string) {
+    this.requestClick.emit(taskId);
+  }
 }

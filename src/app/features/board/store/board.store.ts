@@ -17,8 +17,9 @@ export const initialState: State = {
 const saveSections = createAction('[Board] save sections', props<{ sections: Section[] }>());
 const createSection = createAction('[Board] create sections', props<{ section: Section }>());
 const saveTasks = createAction('[Board] save tasks', props<{ tasks: Task[] }>());
+const deleteTask = createAction('[Board] delete task', props<{ taskId: string }>());
 
-export const actions = { saveSections, createSection, saveTasks };
+export const actions = { saveSections, createSection, saveTasks, deleteTask };
 const actionsUnion = union(actions);
 
 // NOTE: Reducer
@@ -27,6 +28,7 @@ const boardReducer = createReducer(
   on(saveSections, (state, { sections }) => ({ ...state, sections })),
   on(createSection, (state, { section }) => ({ ...state, sections: [...state.sections, section] })),
   on(saveTasks, (state, { tasks }) => ({ ...state, tasks })),
+  on(deleteTask, (state, { taskId }) => ({ ...state, tasks: state.tasks.filter((task) => task.id !== taskId) })),
 );
 
 export default function reducer(state: State, action: typeof actionsUnion): State {
