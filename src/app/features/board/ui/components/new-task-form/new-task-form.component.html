@@ -1,1 +1,3 @@
-<p>new-task-form works!</p>
+<form [formGroup]="newTaskForm" (ngSubmit)="onSubmit()">
+  <input type="text" formControlName="name" [placeholder]="placeholderText" />
+</form>

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Section } from '../../../../domain/models';
+import { Section, SectionHasTasks, Task } from '../../../../domain/models';
 import { BoardQuery } from '../../applications/board.query';
 import { SectionUsecase } from '../../applications/section.usecase';
 
@@ -18,6 +18,10 @@ export class SectionsComponent implements OnInit {
 
   addSection(section: Section) {
     this.usecase.addSection(section);
+  }
+
+  addTask(task: Task, section: SectionHasTasks) {
+    this.usecase.addTask(task, section);
   }
 
   deleteTask(taskId: string) {

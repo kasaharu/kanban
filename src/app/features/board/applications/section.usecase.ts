@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
-import { Section, Task } from '../../../domain/models';
+import { Section, Task, SectionHasTasks } from '../../../domain/models';
 import { DatabaseAdapter } from '../../../infrastructures/adapters/database.adapter';
 import { selectStore as selectAppShellStore } from '../../app-shell/store/app-shell.store';
 import { actions, selectStore } from '../store/board.store';
@@ -54,6 +54,26 @@ export class SectionUsecase {
     });
 
     this.store.dispatch(actions.createSection({ section: createdSection }));
+  }
+
+  async addTask(addingTask: Task, section: SectionHasTasks) {
+    const user = await selectAppShellStore(this.store, (state) => state.loggedInUser)
+      .pipe(take(1))
+      .toPromise();
+    // TODO: user が null の場合のエラー処理が必要
+    if (user === null) {
+      return;
+    }
+
+    const createdTask = await this.databaseAdapter.createDocument<Task>('tasks', {
+      userId: user.uid,
+      name: addingTask.name,
+      sectionId: section.id,
+      orderId: section.tasks.length + 1,
+      id: 'temporary',
+    });
+
+    this.store.dispatch(actions.addTask({ task: createdTask }));
   }
 
   async deleteTask(taskId: string) {
