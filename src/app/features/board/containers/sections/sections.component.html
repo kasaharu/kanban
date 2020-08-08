@@ -3,7 +3,7 @@
   <div class="sections">
     <div class="section" *ngFor="let section of sections">
       <div class="section-name">{{ section.name }}</div>
-      <app-new-task-form (requestCreateTask)="addTask($event, section)"></app-new-task-form>
+      <app-new-task-form class="add-task-input" (requestCreateTask)="addTask($event, section)"></app-new-task-form>
       <div *ngFor="let task of section.tasks">
         <app-task-card class="task" [task]="task" (requestClick)="deleteTask($event)"></app-task-card>
       </div>
