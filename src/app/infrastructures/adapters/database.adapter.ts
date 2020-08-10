@@ -21,6 +21,10 @@ export class DatabaseAdapter {
     return document;
   }
 
+  updateDocument<T>(collectionName: string, item: T, itemId: string): Promise<void> {
+    return this.db.doc<T>(`${collectionName}/${itemId}`).update(item);
+  }
+
   async deleteDocument<T>(collectionName: string, itemId: string): Promise<string> {
     await this.db.doc<T>(`${collectionName}/${itemId}`).delete();
     return itemId;
