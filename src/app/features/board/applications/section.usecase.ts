@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
-import { Section, Task, SectionHasTasks } from '../../../domain/models';
+import { Section, SectionHasTasks, Task } from '../../../domain/models';
 import { DatabaseAdapter } from '../../../infrastructures/adapters/database.adapter';
 import { selectStore as selectAppShellStore } from '../../app-shell/store/app-shell.store';
 import { actions, selectStore } from '../store/board.store';
-import { TaskCardComponent } from '../ui/components/task-card/task-card.component';
 
 @Injectable({
   providedIn: 'root',
