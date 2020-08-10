@@ -5,6 +5,7 @@ import { Section, Task, SectionHasTasks } from '../../../domain/models';
 import { DatabaseAdapter } from '../../../infrastructures/adapters/database.adapter';
 import { selectStore as selectAppShellStore } from '../../app-shell/store/app-shell.store';
 import { actions, selectStore } from '../store/board.store';
+import { TaskCardComponent } from '../ui/components/task-card/task-card.component';
 
 @Injectable({
   providedIn: 'root',
@@ -79,5 +80,29 @@ export class SectionUsecase {
   async deleteTask(taskId: string) {
     const deletedTaskId = await this.databaseAdapter.deleteDocument<Task>('tasks', taskId);
     this.store.dispatch(actions.deleteTask({ taskId: deletedTaskId }));
+  }
+
+  moveTask(tasks: Task[]) {
+    tasks.forEach((task, index) => {
+      const updatedTask: Task = { ...task, orderId: index + 1 };
+      this.databaseAdapter.updateDocument<Task>('tasks', updatedTask, updatedTask.id);
+    });
+  }
+
+  async transferTask(sourceTasks: Task[], destinationTasks: Task[], destSectionIndex: number) {
+    const sections: Section[] = await selectStore(this.store, (state) => state.sections)
+      .pipe(take(1))
+      .toPromise();
+    const destinationSection = sections[destSectionIndex];
+
+    destinationTasks.forEach((task, index) => {
+      const updatedTask: Task = { ...task, orderId: index + 1, sectionId: destinationSection.id };
+      this.databaseAdapter.updateDocument<Task>('tasks', updatedTask, updatedTask.id);
+    });
+
+    sourceTasks.forEach((task, index) => {
+      const updatedTask: Task = { ...task, orderId: index + 1 };
+      this.databaseAdapter.updateDocument<Task>('tasks', updatedTask, updatedTask.id);
+    });
   }
 }

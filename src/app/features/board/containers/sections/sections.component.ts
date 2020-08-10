@@ -29,11 +29,15 @@ export class SectionsComponent implements OnInit {
     this.usecase.deleteTask(taskId);
   }
 
-  drop(event: CdkDragDrop<SectionHasTasks[]>) {
+  drop(event: CdkDragDrop<Task[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      this.usecase.moveTask(event.container.data);
     } else {
+      const splited = event.container.id.split('-');
+      const destinationSectionIndex = splited[splited.length - 1];
       transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+      this.usecase.transferTask(event.previousContainer.data, event.container.data, Number(destinationSectionIndex));
     }
   }
 }
