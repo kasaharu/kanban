@@ -1,3 +1,4 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -11,7 +12,7 @@ import { TaskCardComponent } from './ui/components/task-card/task-card.component
 
 @NgModule({
   declarations: [BoardComponent, SectionsComponent, SectionFormComponent, TaskCardComponent, NewTaskFormComponent],
-  imports: [CommonModule, ReactiveFormsModule, StoreModule.forFeature(featureName, reducer)],
+  imports: [CommonModule, ReactiveFormsModule, DragDropModule, StoreModule.forFeature(featureName, reducer)],
   exports: [BoardComponent],
 })
 export class BoardModule {}

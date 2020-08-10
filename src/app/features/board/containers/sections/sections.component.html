@@ -1,11 +1,14 @@
 <app-section-form class="new-section" (requestCreateSection)="addSection($event)"></app-section-form>
 <ng-container *ngIf="sectionsHasTasks$ | async as sections">
-  <div class="sections">
+  <div class="sections" cdkDropListGroup>
     <div class="section" *ngFor="let section of sections">
       <div class="section-name">{{ section.name }}</div>
       <app-new-task-form class="add-task-input" (requestCreateTask)="addTask($event, section)"></app-new-task-form>
-      <div *ngFor="let task of section.tasks">
-        <app-task-card class="task" [task]="task" (requestClick)="deleteTask($event)"></app-task-card>
+      <div class="task-wrapper" cdkDropList [cdkDropListData]="section.tasks" (cdkDropListDropped)="drop($event)">
+        <div *ngFor="let task of section.tasks">
+          <app-task-card class="task" [task]="task" (requestClick)="deleteTask($event)" cdkDrag></app-task-card>
+        </div>
+        <div class="task-placeholder"></div>
       </div>
     </div>
   </div>
