@@ -23,7 +23,7 @@ export class BoardQuery {
     map(([...tasks]) => tasks.sort((a, b) => a.orderId - b.orderId)),
   );
 
-  private combined$ = combineLatest(this.sections$, this.tasks$);
+  private combined$ = combineLatest([this.sections$, this.tasks$]);
 
   sectionsHasTasks$: Observable<SectionHasTasks[]> = this.combined$.pipe(
     map(([sections, tasks]) => {
