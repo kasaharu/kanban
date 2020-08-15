@@ -26,7 +26,9 @@ export class SectionsComponent implements OnInit {
   }
 
   deleteTask(taskId: string) {
-    this.usecase.deleteTask(taskId);
+    if (window.confirm('タスクを削除しますか？')) {
+      this.usecase.deleteTask(taskId);
+    }
   }
 
   drop(event: CdkDragDrop<Task[]>) {
