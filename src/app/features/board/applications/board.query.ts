@@ -18,10 +18,7 @@ export class BoardQuery {
   );
 
   // TODO: orderId 順にソートするロジックは domain 層に移動する
-  tasks$ = selectStore(this.store, (state) => state.tasks).pipe(
-    filter((tasks) => tasks.length !== 0),
-    map(([...tasks]) => tasks.sort((a, b) => a.orderId - b.orderId)),
-  );
+  tasks$ = selectStore(this.store, (state) => state.tasks).pipe(map(([...tasks]) => tasks.sort((a, b) => a.orderId - b.orderId)));
 
   private combined$ = combineLatest([this.sections$, this.tasks$]);
 
