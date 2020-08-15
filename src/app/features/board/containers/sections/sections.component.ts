@@ -42,10 +42,16 @@ export class SectionsComponent implements OnInit {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
       this.usecase.moveTask(event.container.data);
     } else {
-      const splited = event.container.id.split('-');
-      const destinationSectionIndex = splited[splited.length - 1];
+      const destinationSectionId = event.container.element.nativeElement.dataset.sectionId;
+
+      // TODO: エラー処理を見直す
+      if (!destinationSectionId) {
+        console.error('移動先の sectionId が見つからない');
+        return;
+      }
+
       transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
-      this.usecase.transferTask(event.previousContainer.data, event.container.data, Number(destinationSectionIndex));
+      this.usecase.transferTask(event.previousContainer.data, event.container.data, destinationSectionId);
     }
   }
 }

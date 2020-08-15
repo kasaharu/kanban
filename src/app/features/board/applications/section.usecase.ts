@@ -100,14 +100,9 @@ export class SectionUsecase {
     });
   }
 
-  async transferTask(sourceTasks: Task[], destinationTasks: Task[], destSectionIndex: number) {
-    const sections: Section[] = await selectStore(this.store, (state) => state.sections)
-      .pipe(take(1))
-      .toPromise();
-    const destinationSection = sections[destSectionIndex];
-
+  async transferTask(sourceTasks: Task[], destinationTasks: Task[], destinationSectionId: string) {
     destinationTasks.forEach((task, index) => {
-      const updatedTask: Task = { ...task, orderId: index + 1, sectionId: destinationSection.id };
+      const updatedTask: Task = { ...task, orderId: index + 1, sectionId: destinationSectionId };
       this.databaseAdapter.updateDocument<Task>('tasks', updatedTask, updatedTask.id);
     });
 
