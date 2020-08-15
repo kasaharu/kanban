@@ -16,11 +16,12 @@ export const initialState: State = {
 // NOTE: Actions
 const saveSections = createAction('[Board] save sections', props<{ sections: Section[] }>());
 const createSection = createAction('[Board] create sections', props<{ section: Section }>());
+const deleteSection = createAction('[Board] delete sections', props<{ sectionId: string }>());
 const saveTasks = createAction('[Board] save tasks', props<{ tasks: Task[] }>());
 const addTask = createAction('[Board] add task', props<{ task: Task }>());
 const deleteTask = createAction('[Board] delete task', props<{ taskId: string }>());
 
-export const actions = { saveSections, createSection, saveTasks, addTask, deleteTask };
+export const actions = { saveSections, createSection, deleteSection, saveTasks, addTask, deleteTask };
 const actionsUnion = union(actions);
 
 // NOTE: Reducer
@@ -28,6 +29,7 @@ const boardReducer = createReducer(
   initialState,
   on(saveSections, (state, { sections }) => ({ ...state, sections })),
   on(createSection, (state, { section }) => ({ ...state, sections: [...state.sections, section] })),
+  on(deleteSection, (state, { sectionId }) => ({ ...state, sections: state.sections.filter((section) => section.id !== sectionId) })),
   on(saveTasks, (state, { tasks }) => ({ ...state, tasks })),
   on(addTask, (state, { task }) => ({ ...state, tasks: [...state.tasks, task] })),
   on(deleteTask, (state, { taskId }) => ({ ...state, tasks: state.tasks.filter((task) => task.id !== taskId) })),

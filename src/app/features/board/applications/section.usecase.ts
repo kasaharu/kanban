@@ -56,6 +56,18 @@ export class SectionUsecase {
     this.store.dispatch(actions.createSection({ section: createdSection }));
   }
 
+  async deleteSection(section: SectionHasTasks) {
+    const taskIds = section.tasks.map((task) => task.id);
+    // NOTE: 対象の Section に紐づく task を削除
+    taskIds.forEach((taskId) => {
+      this.deleteTask(taskId);
+    });
+
+    // NOTE: 対象の Section を削除
+    const deletedSectionId = await this.databaseAdapter.deleteDocument<Section>('sections', section.id);
+    this.store.dispatch(actions.deleteSection({ sectionId: deletedSectionId }));
+  }
+
   async addTask(addingTask: Task, section: SectionHasTasks) {
     const user = await selectAppShellStore(this.store, (state) => state.loggedInUser)
       .pipe(take(1))

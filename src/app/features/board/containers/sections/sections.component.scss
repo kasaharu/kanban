@@ -16,6 +16,15 @@
   margin-bottom: 12px;
 }
 
+.section-name-field {
+  display: flex;
+  justify-content: space-between;
+}
+
+.section-delete-button {
+  height: 24px;
+}
+
 .new-section {
   height: 24px;
   margin: 12px;

@@ -21,6 +21,12 @@ export class SectionsComponent implements OnInit {
     this.usecase.addSection(section);
   }
 
+  deleteSection(section: SectionHasTasks) {
+    if (window.confirm('セクションを削除しますか？(紐づくタスクも削除されます)')) {
+      this.usecase.deleteSection(section);
+    }
+  }
+
   addTask(task: Task, section: SectionHasTasks) {
     this.usecase.addTask(task, section);
   }
