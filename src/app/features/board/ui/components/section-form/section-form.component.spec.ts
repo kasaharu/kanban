@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { SectionFormComponent } from './section-form.component';
 
 describe('SectionFormComponent', () => {
@@ -9,6 +9,7 @@ describe('SectionFormComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [SectionFormComponent],
+      imports: [ReactiveFormsModule],
     }).compileComponents();
   }));
 

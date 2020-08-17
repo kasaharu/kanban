@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { NewTaskFormComponent } from './new-task-form.component';
 
 describe('NewTaskFormComponent', () => {
@@ -9,6 +9,7 @@ describe('NewTaskFormComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [NewTaskFormComponent],
+      imports: [ReactiveFormsModule],
     }).compileComponents();
   }));
 
