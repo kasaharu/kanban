@@ -55,16 +55,16 @@ jobs:
           yarn build --prod kanban
         env:
           CI: true
-      # - name: unit test kanban
-      #   run: |
-      #     yarn test:ci kanban
-      #   env:
-      #     CI: true
-      # - name: Archive code coverage results
-      #   uses: actions/upload-artifact@v1
-      #   with:
-      #     name: code-coverage-report-for-kanban
-      #     path: coverage/kanban
+      - name: unit test kanban
+        run: |
+          yarn test:ci kanban
+        env:
+          CI: true
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v1
+        with:
+          name: code-coverage-report-for-kanban
+          path: coverage/kanban
       #       - name: e2e test kanban
       #         run: |
       #           yarn e2e:ci kanban
