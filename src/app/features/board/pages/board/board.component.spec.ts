@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BoardComponent } from './board.component';
 import { SectionUsecase } from '../../applications/section.usecase';
+import { BoardComponent } from './board.component';
 
 class MockSectionUsecase implements Partial<SectionUsecase> {
   async fetchSections() {}

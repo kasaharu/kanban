@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-import { BoardQuery } from './board.query';
 import { provideMockStore } from '@ngrx/store/testing';
+import { BoardQuery } from './board.query';
 
 describe('BoardQuery', () => {
   let query: BoardQuery;
