@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { AppShellModule } from './features/app-shell/app-shell.module';
 import { BoardModule } from './features/board/board.module';
 import { HomeModule } from './features/home/home.module';
-import { HeaderComponent } from './shared/components/header/header.component';
+import { HeaderComponent } from './shared/presenters/header/header.component';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
