@@ -1,8 +1,8 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Section, SectionHasTasks, Task } from '../../../../domain/models';
-import { BoardQuery } from '../../applications/board.query';
-import { SectionUsecase } from '../../applications/section.usecase';
+import { Section, SectionHasTasks, Task } from '../../../../../domain/models';
+import { BoardQuery } from '../../../applications/board.query';
+import { SectionUsecase } from '../../../applications/section.usecase';
 
 @Component({
   selector: 'app-sections',

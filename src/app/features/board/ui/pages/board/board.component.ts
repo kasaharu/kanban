@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { SectionUsecase } from '../../applications/section.usecase';
+import { SectionUsecase } from '../../../applications/section.usecase';
 
 @Component({
   selector: 'app-board',
