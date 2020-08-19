@@ -1,12 +1,12 @@
 import { async, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { AppInitializeUsecase } from './features/app-shell/applications/app-initialize.usecase';
+import { AppInitializer } from './features/app-shell/applications/app-initialize.usecase';
 import { AppShellQuery } from './features/app-shell/applications/app-shell.query';
 
 class MockAppShellQuery implements Partial<AppShellQuery> {}
 
-class MockAppInitializeUsecase implements Partial<AppInitializeUsecase> {}
+class MockAppInitializeUsecase implements Partial<AppInitializer> {}
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -15,7 +15,7 @@ describe('AppComponent', () => {
       declarations: [AppComponent],
       providers: [
         { provide: AppShellQuery, useClass: MockAppShellQuery },
-        { provide: AppInitializeUsecase, useClass: MockAppInitializeUsecase },
+        { provide: AppInitializer, useClass: MockAppInitializeUsecase },
       ],
     }).compileComponents();
   }));

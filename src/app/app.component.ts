@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppInitializeUsecase } from './features/app-shell/applications/app-initialize.usecase';
+import { AppInitializer } from './features/app-shell/applications/app-initialize.usecase';
 import { AppShellQuery } from './features/app-shell/applications/app-shell.query';
 
 @Component({
@@ -8,7 +8,7 @@ import { AppShellQuery } from './features/app-shell/applications/app-shell.query
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private query: AppShellQuery, private usecase: AppInitializeUsecase) {}
+  constructor(private query: AppShellQuery, private usecase: AppInitializer) {}
 
   title = 'kanban';
   readyApp$ = this.query.readyApp$;

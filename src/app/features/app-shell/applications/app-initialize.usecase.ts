@@ -8,7 +8,7 @@ import { actions } from '../store/app-shell.store';
 @Injectable({
   providedIn: 'root',
 })
-export class AppInitializeUsecase {
+export class AppInitializer {
   constructor(private store: Store<[]>, private authenticator: Authenticator) {}
 
   async initialize() {
