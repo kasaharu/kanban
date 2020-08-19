@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <app-header></app-header>
+  <app-header [applicationName]="title"></app-header>
 
   <ng-container *ngIf="readyApp$ | async">
     <main class="main">
