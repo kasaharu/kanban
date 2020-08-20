@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { SectionUsecase } from '../../../applications/section.usecase';
 
 @Component({
   selector: 'app-board',
@@ -8,9 +7,7 @@ import { SectionUsecase } from '../../../applications/section.usecase';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BoardComponent implements OnInit {
-  constructor(private sectionUsecase: SectionUsecase) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.sectionUsecase.fetchSections();
-  }
+  ngOnInit(): void {}
 }

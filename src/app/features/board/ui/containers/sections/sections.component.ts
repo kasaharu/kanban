@@ -15,7 +15,9 @@ export class SectionsComponent implements OnInit {
 
   sectionsHasTasks$ = this.query.sectionsHasTasks$;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.usecase.fetchSections();
+  }
 
   addSection(section: Section) {
     this.usecase.addSection(section);
