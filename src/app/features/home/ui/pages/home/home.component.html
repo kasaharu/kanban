@@ -1,11 +1,10 @@
 <div *ngIf="user$ | async as user; else unLoggedInUser">
   <h2>Hello {{ user.displayName }}!</h2>
 
-  <div>
+  <div class="contents">
     <a routerLink="/board">ボードへ</a>
+    <button (click)="logout()">Logout</button>
   </div>
-
-  <button (click)="logout()">Logout</button>
 </div>
 <ng-template #unLoggedInUser>
   <div>Welcome to Kanban</div>
