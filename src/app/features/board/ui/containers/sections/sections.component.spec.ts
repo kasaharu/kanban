@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BoardQuery } from '../../applications/board.query';
-import { SectionUsecase } from '../../applications/section.usecase';
+import { BoardQuery } from '../../../applications/board.query';
+import { SectionUsecase } from '../../../applications/section.usecase';
 import { SectionsComponent } from './sections.component';
 
 class MockBoardQuery implements Partial<BoardQuery> {}

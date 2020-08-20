@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { HomeUsecase } from '../../applications/home.usecase';
+import { HomeUsecase } from '../../../applications/home.usecase';
 import { HomeComponent } from './home.component';
 
 class MockHomeUsecase implements Partial<HomeUsecase> {}
