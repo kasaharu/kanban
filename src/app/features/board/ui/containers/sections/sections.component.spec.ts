@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BoardQuery } from '../../../applications/board.query';
+import { SectionQuery } from '../../../applications/section.query';
 import { SectionUsecase } from '../../../applications/section.usecase';
 import { SectionsComponent } from './sections.component';
 
-class MockBoardQuery implements Partial<BoardQuery> {}
+class MockBoardQuery implements Partial<SectionQuery> {}
 
 class MockSectionUsecase implements Partial<SectionUsecase> {
   async fetchSections() {}
@@ -17,7 +17,7 @@ describe('SectionsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [SectionsComponent],
       providers: [
-        { provide: BoardQuery, useClass: MockBoardQuery },
+        { provide: SectionQuery, useClass: MockBoardQuery },
         { provide: SectionUsecase, useClass: MockSectionUsecase },
       ],
     }).compileComponents();

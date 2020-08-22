@@ -1,15 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
-import { BoardQuery } from './board.query';
+import { SectionQuery } from './section.query';
 
-describe('BoardQuery', () => {
-  let query: BoardQuery;
+describe('SectionQuery', () => {
+  let query: SectionQuery;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideMockStore()],
     });
-    query = TestBed.inject(BoardQuery);
+    query = TestBed.inject(SectionQuery);
   });
 
   it('should be created', () => {

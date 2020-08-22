@@ -1,7 +1,7 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Section, SectionHasTasks, Task } from '../../../../../domain/models';
-import { BoardQuery } from '../../../applications/board.query';
+import { SectionQuery } from '../../../applications/section.query';
 import { SectionUsecase } from '../../../applications/section.usecase';
 
 @Component({
@@ -11,7 +11,7 @@ import { SectionUsecase } from '../../../applications/section.usecase';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SectionsComponent implements OnInit {
-  constructor(private query: BoardQuery, private usecase: SectionUsecase) {}
+  constructor(private query: SectionQuery, private usecase: SectionUsecase) {}
 
   sectionsHasTasks$ = this.query.sectionsHasTasks$;
 

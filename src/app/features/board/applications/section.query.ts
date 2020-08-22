@@ -8,7 +8,7 @@ import { selectStore } from '../store/board.store';
 @Injectable({
   providedIn: 'root',
 })
-export class BoardQuery {
+export class SectionQuery {
   constructor(private store: Store<{}>) {}
 
   // TODO: orderId 順にソートするロジックは domain 層に移動する
