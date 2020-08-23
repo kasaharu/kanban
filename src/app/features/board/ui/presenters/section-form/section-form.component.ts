@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Section } from '../../../../../domain/models';
 
@@ -8,18 +8,14 @@ import { Section } from '../../../../../domain/models';
   styleUrls: ['./section-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SectionFormComponent implements OnInit {
+export class SectionFormComponent {
   constructor(private fb: FormBuilder) {}
+  // TODO: 型の見直しが必要
   @Output()
   requestCreateSection = new EventEmitter<Section>();
 
-  sectionForm = this.fb.group({
-    id: [''],
-    name: ['', Validators.required],
-  });
   placeholderText = 'セクションを作成';
-
-  ngOnInit(): void {}
+  sectionForm = this.fb.group({ id: [''], name: ['', Validators.required] });
 
   onSubmit() {
     this.requestCreateSection.emit(this.sectionForm.value);

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Task } from 'src/app/domain/models';
 
@@ -8,19 +8,14 @@ import { Task } from 'src/app/domain/models';
   styleUrls: ['./new-task-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NewTaskFormComponent implements OnInit {
+export class NewTaskFormComponent {
   constructor(private fb: FormBuilder) {}
   // TODO: 型の見直しが必要
   @Output()
   requestCreateTask = new EventEmitter<Task>();
 
-  newTaskForm = this.fb.group({
-    id: [''],
-    name: ['', Validators.required],
-  });
   placeholderText = '新しいタスクを作成';
-
-  ngOnInit(): void {}
+  newTaskForm = this.fb.group({ id: [''], name: ['', Validators.required] });
 
   onSubmit() {
     this.requestCreateTask.emit(this.newTaskForm.value);
