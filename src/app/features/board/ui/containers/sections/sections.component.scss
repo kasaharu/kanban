@@ -41,3 +41,9 @@
 .add-task-input {
   margin-bottom: 12px;
 }
+
+// NOTE: styling for CDK
+//       ref. https://material.angular.io/cdk/drag-drop/overview#styling
+.cdk-drag-placeholder {
+  opacity: 0;
+}
