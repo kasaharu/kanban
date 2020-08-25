@@ -30,7 +30,6 @@ export class SectionsComponent implements OnInit {
   }
 
   changeSectionName(newName: string, section: Section) {
-    console.log('[debug] ----- change section name: ', newName, section);
     this.usecase.updateSectionName(newName, section);
   }
 

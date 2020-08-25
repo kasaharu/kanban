@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -7,7 +7,7 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./editable-section-name.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EditableSectionNameComponent {
+export class EditableSectionNameComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   @Input()
