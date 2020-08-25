@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { EditableSectionNameComponent } from './editable-section-name.component';
 
 describe('EditableSectionNameComponent', () => {
@@ -9,6 +9,7 @@ describe('EditableSectionNameComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [EditableSectionNameComponent],
+      imports: [ReactiveFormsModule],
     }).compileComponents();
   }));
 
