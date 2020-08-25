@@ -12,7 +12,14 @@ import { SectionFormComponent } from './ui/presenters/section-form/section-form.
 import { TaskCardComponent } from './ui/presenters/task-card/task-card.component';
 
 @NgModule({
-  declarations: [BoardComponent, SectionsComponent, SectionFormComponent, TaskCardComponent, NewTaskFormComponent, EditableSectionNameComponent],
+  declarations: [
+    BoardComponent,
+    SectionsComponent,
+    SectionFormComponent,
+    TaskCardComponent,
+    NewTaskFormComponent,
+    EditableSectionNameComponent,
+  ],
   imports: [CommonModule, ReactiveFormsModule, DragDropModule, StoreModule.forFeature(featureName, reducer)],
   exports: [BoardComponent],
 })
