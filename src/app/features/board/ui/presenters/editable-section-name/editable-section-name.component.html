@@ -1,1 +1,3 @@
-<p>editable-section-name works!</p>
+<form [formGroup]="editableName" (ngSubmit)="onSubmit()">
+  <input type="text" class="editable-section-name" formControlName="name" />
+</form>

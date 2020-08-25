@@ -3,7 +3,7 @@
   <div class="sections" cdkDropListGroup>
     <div class="section" *ngFor="let section of sections">
       <div class="section-name-field">
-        <div class="section-name">{{ section.name }}</div>
+        <app-editable-section-name [name]="section.name" (editName)="changeSectionName($event, section)"></app-editable-section-name>
         <button class="section-delete-button" (click)="deleteSection(section)">削除</button>
       </div>
       <app-new-task-form class="add-task-input" (requestCreateTask)="addTask($event, section)"></app-new-task-form>

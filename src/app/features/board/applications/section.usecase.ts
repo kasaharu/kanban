@@ -73,6 +73,11 @@ export class SectionUsecase {
     this.store.dispatch(actions.deleteSection({ sectionId: deletedSectionId }));
   }
 
+  updateSectionName(newName: string, section: Section) {
+    const updatedSection: Section = { ...section, name: newName };
+    this.databaseAdapter.updateDocument<Section>(SectionDomain.COLLECTION_NAME, updatedSection, updatedSection.id);
+  }
+
   async addTask(addingTask: Task, section: SectionHasTasks) {
     const user = await selectAppShellStore(this.store, (state) => state.loggedInUser)
       .pipe(take(1))
