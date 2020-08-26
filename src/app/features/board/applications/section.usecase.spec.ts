@@ -1,25 +1,31 @@
-import { TestBed } from '@angular/core/testing';
+import { fakeAsync, flushMicrotasks, TestBed } from '@angular/core/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
 import { Section, Task, User } from '../../../domain/models';
 import { DatabaseAdapter } from '../../../infrastructures/adapters/database.adapter';
 import { sectionFactory, taskFactory, userFactory } from '../../../testing/factories';
 import { State as AppShellState } from '../../app-shell/store/app-shell.store';
-import { actions } from '../store/board.store';
+import { actions, State as BoardState } from '../store/board.store';
 import { SectionUsecase } from './section.usecase';
 
 class MockDatabaseAdapter implements Partial<DatabaseAdapter> {
   fetchCollectionWhere(): any {}
+  createDocument(): any {}
 }
 
 interface MockStateType {
   appShell: AppShellState;
+  board: BoardState;
 }
 
 const initialState: MockStateType = {
   appShell: {
     loggedInUser: null,
     readyApp: false,
+  },
+  board: {
+    sections: [],
+    tasks: [],
   },
 };
 
@@ -70,5 +76,30 @@ describe('SectionUsecase', () => {
       expect(store.dispatch).toHaveBeenCalledWith(actions.saveSections({ sections: returnValueSections }));
       expect(store.dispatch).toHaveBeenCalledWith(actions.saveTasks({ tasks: returnValueTasks }));
     });
+  });
+
+  describe('addSection() method', () => {
+    it('ユーザー情報を取得できてない場合 undefined が返る', async () => {
+      const addingSection: Section = sectionFactory({ name: 'section name #1', userId: 'user001' });
+      spyOn(store, 'dispatch');
+
+      const result = await usecase.addSection(addingSection);
+
+      expect(result).toBeUndefined();
+      expect(store.dispatch).not.toHaveBeenCalled();
+    });
+
+    it('ユーザー情報を取得できている場合 actions の saveSections() と saveTasks() が呼ばれる', fakeAsync(() => {
+      const user: User = userFactory({});
+      const addingSection: Section = sectionFactory({ name: 'section name #1', userId: 'user001' });
+      store.setState({ appShell: { loggedInUser: user }, board: { sections: [], tasks: [] } });
+      spyOn(store, 'dispatch');
+      spyOn(dbAdapter, 'createDocument').and.resolveTo(addingSection);
+
+      usecase.addSection(addingSection);
+      flushMicrotasks();
+
+      expect(store.dispatch).toHaveBeenCalledWith(actions.createSection({ section: addingSection }));
+    }));
   });
 });
