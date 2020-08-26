@@ -1,11 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
-import { DatabaseAdapter } from '../../../infrastructures/adapters/database.adapter';
-import { State as AppShellState } from '../../app-shell/store/app-shell.store';
-import { SectionUsecase } from './section.usecase';
-import { User, Section, Task } from '../../../domain/models';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
+import { Section, Task, User } from '../../../domain/models';
+import { DatabaseAdapter } from '../../../infrastructures/adapters/database.adapter';
+import { sectionFactory, taskFactory, userFactory } from '../../../testing/factories';
+import { State as AppShellState } from '../../app-shell/store/app-shell.store';
 import { actions } from '../store/board.store';
+import { SectionUsecase } from './section.usecase';
 
 class MockDatabaseAdapter implements Partial<DatabaseAdapter> {
   fetchCollectionWhere(): any {}
@@ -52,9 +53,9 @@ describe('SectionUsecase', () => {
     });
 
     it('ユーザー情報を取得できている場合 undefined が返る', async () => {
-      const user: User = { displayName: '', email: '', phoneNumber: '', photoURL: null, providerId: '', uid: '' };
-      const returnValueSections: Section[] = [{ id: '', name: '', userId: '', orderId: 1 }];
-      const returnValueTasks: Task[] = [{ id: '', name: '', sectionId: '', userId: '', orderId: 1 }];
+      const user: User = userFactory({});
+      const returnValueSections: Section[] = [sectionFactory({})];
+      const returnValueTasks: Task[] = [taskFactory({})];
 
       store.setState({ appShell: { loggedInUser: user } });
 
