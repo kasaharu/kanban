@@ -52,7 +52,7 @@ describe('SectionUsecase', () => {
       expect(store.dispatch).not.toHaveBeenCalled();
     });
 
-    it('ユーザー情報を取得できている場合 undefined が返る', async () => {
+    it('ユーザー情報を取得できている場合 actions の saveSections() と saveTasks() が呼ばれる', async () => {
       const user: User = userFactory({});
       const returnValueSections: Section[] = [sectionFactory({})];
       const returnValueTasks: Task[] = [taskFactory({})];
