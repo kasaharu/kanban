@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { NAME_MAX_LENGTH } from '../../../domain/section';
 
 @Component({
   selector: 'app-editable-section-name',
@@ -15,7 +16,7 @@ export class EditableSectionNameComponent implements OnInit {
   @Output()
   editName = new EventEmitter<string>();
 
-  editableName = this.fb.group({ name: ['', Validators.required] });
+  editableName = this.fb.group({ name: ['', [Validators.required, Validators.maxLength(NAME_MAX_LENGTH)]] });
 
   ngOnInit(): void {
     this.editableName.setValue({ name: this.name });

@@ -74,6 +74,10 @@ export class SectionUsecase {
   }
 
   updateSectionName(newName: string, section: Section) {
+    if (newName.length > SectionDomain.NAME_MAX_LENGTH) {
+      return;
+    }
+
     const updatedSection: Section = { ...section, name: newName };
     this.databaseAdapter.updateDocument<Section>(SectionDomain.COLLECTION_NAME, updatedSection, updatedSection.id);
   }
