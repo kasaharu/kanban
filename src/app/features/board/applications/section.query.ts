@@ -26,7 +26,7 @@ export class SectionQuery {
     map(([sections, tasks]) => {
       return sections.map((section) => {
         const foundTasks = tasks.filter((task) => task.sectionId === section.id);
-        return { id: section.id, name: section.name, tasks: foundTasks };
+        return { id: section.id, name: section.name, userId: section.userId, orderId: section.orderId, tasks: foundTasks };
       });
     }),
   );

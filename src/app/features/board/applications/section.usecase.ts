@@ -73,12 +73,12 @@ export class SectionUsecase {
     this.store.dispatch(actions.deleteSection({ sectionId: deletedSectionId }));
   }
 
-  updateSectionName(newName: string, section: Section) {
+  updateSectionName(newName: string, section: SectionHasTasks) {
     if (newName.length > SectionDomain.NAME_MAX_LENGTH) {
       return;
     }
 
-    const updatedSection: Section = { ...section, name: newName };
+    const updatedSection: Section = { id: section.id, name: newName, userId: section.userId, orderId: section.orderId };
     this.databaseAdapter.updateDocument<Section>(SectionDomain.COLLECTION_NAME, updatedSection, updatedSection.id);
   }
 

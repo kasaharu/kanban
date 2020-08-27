@@ -29,7 +29,7 @@ export class SectionsComponent implements OnInit {
     }
   }
 
-  changeSectionName(newName: string, section: Section) {
+  changeSectionName(newName: string, section: SectionHasTasks) {
     this.usecase.updateSectionName(newName, section);
   }
 
