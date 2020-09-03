@@ -1,6 +1,6 @@
-import * as ejs from 'ejs';
-import * as fs from 'fs';
-import * as path from 'path';
+const ejs = require('ejs');
+const fs = require('fs');
+const path = require('path');
 
 let isProduction = false;
 if (process.argv.length === 3) {
