@@ -1,3 +1,4 @@
+import { OverlayModule } from '@angular/cdk/overlay';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { BrowserModule } from '@angular/platform-browser';
@@ -18,6 +19,7 @@ import { HeaderComponent } from './shared/presenters/header/header.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    OverlayModule,
     AngularFireModule.initializeApp(environment.firebase),
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
