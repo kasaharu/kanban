@@ -1,3 +1,27 @@
 :host {
   display: block;
 }
+
+.dialog {
+  width: 400px;
+  padding: 24px;
+  border-radius: 4px;
+  background: #edf0f2;
+}
+
+.title {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: bold;
+  border-bottom: 1px solid;
+}
+
+.message {
+  margin-top: 8px;
+}
+
+.footer {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: row-reverse;
+}
