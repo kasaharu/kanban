@@ -1,11 +1,11 @@
-import reducer, { actions, State } from './error.store';
+import reducer, { actions, State, ErrorTypeEnum } from './error.store';
 
 describe('error reducer', () => {
   it('action type : saveError', () => {
-    const state: State = { error: null };
-    const updatedState = null;
-    const result = reducer(state, actions.saveError({ error: updatedState }));
+    const state: State = { errorType: null, errorMessage: '' };
+    const updatedState = ErrorTypeEnum.OverSectionNameLength;
+    const result = reducer(state, actions.setError({ errorType: updatedState }));
 
-    expect(result).toEqual({ error: updatedState });
+    expect(result).toEqual({ ...state, errorType: updatedState });
   });
 });

@@ -1,22 +1,32 @@
 import { createAction, createReducer, on, props, union } from '@ngrx/store';
+import { createFeatureStoreSelector } from '../../../shared/store/helpers/selector';
+
+export enum ErrorTypeEnum {
+  OverSectionNameLength = 'over_section_name_length',
+}
 
 // NOTE: State
 export interface State {
-  error: any | null;
+  errorType: ErrorTypeEnum | null;
+  errorMessage: string;
 }
 
 export const initialState: State = {
-  error: null,
+  errorType: null,
+  errorMessage: '',
 };
 
 // NOTE: Actions
-export const saveError = createAction('[Error] save', props<{ error: any }>());
+export const setError = createAction('[Error] set error', props<{ errorType: ErrorTypeEnum }>());
 
-export const actions = { saveError };
+export const actions = { setError: setError };
 const actionsUnion = union(actions);
 
 // NOTE: Reducer
-const errorReducer = createReducer(initialState, on(saveError, (state, { error }) => ({ ...state, error })));
+const errorReducer = createReducer(
+  initialState,
+  on(setError, (state, { errorType }) => ({ ...state, errorType })),
+);
 
 export default function reducer(state: State, action: typeof actionsUnion): State {
   return errorReducer(state, action);
@@ -24,3 +34,4 @@ export default function reducer(state: State, action: typeof actionsUnion): Stat
 
 // NOTE: Selectors
 export const featureName = 'error';
+export const selectStore = createFeatureStoreSelector<State>(featureName);
