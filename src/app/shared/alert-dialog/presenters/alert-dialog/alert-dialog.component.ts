@@ -1,5 +1,5 @@
 import { OverlayRef } from '@angular/cdk/overlay';
-import { ChangeDetectionStrategy, Component, Inject, InjectionToken } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Inject, InjectionToken } from '@angular/core';
 
 export type AlertDialogData = {
   title: string;
@@ -21,6 +21,8 @@ export class AlertDialogComponent {
     @Inject(OVERLAY_DATA) private readonly alertDialogData: AlertDialogData,
   ) {}
 
+  readonly result$ = new EventEmitter<boolean>();
+
   get title(): string {
     return this.alertDialogData.title;
   }
@@ -31,5 +33,6 @@ export class AlertDialogComponent {
 
   close() {
     this.overlayRef.dispose();
+    this.result$.emit(true);
   }
 }

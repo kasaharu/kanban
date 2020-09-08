@@ -2,6 +2,8 @@ import { Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { Injectable, Injector } from '@angular/core';
 import { AlertDialogComponent, AlertDialogData, OVERLAY_DATA, OVERLAY_REF } from '../presenters/alert-dialog/alert-dialog.component';
+import { finalize } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +11,7 @@ import { AlertDialogComponent, AlertDialogData, OVERLAY_DATA, OVERLAY_REF } from
 export class AlertDialogService {
   constructor(private readonly overlay: Overlay) {}
 
-  show(title: string, message: string) {
+  show(title: string, message: string): Observable<boolean> {
     const overlayRef = this.overlay.create({
       positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
       hasBackdrop: true,
@@ -25,6 +27,7 @@ export class AlertDialogService {
       ]),
     );
 
-    overlayRef.attach(componentPortal);
+    const componentRef = overlayRef.attach(componentPortal);
+    return componentRef.instance.result$.pipe(finalize(() => overlayRef.dispose()));
   }
 }

@@ -1,9 +1,9 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { AlertDialogService } from 'src/app/shared/alert-dialog/services/alert-dialog.service';
 import { Section, SectionHasTasks, Task } from '../../../../../domain/models';
 import { SectionQuery } from '../../../applications/section.query';
 import { SectionUsecase } from '../../../applications/section.usecase';
-import { AlertDialogService } from 'src/app/shared/alert-dialog/services/alert-dialog.service';
 
 @Component({
   selector: 'app-sections',
@@ -20,7 +20,7 @@ export class SectionsComponent implements OnInit {
   ngOnInit(): void {
     this.usecase.fetchSections();
     this.errorMessage$.subscribe((message) => {
-      this.alertDialogService.show('エラーが発生しました', `${message}`);
+      this.alertDialogService.show('エラーが発生しました', `${message}`).subscribe(() => this.usecase.closeAlertDialog());
     });
   }
 

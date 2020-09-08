@@ -129,4 +129,8 @@ export class SectionUsecase {
       this.databaseAdapter.updateDocument<Task>(TaskDomain.COLLECTION_NAME, updatedTask, updatedTask.id);
     });
   }
+
+  closeAlertDialog() {
+    this.store.dispatch(ErrorStoreActions.clearError());
+  }
 }
