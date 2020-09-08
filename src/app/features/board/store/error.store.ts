@@ -1,13 +1,6 @@
 import { createAction, createReducer, on, props, union } from '@ngrx/store';
 import { createFeatureStoreSelector } from '../../../shared/store/helpers/selector';
-
-export enum ErrorTypeEnum {
-  OverSectionNameLength = 'over_section_name_length',
-}
-
-const mappingErrorMessage = {
-  [ErrorTypeEnum.OverSectionNameLength]: 'セクション名は 1 ~ 10 文字で設定してください',
-};
+import { ErrorTypeEnum, mappingErrorMessage } from '../ui/helpers/error-message';
 
 // NOTE: State
 export interface State {
