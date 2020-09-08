@@ -5,6 +5,10 @@ export enum ErrorTypeEnum {
   OverSectionNameLength = 'over_section_name_length',
 }
 
+const mappingErrorMessage = {
+  [ErrorTypeEnum.OverSectionNameLength]: 'セクション名は 1 ~ 10 文字で設定してください',
+};
+
 // NOTE: State
 export interface State {
   errorType: ErrorTypeEnum | null;
@@ -25,7 +29,7 @@ const actionsUnion = union(actions);
 // NOTE: Reducer
 const errorReducer = createReducer(
   initialState,
-  on(setError, (state, { errorType }) => ({ ...state, errorType })),
+  on(setError, (state, { errorType }) => ({ ...state, errorType, errorMessage: mappingErrorMessage[errorType] })),
 );
 
 export default function reducer(state: State, action: typeof actionsUnion): State {

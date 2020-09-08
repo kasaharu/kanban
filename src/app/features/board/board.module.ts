@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
-import { default as reducer, featureName } from './store/board.store';
+import { default as boardStoreReducer, featureName as boardStoreName } from './store/board.store';
+import { default as errorStoreReducer, featureName as errorStoreName } from './store/error.store';
 import { SectionsComponent } from './ui/containers/sections/sections.component';
 import { BoardComponent } from './ui/pages/board/board.component';
 import { EditableSectionNameComponent } from './ui/presenters/editable-section-name/editable-section-name.component';
@@ -20,7 +21,13 @@ import { TaskCardComponent } from './ui/presenters/task-card/task-card.component
     NewTaskFormComponent,
     EditableSectionNameComponent,
   ],
-  imports: [CommonModule, ReactiveFormsModule, DragDropModule, StoreModule.forFeature(featureName, reducer)],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    DragDropModule,
+    StoreModule.forFeature(boardStoreName, boardStoreReducer),
+    StoreModule.forFeature(errorStoreName, errorStoreReducer),
+  ],
   exports: [BoardComponent],
 })
 export class BoardModule {}

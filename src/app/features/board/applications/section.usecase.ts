@@ -7,6 +7,7 @@ import { selectStore as selectAppShellStore } from '../../app-shell/store/app-sh
 import * as SectionDomain from '../domain/section';
 import * as TaskDomain from '../domain/task';
 import { actions, selectStore } from '../store/board.store';
+import { actions as ErrorStoreActions, ErrorTypeEnum } from '../store/error.store';
 
 @Injectable({
   providedIn: 'root',
@@ -75,11 +76,13 @@ export class SectionUsecase {
 
   updateSectionName(newName: string, section: SectionHasTasks) {
     if (newName.length > SectionDomain.NAME_MAX_LENGTH) {
+      this.store.dispatch(ErrorStoreActions.setError({ errorType: ErrorTypeEnum.OverSectionNameLength }));
       return;
     }
 
     const updatedSection: Section = { id: section.id, name: newName, userId: section.userId, orderId: section.orderId };
     this.databaseAdapter.updateDocument<Section>(SectionDomain.COLLECTION_NAME, updatedSection, updatedSection.id);
+    // FIXME: SectionName 変更後に store に更新をかける
   }
 
   async addTask(addingTask: Task, section: SectionHasTasks) {

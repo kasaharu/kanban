@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Section, SectionHasTasks, Task } from '../../../../../domain/models';
 import { SectionQuery } from '../../../applications/section.query';
 import { SectionUsecase } from '../../../applications/section.usecase';
+import { AlertDialogService } from 'src/app/shared/alert-dialog/services/alert-dialog.service';
 
 @Component({
   selector: 'app-sections',
@@ -11,12 +12,16 @@ import { SectionUsecase } from '../../../applications/section.usecase';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SectionsComponent implements OnInit {
-  constructor(private query: SectionQuery, private usecase: SectionUsecase) {}
+  constructor(private query: SectionQuery, private usecase: SectionUsecase, private alertDialogService: AlertDialogService) {}
 
   sectionsHasTasks$ = this.query.sectionsHasTasks$;
+  errorMessage$ = this.query.errorMessage$;
 
   ngOnInit(): void {
     this.usecase.fetchSections();
+    this.errorMessage$.subscribe((message) => {
+      this.alertDialogService.show('エラーが発生しました', `${message}`);
+    });
   }
 
   addSection(section: Section) {
