@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SectionFormComponent } from './section-form.component';
 
@@ -6,12 +6,14 @@ describe('SectionFormComponent', () => {
   let component: SectionFormComponent;
   let fixture: ComponentFixture<SectionFormComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [SectionFormComponent],
-      imports: [ReactiveFormsModule],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [SectionFormComponent],
+        imports: [ReactiveFormsModule],
+      }).compileComponents();
+    }),
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SectionFormComponent);

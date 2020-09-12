@@ -1,10 +1,10 @@
 import { OverlayRef } from '@angular/cdk/overlay';
 import { ChangeDetectionStrategy, Component, EventEmitter, Inject, InjectionToken } from '@angular/core';
 
-export type AlertDialogData = {
+export interface AlertDialogData {
   title: string;
   message: string;
-};
+}
 
 export const OVERLAY_REF = new InjectionToken<OverlayRef>('OVERLAY_REF');
 export const OVERLAY_DATA = new InjectionToken<AlertDialogData>('OVERLAY_DATA');

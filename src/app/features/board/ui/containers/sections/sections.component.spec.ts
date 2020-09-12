@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BehaviorSubject, of } from 'rxjs';
 import { AlertDialogService } from 'src/app/shared/alert-dialog/services/alert-dialog.service';
 import { SectionQuery } from '../../../applications/section.query';
@@ -23,18 +23,20 @@ describe('SectionsComponent', () => {
   let fixture: ComponentFixture<SectionsComponent>;
   let alertDialogService: AlertDialogService;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [SectionsComponent],
-      providers: [
-        { provide: SectionQuery, useClass: MockBoardQuery },
-        { provide: SectionUsecase, useClass: MockSectionUsecase },
-        { provide: AlertDialogService, useClass: MockAlertDialogService },
-      ],
-    }).compileComponents();
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [SectionsComponent],
+        providers: [
+          { provide: SectionQuery, useClass: MockBoardQuery },
+          { provide: SectionUsecase, useClass: MockSectionUsecase },
+          { provide: AlertDialogService, useClass: MockAlertDialogService },
+        ],
+      }).compileComponents();
 
-    alertDialogService = TestBed.inject(AlertDialogService);
-  }));
+      alertDialogService = TestBed.inject(AlertDialogService);
+    }),
+  );
 
   beforeEach(() => {
     spyOn(alertDialogService, 'show').and.returnValue(of(true));
