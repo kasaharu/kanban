@@ -50,6 +50,11 @@ export class SectionUsecase {
       return;
     }
 
+    if (addingSection.name.length > SectionDomain.NAME_MAX_LENGTH) {
+      this.store.dispatch(ErrorStoreActions.setError({ errorType: ErrorTypeEnum.OverSectionNameLength }));
+      return;
+    }
+
     const sections: Section[] = await selectStore(this.store, (state) => state.sections)
       .pipe(take(1))
       .toPromise();

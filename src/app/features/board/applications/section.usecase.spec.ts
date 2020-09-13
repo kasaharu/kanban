@@ -6,6 +6,8 @@ import { DatabaseAdapter } from '../../../infrastructures/adapters/database.adap
 import { sectionFactory, taskFactory, userFactory } from '../../../testing/factories';
 import { State as AppShellState } from '../../app-shell/store/app-shell.store';
 import { actions, State as BoardState } from '../store/board.store';
+import { actions as ErrorStoreAction } from '../store/error.store';
+import { ErrorTypeEnum } from '../ui/helpers/error-message';
 import { SectionUsecase } from './section.usecase';
 
 class MockDatabaseAdapter implements Partial<DatabaseAdapter> {
@@ -80,7 +82,7 @@ describe('SectionUsecase', () => {
 
   describe('addSection() method', () => {
     it('ユーザー情報を取得できてない場合 undefined が返る', async () => {
-      const addingSection: Section = sectionFactory({ name: 'section name #1', userId: 'user001' });
+      const addingSection: Section = sectionFactory({ name: 'section #1', userId: 'user001' });
       spyOn(store, 'dispatch');
 
       const result = await usecase.addSection(addingSection);
@@ -91,7 +93,7 @@ describe('SectionUsecase', () => {
 
     it('ユーザー情報を取得できている場合 actions の saveSections() と saveTasks() が呼ばれる', fakeAsync(() => {
       const user: User = userFactory({});
-      const addingSection: Section = sectionFactory({ name: 'section name #1', userId: 'user001' });
+      const addingSection: Section = sectionFactory({ name: 'section #1', userId: 'user001' });
       store.setState({ appShell: { loggedInUser: user }, board: { sections: [], tasks: [] } });
       spyOn(store, 'dispatch');
       spyOn(dbAdapter, 'createDocument').and.resolveTo(addingSection);
@@ -101,5 +103,17 @@ describe('SectionUsecase', () => {
 
       expect(store.dispatch).toHaveBeenCalledWith(actions.createSection({ section: addingSection }));
     }));
+
+    it('ユーザー情報を取得できているが section の名前が 10 文字より多い場合 undefined が返る', async () => {
+      const user: User = userFactory({});
+      const addingSection: Section = sectionFactory({ name: 'section #10', userId: 'user001' });
+      store.setState({ appShell: { loggedInUser: user }, board: { sections: [], tasks: [] } });
+      spyOn(store, 'dispatch');
+
+      const result = await usecase.addSection(addingSection);
+
+      expect(result).toBeUndefined();
+      expect(store.dispatch).toHaveBeenCalledWith(ErrorStoreAction.setError({ errorType: ErrorTypeEnum.OverSectionNameLength }));
+    });
   });
 });
