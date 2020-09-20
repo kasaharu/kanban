@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
 
   title = 'kanban';
   readyApp$ = this.query.readyApp$;
+  loggedIn$ = this.query.loggedIn$;
 
   ngOnInit() {
     this.usecase.initialize();

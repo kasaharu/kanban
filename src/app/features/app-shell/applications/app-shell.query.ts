@@ -9,4 +9,7 @@ export class AppShellQuery {
   constructor(private store: Store<{}>) {}
 
   readyApp$ = selectStore(this.store, (state) => state.readyApp);
+  loggedIn$ = selectStore(this.store, (state) => {
+    return state.loggedInUser ? true : false;
+  });
 }

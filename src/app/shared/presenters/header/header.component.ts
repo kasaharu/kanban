@@ -11,6 +11,8 @@ export class HeaderComponent implements OnInit {
 
   @Input()
   applicationName = '';
+  @Input()
+  loggedIn = false;
 
   ngOnInit(): void {}
 }
