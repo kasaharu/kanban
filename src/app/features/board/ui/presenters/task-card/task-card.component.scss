@@ -4,10 +4,12 @@
 
 .task-card {
   height: 80px;
+  width: 320px;
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 8px;
   position: relative;
+  box-sizing: border-box;
 }
 
 .task-name {

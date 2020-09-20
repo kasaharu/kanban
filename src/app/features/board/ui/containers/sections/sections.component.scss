@@ -4,10 +4,12 @@
 
 .sections {
   display: flex;
+  overflow-x: scroll;
 }
 
 .section {
-  width: 280px;
+  flex: 0 1 320px;
+  min-width: 320px;
   margin: 12px;
 }
 
