@@ -3,5 +3,5 @@ export enum ErrorTypeEnum {
 }
 
 export const mappingErrorMessage = {
-  [ErrorTypeEnum.OverSectionNameLength]: 'セクション名は 1 ~ 10 文字で設定してください',
+  [ErrorTypeEnum.OverSectionNameLength]: 'セクション名は 1 ~ 15 文字で設定してください',
 };

@@ -93,7 +93,7 @@ describe('SectionUsecase', () => {
 
     it('ユーザー情報を取得できている場合 actions の saveSections() と saveTasks() が呼ばれる', fakeAsync(() => {
       const user: User = userFactory({});
-      const addingSection: Section = sectionFactory({ name: 'section #1', userId: 'user001' });
+      const addingSection: Section = sectionFactory({ name: 'new section #15', userId: 'user001' });
       store.setState({ appShell: { loggedInUser: user }, board: { sections: [], tasks: [] } });
       spyOn(store, 'dispatch');
       spyOn(dbAdapter, 'createDocument').and.resolveTo(addingSection);
@@ -104,9 +104,9 @@ describe('SectionUsecase', () => {
       expect(store.dispatch).toHaveBeenCalledWith(actions.createSection({ section: addingSection }));
     }));
 
-    it('ユーザー情報を取得できているが section の名前が 10 文字より多い場合 undefined が返る', async () => {
+    it('ユーザー情報を取得できているが section の名前が 15 文字より多い場合 undefined が返る', async () => {
       const user: User = userFactory({});
-      const addingSection: Section = sectionFactory({ name: 'section #10', userId: 'user001' });
+      const addingSection: Section = sectionFactory({ name: 'new section #016', userId: 'user001' });
       store.setState({ appShell: { loggedInUser: user }, board: { sections: [], tasks: [] } });
       spyOn(store, 'dispatch');
 
