@@ -1,4 +1,3 @@
 <form class="form" [formGroup]="editableName" (ngSubmit)="onSubmit()">
-  <div class="error-message" *ngIf="editableName.invalid">section の名前は 1 ~ 10 文字</div>
   <input type="text" class="editable-section-name" formControlName="name" />
 </form>
