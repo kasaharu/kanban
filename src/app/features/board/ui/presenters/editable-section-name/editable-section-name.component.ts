@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NAME_MAX_LENGTH } from '../../../domain/section';
 
@@ -15,6 +15,8 @@ export class EditableSectionNameComponent implements OnInit {
   name = '';
   @Output()
   editName = new EventEmitter<string>();
+  @ViewChild('inputElem')
+  elem!: ElementRef;
 
   editableName = this.fb.group({ name: ['', [Validators.required, Validators.maxLength(NAME_MAX_LENGTH)]] });
 
@@ -24,5 +26,6 @@ export class EditableSectionNameComponent implements OnInit {
 
   onSubmit() {
     this.editName.emit(this.editableName.value.name);
+    this.elem.nativeElement.blur();
   }
 }
