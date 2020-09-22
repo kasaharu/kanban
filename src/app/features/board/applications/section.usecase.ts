@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
-import { Section, SectionHasTasks, Task } from '../../../domain/models';
+import { SectionHasTasks, Task } from '../../../domain/models';
+import * as SectionDomain from '../../../domain/section/section.vo';
+import { Section } from '../../../domain/section/section.vo';
 import { DatabaseAdapter } from '../../../infrastructures/adapters/database.adapter';
 import { selectStore as selectAppShellStore } from '../../app-shell/store/app-shell.store';
-import * as SectionDomain from '../domain/section';
 import * as TaskDomain from '../domain/task';
 import { actions, selectStore } from '../store/board.store';
 import { actions as ErrorStoreActions } from '../store/error.store';
@@ -50,22 +51,17 @@ export class SectionUsecase {
       return;
     }
 
-    if (addingSection.name.length > SectionDomain.NAME_MAX_LENGTH) {
-      this.store.dispatch(ErrorStoreActions.setError({ errorType: ErrorTypeEnum.OverSectionNameLength }));
-      return;
-    }
-
     const sections: Section[] = await selectStore(this.store, (state) => state.sections)
       .pipe(take(1))
       .toPromise();
-    const createdSection = await this.databaseAdapter.createDocument<Section>(SectionDomain.COLLECTION_NAME, {
-      userId: user.uid,
-      name: addingSection.name,
-      orderId: sections.length + 1,
-      id: 'temporary',
-    });
 
-    this.store.dispatch(actions.createSection({ section: createdSection }));
+    try {
+      const newerSection = SectionDomain.SectionValueObject.create(addingSection.name, user.uid, sections.length + 1);
+      const createdSection = await this.databaseAdapter.createDocument<Section>(SectionDomain.COLLECTION_NAME, newerSection);
+      this.store.dispatch(actions.createSection({ section: createdSection }));
+    } catch (_) {
+      this.store.dispatch(ErrorStoreActions.setError({ errorType: ErrorTypeEnum.OverSectionNameLength }));
+    }
   }
 
   async deleteSection(section: SectionHasTasks) {
@@ -81,14 +77,13 @@ export class SectionUsecase {
   }
 
   updateSectionName(newName: string, section: SectionHasTasks) {
-    if (newName.length > SectionDomain.NAME_MAX_LENGTH) {
+    try {
+      const updatedSection = SectionDomain.SectionValueObject.create(newName, section.userId, section.orderId, section.id);
+      this.databaseAdapter.updateDocument<Section>(SectionDomain.COLLECTION_NAME, updatedSection.plainObject(), updatedSection.id);
+      // FIXME: SectionName 変更後に store に更新をかける
+    } catch (error) {
       this.store.dispatch(ErrorStoreActions.setError({ errorType: ErrorTypeEnum.OverSectionNameLength }));
-      return;
     }
-
-    const updatedSection: Section = { id: section.id, name: newName, userId: section.userId, orderId: section.orderId };
-    this.databaseAdapter.updateDocument<Section>(SectionDomain.COLLECTION_NAME, updatedSection, updatedSection.id);
-    // FIXME: SectionName 変更後に store に更新をかける
   }
 
   async addTask(addingTask: Task, section: SectionHasTasks) {

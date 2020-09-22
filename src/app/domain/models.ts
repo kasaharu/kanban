@@ -8,13 +8,6 @@ export interface User {
   uid: string;
 }
 
-export interface Section {
-  id: string;
-  name: string;
-  userId: string;
-  orderId: number;
-}
-
 export interface Task {
   id: string;
   name: string;

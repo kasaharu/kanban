@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Section } from '../../../../../domain/models';
+import { Section } from '../../../../../domain/section/section.vo';
 
 @Component({
   selector: 'app-section-form',

@@ -1,4 +1,4 @@
-import { Section } from '../../../domain/models';
+import { Section } from '../../../domain/section/section.vo';
 import reducer, { actions, initialState, State } from './board.store';
 
 describe('board reducer', () => {
