@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { NAME_MAX_LENGTH } from '../../../domain/section';
+import { NAME_MAX_LENGTH } from '../../../../../domain/section/section.vo';
 
 @Component({
   selector: 'app-editable-section-name',
