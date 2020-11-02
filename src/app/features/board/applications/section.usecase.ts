@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
-import { SectionHasTasks, Task } from '../../../domain/models';
+import { SectionHasTasks, Task, User } from '../../../domain/models';
 import { COLLECTION_NAME, Section, SectionValueObject } from '../../../domain/section/section.vo';
 import { DatabaseAdapter } from '../../../infrastructures/adapters/database.adapter';
 import { selectStore as selectAppShellStore } from '../../app-shell/store/app-shell.store';
@@ -16,32 +16,31 @@ import { ErrorTypeEnum } from '../ui/helpers/error-message';
 export class SectionUsecase {
   constructor(private store: Store<{}>, private databaseAdapter: DatabaseAdapter) {}
 
-  async fetchSections() {
-    const loggedInUser = await selectAppShellStore(this.store, (state) => state.loggedInUser)
+  private isLoggedIn(): Promise<User | null> {
+    return selectAppShellStore(this.store, (state) => state.loggedInUser)
       .pipe(take(1))
       .toPromise();
+  }
 
+  async fetchSections() {
+    const loggedInUser = await this.isLoggedIn();
     if (loggedInUser === null) {
       return;
     }
 
+    // NOTE: section 一覧を取得
     const sections$ = this.databaseAdapter.fetchCollectionWhere<Section>(COLLECTION_NAME, { key: 'userId', value: loggedInUser.uid });
     const sections = await sections$.pipe(take(1)).toPromise();
     this.store.dispatch(actions.saveSections({ sections }));
 
-    await this.fetchTasks(loggedInUser.uid);
-  }
-
-  private async fetchTasks(userId: string) {
-    const tasks$ = this.databaseAdapter.fetchCollectionWhere<Task>(TaskDomain.COLLECTION_NAME, { key: 'userId', value: userId });
+    // NOTE: task 一覧を取得
+    const tasks$ = this.databaseAdapter.fetchCollectionWhere<Task>(TaskDomain.COLLECTION_NAME, { key: 'userId', value: loggedInUser.uid });
     const tasks = await tasks$.pipe(take(1)).toPromise();
     this.store.dispatch(actions.saveTasks({ tasks }));
   }
 
   async addSection(addingSection: Section) {
-    const user = await selectAppShellStore(this.store, (state) => state.loggedInUser)
-      .pipe(take(1))
-      .toPromise();
+    const user = await this.isLoggedIn();
     // TODO: user が null の場合のエラー処理が必要
     if (user === null) {
       return;
@@ -83,9 +82,7 @@ export class SectionUsecase {
   }
 
   async addTask(addingTask: Task, section: SectionHasTasks) {
-    const user = await selectAppShellStore(this.store, (state) => state.loggedInUser)
-      .pipe(take(1))
-      .toPromise();
+    const user = await this.isLoggedIn();
     // TODO: user が null の場合のエラー処理が必要
     if (user === null) {
       return;
