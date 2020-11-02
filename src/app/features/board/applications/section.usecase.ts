@@ -126,6 +126,13 @@ export class SectionUsecase {
     });
   }
 
+  moveSection(sectionsHasTasks: SectionHasTasks[]) {
+    sectionsHasTasks.forEach((sectionHasTasks, index) => {
+      const section: Section = { id: sectionHasTasks.id, name: sectionHasTasks.name, userId: sectionHasTasks.userId, orderId: index + 1 };
+      this.databaseAdapter.updateDocument<Section>(COLLECTION_NAME, section, section.id);
+    });
+  }
+
   closeAlertDialog() {
     this.store.dispatch(ErrorStoreActions.clearError());
   }

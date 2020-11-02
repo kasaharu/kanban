@@ -7,6 +7,7 @@ import { SectionsComponent } from './sections.component';
 
 class MockBoardQuery {
   errorMessage$ = new BehaviorSubject<string>('');
+  sectionsHasTasks$ = new BehaviorSubject<string>('');
 }
 
 class MockSectionUsecase implements Partial<SectionUsecase> {

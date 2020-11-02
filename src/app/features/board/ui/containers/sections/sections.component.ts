@@ -14,15 +14,21 @@ import { SectionUsecase } from '../../../applications/section.usecase';
 })
 export class SectionsComponent implements OnInit {
   constructor(private query: SectionQuery, private usecase: SectionUsecase, private alertDialogService: AlertDialogService) {}
-
   sectionsHasTasks$ = this.query.sectionsHasTasks$;
   errorMessage$ = this.query.errorMessage$;
+  private _sectionIds!: string[];
 
   ngOnInit(): void {
     this.usecase.fetchSections();
     this.errorMessage$.subscribe((message) => {
       this.alertDialogService.show('エラーが発生しました', `${message}`).subscribe(() => this.usecase.closeAlertDialog());
     });
+    this.sectionsHasTasks$.subscribe((sectionsHasTasks) => (this._sectionIds = sectionsHasTasks.map((x) => x.id)));
+  }
+
+  // NOTE: task が section をまたいで移動するために必要
+  getConnectedList() {
+    return this._sectionIds;
   }
 
   addSection(section: Section) {
@@ -49,7 +55,7 @@ export class SectionsComponent implements OnInit {
     }
   }
 
-  drop(event: CdkDragDrop<Task[]>) {
+  dropTask(event: CdkDragDrop<Task[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
       this.usecase.moveTask(event.container.data);
@@ -65,5 +71,11 @@ export class SectionsComponent implements OnInit {
       transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
       this.usecase.transferTask(event.previousContainer.data, event.container.data, destinationSectionId);
     }
+  }
+
+  dropSection(event: CdkDragDrop<SectionHasTasks[]>) {
+    console.log(event.container.data);
+    moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    this.usecase.moveSection(event.container.data);
   }
 }
