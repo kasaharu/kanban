@@ -71,10 +71,11 @@ export class SectionUsecase {
     this.store.dispatch(actions.deleteSection({ sectionId: deletedSectionId }));
   }
 
-  updateSectionName(newName: string, section: SectionHasTasks) {
+  async updateSectionName(newName: string, section: SectionHasTasks) {
     try {
       const updatedSection = SectionValueObject.create(newName, section.userId, section.orderId, section.id);
-      this.databaseAdapter.updateDocument<Section>(COLLECTION_NAME, updatedSection.plainObject(), updatedSection.id);
+      await this.databaseAdapter.updateDocument<Section>(COLLECTION_NAME, updatedSection.plainObject(), updatedSection.id);
+      this.store.dispatch(actions.updateSection({ section: updatedSection.plainObject() }));
       // FIXME: SectionName 変更後に store に更新をかける
     } catch (error) {
       this.store.dispatch(ErrorStoreActions.setError({ errorType: ErrorTypeEnum.OverSectionNameLength }));
