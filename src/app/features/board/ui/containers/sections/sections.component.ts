@@ -16,6 +16,7 @@ export class SectionsComponent implements OnInit {
   constructor(private query: SectionQuery, private usecase: SectionUsecase, private alertDialogService: AlertDialogService) {}
   sectionsHasTasks$ = this.query.sectionsHasTasks$;
   errorMessage$ = this.query.errorMessage$;
+  /* tslint:disable-next-line:variable-name */
   private _sectionIds!: string[];
 
   ngOnInit(): void {
@@ -74,7 +75,6 @@ export class SectionsComponent implements OnInit {
   }
 
   dropSection(event: CdkDragDrop<SectionHasTasks[]>) {
-    console.log(event.container.data);
     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     this.usecase.moveSection(event.container.data);
   }
