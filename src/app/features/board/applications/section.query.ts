@@ -14,8 +14,9 @@ export class SectionQuery {
 
   // TODO: orderId 順にソートするロジックは domain 層に移動する
   private sections$ = selectBoardStore(this.store, (state) => state.sections).pipe(
-    filter((sections) => sections.length !== 0),
-    map(([...sections]) => sections.sort((a, b) => a.orderId - b.orderId)),
+    map(([...sections]) => {
+      return sections.length === 0 ? sections : sections.sort((a, b) => a.orderId - b.orderId);
+    }),
   );
 
   // TODO: orderId 順にソートするロジックは domain 層に移動する
