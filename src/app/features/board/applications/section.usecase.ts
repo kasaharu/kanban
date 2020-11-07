@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
-import { SectionHasTasks, Task, User } from '../../../domain/models';
+import { SectionHasTasks, Task } from '../../../domain/models';
 import { COLLECTION_NAME, Section, SectionValueObject } from '../../../domain/section/section.vo';
+import { User } from '../../../domain/user/user';
 import { DatabaseAdapter } from '../../../infrastructures/adapters/database.adapter';
 import { selectStore as selectAppShellStore } from '../../app-shell/store/app-shell.store';
 import * as TaskDomain from '../domain/task';

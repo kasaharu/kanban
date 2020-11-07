@@ -1,8 +1,9 @@
 import { fakeAsync, flushMicrotasks, TestBed } from '@angular/core/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
-import { Task, User } from '../../../domain/models';
+import { Task } from '../../../domain/models';
 import { Section } from '../../../domain/section/section.vo';
+import { User } from '../../../domain/user/user';
 import { DatabaseAdapter } from '../../../infrastructures/adapters/database.adapter';
 import { sectionFactory, taskFactory, userFactory } from '../../../testing/factories';
 import { State as AppShellState } from '../../app-shell/store/app-shell.store';

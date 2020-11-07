@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { User } from '../../../domain/models';
+import { User } from '../../../domain/user/user';
 import { Authenticator } from '../../../infrastructures/adapters/authenticator';
 import { actions } from '../../app-shell/store/app-shell.store';
 
