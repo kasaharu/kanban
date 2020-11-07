@@ -1,13 +1,14 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BehaviorSubject, of } from 'rxjs';
-import { AlertDialogService } from 'src/app/shared/alert-dialog/services/alert-dialog.service';
+import { SectionHasTasks } from '../../../../../domain/models';
+import { AlertDialogService } from '../../../../../shared/alert-dialog/services/alert-dialog.service';
 import { SectionQuery } from '../../../applications/section.query';
 import { SectionUsecase } from '../../../applications/section.usecase';
 import { SectionsComponent } from './sections.component';
 
 class MockBoardQuery {
   errorMessage$ = new BehaviorSubject<string>('');
-  sectionsHasTasks$ = new BehaviorSubject<string>('');
+  sectionsHasTasks$ = new BehaviorSubject<SectionHasTasks[]>([]);
 }
 
 class MockSectionUsecase implements Partial<SectionUsecase> {
