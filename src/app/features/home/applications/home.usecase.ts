@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { User } from '../../../domain/user/user';
+import { extractUserInfo } from '../../../domain/user/user';
 import { Authenticator } from '../../../infrastructures/adapters/authenticator';
 import { actions } from '../../app-shell/store/app-shell.store';
 
@@ -15,11 +15,8 @@ export class HomeUsecase {
   async login() {
     try {
       const userCredential = await this.authenticator.login();
-      if (userCredential.user) {
-        const { displayName, email, phoneNumber, photoURL, providerId, uid } = userCredential.user;
-        const user: User = { displayName, email, phoneNumber, photoURL, providerId, uid };
-        this.store.dispatch(actions.login({ loggedInUser: user }));
-      }
+      const user = extractUserInfo(userCredential.user);
+      this.store.dispatch(actions.login({ loggedInUser: user }));
     } catch (error) {
       console.error(error);
     }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
-import { User } from '../../../domain/user/user';
+import { extractUserInfo } from '../../../domain/user/user';
 import { Authenticator } from '../../../infrastructures/adapters/authenticator';
 import { actions } from '../store/app-shell.store';
 
@@ -13,16 +13,7 @@ export class AppInitializer {
 
   async initialize() {
     const user: firebase.User | null = await this.authenticator.loggedInUser$.pipe(take(1)).toPromise();
-    const loggedInUser: User | null = user
-      ? {
-          displayName: user.displayName,
-          email: user.email,
-          phoneNumber: user.phoneNumber,
-          photoURL: user.photoURL,
-          providerId: user.providerId,
-          uid: user.uid,
-        }
-      : null;
+    const loggedInUser = extractUserInfo(user);
     this.store.dispatch(actions.initialize({ loggedInUser }));
   }
 }
