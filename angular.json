@@ -81,7 +81,6 @@
                 "hidden": true,
                 "vendor": true
               },
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
