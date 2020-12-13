@@ -5,11 +5,11 @@ import { Task } from '../../../domain/models';
 import { Section } from '../../../domain/section/section.vo';
 import { User } from '../../../domain/user/user';
 import { DatabaseAdapter } from '../../../infrastructures/adapters/database.adapter';
-import { sectionFactory, taskFactory, userFactory } from '../../../testing/factories';
 import { State as AppShellState } from '../../../shared/app-shell/store/app-shell.store';
+import { sectionFactory, taskFactory, userFactory } from '../../../testing/factories';
+import { ErrorTypeEnum } from '../presenters/helpers/error-message';
 import { actions, State as BoardState } from '../store/board.store';
 import { actions as ErrorStoreAction } from '../store/error.store';
-import { ErrorTypeEnum } from '../presenters/helpers/error-message';
 import { SectionUsecase } from './section.usecase';
 
 class MockDatabaseAdapter implements Partial<DatabaseAdapter> {

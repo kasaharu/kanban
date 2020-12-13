@@ -7,9 +7,9 @@ import { User } from '../../../domain/user/user';
 import { DatabaseAdapter } from '../../../infrastructures/adapters/database.adapter';
 import { selectStore as selectAppShellStore } from '../../../shared/app-shell/store/app-shell.store';
 import * as TaskDomain from '../domain/task';
+import { ErrorTypeEnum } from '../presenters/helpers/error-message';
 import { actions, selectStore } from '../store/board.store';
 import { actions as ErrorStoreActions } from '../store/error.store';
-import { ErrorTypeEnum } from '../presenters/helpers/error-message';
 
 @Injectable({
   providedIn: 'root',
