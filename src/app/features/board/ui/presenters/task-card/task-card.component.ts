@@ -8,8 +8,6 @@ import { Task } from '../../../../../domain/models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskCardComponent {
-  constructor() {}
-
   @Input()
   task!: Task;
   @Output()
