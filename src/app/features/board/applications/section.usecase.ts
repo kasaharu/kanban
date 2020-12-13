@@ -9,7 +9,7 @@ import { selectStore as selectAppShellStore } from '../../../shared/app-shell/st
 import * as TaskDomain from '../domain/task';
 import { actions, selectStore } from '../store/board.store';
 import { actions as ErrorStoreActions } from '../store/error.store';
-import { ErrorTypeEnum } from '../ui/helpers/error-message';
+import { ErrorTypeEnum } from '../presenters/helpers/error-message';
 
 @Injectable({
   providedIn: 'root',

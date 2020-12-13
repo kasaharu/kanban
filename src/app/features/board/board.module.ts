@@ -7,10 +7,10 @@ import { default as boardStoreReducer, featureName as boardStoreName } from './s
 import { default as errorStoreReducer, featureName as errorStoreName } from './store/error.store';
 import { SectionsComponent } from './containers/sections/sections.component';
 import { BoardPageComponent } from './pages/board/board.component';
-import { EditableSectionNameComponent } from './ui/presenters/editable-section-name/editable-section-name.component';
-import { NewTaskFormComponent } from './ui/presenters/new-task-form/new-task-form.component';
-import { SectionFormComponent } from './ui/presenters/section-form/section-form.component';
-import { TaskCardComponent } from './ui/presenters/task-card/task-card.component';
+import { EditableSectionNameComponent } from './presenters/editable-section-name/editable-section-name.component';
+import { NewTaskFormComponent } from './presenters/new-task-form/new-task-form.component';
+import { SectionFormComponent } from './presenters/section-form/section-form.component';
+import { TaskCardComponent } from './presenters/task-card/task-card.component';
 
 @NgModule({
   declarations: [

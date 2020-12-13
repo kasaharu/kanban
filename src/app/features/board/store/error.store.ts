@@ -1,6 +1,6 @@
 import { createAction, createReducer, on, props, union } from '@ngrx/store';
 import { createFeatureStoreSelector } from '../../../shared/store/helpers/selector';
-import { ErrorTypeEnum, mappingErrorMessage } from '../ui/helpers/error-message';
+import { ErrorTypeEnum, mappingErrorMessage } from '../presenters/helpers/error-message';
 
 // NOTE: State
 export interface State {

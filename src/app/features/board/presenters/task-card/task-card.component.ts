@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { Task } from '../../../../../domain/models';
+import { Task } from '../../../../domain/models';
 
 @Component({
   selector: 'app-task-card',

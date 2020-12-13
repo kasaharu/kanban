@@ -9,7 +9,7 @@ import { sectionFactory, taskFactory, userFactory } from '../../../testing/facto
 import { State as AppShellState } from '../../../shared/app-shell/store/app-shell.store';
 import { actions, State as BoardState } from '../store/board.store';
 import { actions as ErrorStoreAction } from '../store/error.store';
-import { ErrorTypeEnum } from '../ui/helpers/error-message';
+import { ErrorTypeEnum } from '../presenters/helpers/error-message';
 import { SectionUsecase } from './section.usecase';
 
 class MockDatabaseAdapter implements Partial<DatabaseAdapter> {

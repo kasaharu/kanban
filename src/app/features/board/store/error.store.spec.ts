@@ -1,4 +1,4 @@
-import { ErrorTypeEnum, mappingErrorMessage } from '../ui/helpers/error-message';
+import { ErrorTypeEnum, mappingErrorMessage } from '../presenters/helpers/error-message';
 import reducer, { actions, State } from './error.store';
 
 describe('error reducer', () => {
