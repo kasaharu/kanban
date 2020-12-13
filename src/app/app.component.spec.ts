@@ -1,8 +1,8 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { AppInitializer } from './features/app-shell/applications/app-initialize.usecase';
-import { AppShellQuery } from './features/app-shell/applications/app-shell.query';
+import { AppInitializer } from './shared/app-shell/applications/app-initialize.usecase';
+import { AppShellQuery } from './shared/app-shell/applications/app-shell.query';
 
 class MockAppShellQuery implements Partial<AppShellQuery> {}
 

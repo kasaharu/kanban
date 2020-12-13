@@ -8,7 +8,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AppShellModule } from './features/app-shell/app-shell.module';
+import { AppShellModule } from './shared/app-shell/app-shell.module';
 import { BoardModule } from './features/board/board.module';
 import { HomeModule } from './features/home/home.module';
 import { AlertDialogComponent } from './shared/alert-dialog/presenters/alert-dialog/alert-dialog.component';

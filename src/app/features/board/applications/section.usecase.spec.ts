@@ -6,7 +6,7 @@ import { Section } from '../../../domain/section/section.vo';
 import { User } from '../../../domain/user/user';
 import { DatabaseAdapter } from '../../../infrastructures/adapters/database.adapter';
 import { sectionFactory, taskFactory, userFactory } from '../../../testing/factories';
-import { State as AppShellState } from '../../app-shell/store/app-shell.store';
+import { State as AppShellState } from '../../../shared/app-shell/store/app-shell.store';
 import { actions, State as BoardState } from '../store/board.store';
 import { actions as ErrorStoreAction } from '../store/error.store';
 import { ErrorTypeEnum } from '../ui/helpers/error-message';
