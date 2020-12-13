@@ -1,10 +1,10 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { AlertDialogService } from 'src/app/shared/alert-dialog/services/alert-dialog.service';
-import { SectionHasTasks, Task } from '../../../../../domain/models';
-import { Section } from '../../../../../domain/section/section.vo';
-import { SectionQuery } from '../../../applications/section.query';
-import { SectionUsecase } from '../../../applications/section.usecase';
+import { SectionHasTasks, Task } from '../../../../domain/models';
+import { Section } from '../../../../domain/section/section.vo';
+import { SectionQuery } from '../../applications/section.query';
+import { SectionUsecase } from '../../applications/section.usecase';
 
 @Component({
   selector: 'app-sections',

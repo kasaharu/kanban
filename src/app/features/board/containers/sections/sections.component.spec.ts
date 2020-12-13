@@ -1,10 +1,10 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BehaviorSubject, of } from 'rxjs';
-import { SectionHasTasks } from '../../../../../domain/models';
-import { AlertDialogService } from '../../../../../shared/alert-dialog/services/alert-dialog.service';
-import { SectionQuery } from '../../../applications/section.query';
-import { SectionUsecase } from '../../../applications/section.usecase';
+import { SectionHasTasks } from '../../../../domain/models';
+import { AlertDialogService } from '../../../../shared/alert-dialog/services/alert-dialog.service';
+import { SectionQuery } from '../../applications/section.query';
+import { SectionUsecase } from '../../applications/section.usecase';
 import { SectionsComponent } from './sections.component';
 
 class MockBoardQuery {
