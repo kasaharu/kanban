@@ -1,24 +1,24 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { HomeUsecase } from '../../applications/home.usecase';
-import { HomeComponent } from './home.component';
+import { HomePageComponent } from './home.component';
 
 class MockHomeUsecase implements Partial<HomeUsecase> {}
 
-describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+describe('HomePageComponent', () => {
+  let component: HomePageComponent;
+  let fixture: ComponentFixture<HomePageComponent>;
 
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        declarations: [HomeComponent],
+        declarations: [HomePageComponent],
         providers: [{ provide: HomeUsecase, useClass: MockHomeUsecase }],
       }).compileComponents();
     }),
   );
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(HomePageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

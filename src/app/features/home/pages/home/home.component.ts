@@ -7,7 +7,7 @@ import { HomeUsecase } from '../../applications/home.usecase';
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent implements OnInit {
+export class HomePageComponent implements OnInit {
   constructor(private homeUsecase: HomeUsecase) {}
 
   user$ = this.homeUsecase.user$;
