@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { HomeUsecase } from '../../../applications/home.usecase';
+import { HomeUsecase } from '../../applications/home.usecase';
 
 @Component({
   selector: 'app-home',
