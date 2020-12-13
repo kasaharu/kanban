@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { HomePageComponent } from './home.component';
 
@@ -9,6 +10,7 @@ describe('HomePageComponent', () => {
     waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [HomePageComponent],
+        schemas: [NO_ERRORS_SCHEMA],
       }).compileComponents();
     }),
   );

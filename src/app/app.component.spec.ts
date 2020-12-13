@@ -1,8 +1,10 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NgWorkboxComponentsModule } from '@kasaharu/ng-workbox/components';
 import { AppComponent } from './app.component';
 import { AppInitializer } from './shared/app-shell/applications/app-initialize.usecase';
 import { AppShellQuery } from './shared/app-shell/applications/app-shell.query';
+import { HeaderComponent } from './shared/presenters/header/header.component';
 
 class MockAppShellQuery implements Partial<AppShellQuery> {}
 
@@ -12,8 +14,8 @@ describe('AppComponent', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [RouterTestingModule],
-        declarations: [AppComponent],
+        imports: [RouterTestingModule, NgWorkboxComponentsModule],
+        declarations: [AppComponent, HeaderComponent],
         providers: [
           { provide: AppShellQuery, useClass: MockAppShellQuery },
           { provide: AppInitializer, useClass: MockAppInitializeUsecase },

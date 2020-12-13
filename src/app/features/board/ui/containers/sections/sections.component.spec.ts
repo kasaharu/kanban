@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BehaviorSubject, of } from 'rxjs';
 import { SectionHasTasks } from '../../../../../domain/models';
@@ -34,6 +35,7 @@ describe('SectionsComponent', () => {
           { provide: SectionUsecase, useClass: MockSectionUsecase },
           { provide: AlertDialogService, useClass: MockAlertDialogService },
         ],
+        schemas: [NO_ERRORS_SCHEMA],
       }).compileComponents();
 
       alertDialogService = TestBed.inject(AlertDialogService);

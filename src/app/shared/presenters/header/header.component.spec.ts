@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { NgWorkboxComponentsModule } from '@kasaharu/ng-workbox/components';
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
@@ -9,6 +10,7 @@ describe('HeaderComponent', () => {
     waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [HeaderComponent],
+        imports: [NgWorkboxComponentsModule],
       }).compileComponents();
     }),
   );
