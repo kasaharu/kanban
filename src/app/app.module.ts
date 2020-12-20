@@ -12,11 +12,10 @@ import { HeaderComponent } from './core/app-shell/containers/header/header.compo
 import { CoreModule } from './core/core.module';
 import { BoardModule } from './features/board/board.module';
 import { HomeModule } from './features/home/home.module';
-import { AlertDialogComponent } from './shared/alert-dialog/presenters/alert-dialog/alert-dialog.component';
-import { IconComponent } from './shared/presenters/icon/icon.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, AlertDialogComponent, IconComponent],
+  declarations: [AppComponent, HeaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -26,6 +25,7 @@ import { IconComponent } from './shared/presenters/icon/icon.component';
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
     NgWorkboxComponentsModule,
     CoreModule,
+    SharedModule,
     HomeModule,
     BoardModule,
   ],
