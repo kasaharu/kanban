@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-profile-icon',
@@ -6,11 +6,17 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   styleUrls: ['./profile-icon.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProfileIconComponent implements OnInit {
+export class ProfileIconComponent {
+  @Output()
+  logoutButtonEmitter = new EventEmitter();
 
-  constructor() { }
+  showBalloon = false;
 
-  ngOnInit(): void {
+  clickProfileIcon(): void {
+    this.showBalloon = !this.showBalloon;
   }
 
+  clickLogoutButton(): void {
+    this.logoutButtonEmitter.emit();
+  }
 }

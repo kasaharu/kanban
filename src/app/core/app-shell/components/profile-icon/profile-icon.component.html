@@ -1,1 +1,7 @@
-<p>profile-icon works!</p>
+<button class="account-area" (click)="clickProfileIcon()">
+  <app-icon [iconName]="'account_circle'" [lightMode]="true" [size]="36"></app-icon>
+  <app-icon [iconName]="'expand_more'" [lightMode]="true" [size]="18"></app-icon>
+</button>
+<div *ngIf="showBalloon" class="balloon">
+  <button (click)="clickLogoutButton()">ログアウト</button>
+</div>

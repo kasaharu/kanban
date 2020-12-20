@@ -1,9 +1,6 @@
 <ngw-header>
   <a id="headerTitle" class="title" routerLink="/">{{ applicationName }}</a>
   <nav id="headerNavigation">
-    <button *ngIf="loggedIn" class="account-area">
-      <app-icon [iconName]="'account_circle'" [lightMode]="true" [size]="36"></app-icon>
-      <app-icon [iconName]="'expand_more'" [lightMode]="true" [size]="18"></app-icon>
-    </button>
+    <app-profile-icon *ngIf="loggedIn$ | async" (logoutButtonEmitter)="logout()"></app-profile-icon>
   </nav>
 </ngw-header>

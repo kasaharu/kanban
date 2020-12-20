@@ -11,7 +11,6 @@ export class AppComponent implements OnInit {
   constructor(private query: AppShellQuery, private usecase: AppInitializer) {}
 
   readyApp$ = this.query.readyApp$;
-  loggedIn$ = this.query.loggedIn$;
 
   ngOnInit() {
     this.usecase.initialize();

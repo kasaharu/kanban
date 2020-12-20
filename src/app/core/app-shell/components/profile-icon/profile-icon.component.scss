@@ -1,3 +1,41 @@
 :host {
   display: block;
 }
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+}
+
+.account-area {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.balloon {
+  position: absolute;
+  top: 48px;
+  right: 24px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    display: block;
+    z-index: 1;
+    border-style: solid;
+    border-color: #fff transparent;
+    border-width: 0 10px 10px 10px;
+    top: -8px;
+    left: 25%;
+    margin-left: -10px;
+  }
+}
