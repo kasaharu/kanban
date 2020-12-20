@@ -10,7 +10,6 @@ import { AppShellQuery } from './core/app-shell/applications/app-shell.query';
 export class AppComponent implements OnInit {
   constructor(private query: AppShellQuery, private usecase: AppInitializer) {}
 
-  title = 'kanban';
   readyApp$ = this.query.readyApp$;
   loggedIn$ = this.query.loggedIn$;
 

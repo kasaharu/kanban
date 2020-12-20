@@ -8,7 +8,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class HeaderComponent {
   @Input()
-  applicationName = '';
-  @Input()
   loggedIn = false;
+
+  applicationName = 'kanban';
 }

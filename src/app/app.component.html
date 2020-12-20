@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <app-header [applicationName]="title" [loggedIn]="loggedIn$ | async"></app-header>
+  <app-header [loggedIn]="loggedIn$ | async"></app-header>
 
   <ng-container *ngIf="readyApp$ | async">
     <main class="main">
