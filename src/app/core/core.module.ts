@@ -4,11 +4,12 @@ import { RouterModule } from '@angular/router';
 import { NgWorkboxComponentsModule } from '@kasaharu/ng-workbox/components';
 import { StoreModule } from '@ngrx/store';
 import { SharedModule } from '../shared/shared.module';
+import { ProfileIconComponent } from './app-shell/components/profile-icon/profile-icon.component';
 import { HeaderComponent } from './app-shell/containers/header/header.component';
 import { default as reducer, featureName } from './app-shell/store/app-shell.store';
 
 @NgModule({
-  declarations: [HeaderComponent],
+  declarations: [HeaderComponent, ProfileIconComponent],
   imports: [CommonModule, StoreModule.forFeature(featureName, reducer), NgWorkboxComponentsModule, RouterModule, SharedModule],
   exports: [HeaderComponent],
 })
