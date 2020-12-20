@@ -12,7 +12,7 @@ import { CoreModule } from './core/core.module';
 import { BoardModule } from './features/board/board.module';
 import { HomeModule } from './features/home/home.module';
 import { AlertDialogComponent } from './shared/alert-dialog/presenters/alert-dialog/alert-dialog.component';
-import { HeaderComponent } from './shared/presenters/header/header.component';
+import { HeaderComponent } from './core/app-shell/components/header/header.component';
 import { IconComponent } from './shared/presenters/icon/icon.component';
 
 @NgModule({

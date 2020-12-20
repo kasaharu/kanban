@@ -4,7 +4,7 @@ import { NgWorkboxComponentsModule } from '@kasaharu/ng-workbox/components';
 import { AppComponent } from './app.component';
 import { AppInitializer } from './core/app-shell/applications/app-initialize.usecase';
 import { AppShellQuery } from './core/app-shell/applications/app-shell.query';
-import { HeaderComponent } from './shared/presenters/header/header.component';
+import { HeaderComponent } from './core/app-shell/components/header/header.component';
 
 class MockAppShellQuery implements Partial<AppShellQuery> {}
 
