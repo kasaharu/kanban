@@ -8,10 +8,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CoreModule } from './core/core.module';
 import { BoardModule } from './features/board/board.module';
 import { HomeModule } from './features/home/home.module';
 import { AlertDialogComponent } from './shared/alert-dialog/presenters/alert-dialog/alert-dialog.component';
-import { AppShellModule } from './shared/app-shell/app-shell.module';
 import { HeaderComponent } from './shared/presenters/header/header.component';
 import { IconComponent } from './shared/presenters/icon/icon.component';
 
@@ -25,7 +25,7 @@ import { IconComponent } from './shared/presenters/icon/icon.component';
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
     NgWorkboxComponentsModule,
-    AppShellModule,
+    CoreModule,
     HomeModule,
     BoardModule,
   ],

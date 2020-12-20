@@ -5,7 +5,7 @@ import { SectionHasTasks, Task } from '../../../domain/models';
 import { COLLECTION_NAME, Section, SectionValueObject } from '../../../domain/section/section.vo';
 import { User } from '../../../domain/user/user';
 import { DatabaseAdapter } from '../../../infrastructures/adapters/database.adapter';
-import { selectStore as selectAppShellStore } from '../../../shared/app-shell/store/app-shell.store';
+import { selectStore as selectAppShellStore } from '../../../core/app-shell/store/app-shell.store';
 import * as TaskDomain from '../domain/task';
 import { ErrorTypeEnum } from '../presenters/helpers/error-message';
 import { actions, selectStore } from '../store/board.store';
