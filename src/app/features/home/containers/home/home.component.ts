@@ -14,8 +14,4 @@ export class HomeComponent {
   login() {
     this.homeUsecase.login();
   }
-
-  logout() {
-    this.homeUsecase.logout();
-  }
 }

@@ -21,9 +21,4 @@ export class HomeUsecase {
       console.error(error);
     }
   }
-
-  async logout() {
-    await this.authenticator.logout();
-    this.store.dispatch(actions.logout());
-  }
 }
