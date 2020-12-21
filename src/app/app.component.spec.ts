@@ -1,25 +1,23 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed, waitForAsync } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { NgWorkboxComponentsModule } from '@kasaharu/ng-workbox/components';
 import { AppComponent } from './app.component';
 import { AppInitializer } from './core/app-shell/applications/app-initialize.usecase';
 import { AppShellQuery } from './core/app-shell/applications/app-shell.query';
-import { HeaderComponent } from './core/app-shell/containers/header/header.component';
 
 class MockAppShellQuery implements Partial<AppShellQuery> {}
-
 class MockAppInitializeUsecase implements Partial<AppInitializer> {}
 
 describe('AppComponent', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [RouterTestingModule, NgWorkboxComponentsModule],
-        declarations: [AppComponent, HeaderComponent],
+        imports: [],
+        declarations: [AppComponent],
         providers: [
           { provide: AppShellQuery, useClass: MockAppShellQuery },
           { provide: AppInitializer, useClass: MockAppInitializeUsecase },
         ],
+        schemas: [NO_ERRORS_SCHEMA],
       }).compileComponents();
     }),
   );
