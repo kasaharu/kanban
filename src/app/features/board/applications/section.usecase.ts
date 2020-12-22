@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
+import { selectStore as selectAppShellStore } from '../../../core/app-shell/store/app-shell.store';
 import { SectionHasTasks, Task } from '../../../domain/models';
-import { COLLECTION_NAME, Section, SectionValueObject } from '../../../domain/section/section.vo';
+import { Section, SectionValueObject } from '../../../domain/section/section.vo';
 import { User } from '../../../domain/user/user';
 import { DatabaseAdapter } from '../../../infrastructures/adapters/database.adapter';
-import { selectStore as selectAppShellStore } from '../../../core/app-shell/store/app-shell.store';
+import { SectionGateway } from '../../../infrastructures/gateways/section.gateway';
 import * as TaskDomain from '../domain/task';
 import { ErrorTypeEnum } from '../presenters/helpers/error-message';
 import { actions, selectStore } from '../store/board.store';
@@ -15,7 +16,7 @@ import { actions as ErrorStoreActions } from '../store/error.store';
   providedIn: 'root',
 })
 export class SectionUsecase {
-  constructor(private store: Store<{}>, private databaseAdapter: DatabaseAdapter) {}
+  constructor(private store: Store<{}>, private databaseAdapter: DatabaseAdapter, private readonly _sectionGateway: SectionGateway) {}
 
   private isLoggedIn(): Promise<User | null> {
     return selectAppShellStore(this.store, (state) => state.loggedInUser)
@@ -30,7 +31,7 @@ export class SectionUsecase {
     }
 
     // NOTE: section 一覧を取得
-    const sections$ = this.databaseAdapter.fetchCollectionWhere<Section>(COLLECTION_NAME, { key: 'userId', value: loggedInUser.uid });
+    const sections$ = this._sectionGateway.getSections(loggedInUser.uid);
     const sections = await sections$.pipe(take(1)).toPromise();
     this.store.dispatch(actions.saveSections({ sections }));
 
@@ -53,7 +54,7 @@ export class SectionUsecase {
 
     try {
       const newerSection = SectionValueObject.create(addingSection.name, user.uid, sections.length + 1);
-      const createdSection = await this.databaseAdapter.createDocument<Section>(COLLECTION_NAME, newerSection);
+      const createdSection = await this._sectionGateway.postSection(newerSection.plainObject());
       this.store.dispatch(actions.createSection({ section: createdSection }));
     } catch (_) {
       this.store.dispatch(ErrorStoreActions.setError({ errorType: ErrorTypeEnum.OverSectionNameLength }));
@@ -68,14 +69,14 @@ export class SectionUsecase {
     });
 
     // NOTE: 対象の Section を削除
-    const deletedSectionId = await this.databaseAdapter.deleteDocument<Section>(COLLECTION_NAME, section.id);
+    const deletedSectionId = await this._sectionGateway.deleteSection(section);
     this.store.dispatch(actions.deleteSection({ sectionId: deletedSectionId }));
   }
 
   async updateSectionName(newName: string, section: SectionHasTasks) {
     try {
       const updatedSection = SectionValueObject.create(newName, section.userId, section.orderId, section.id);
-      await this.databaseAdapter.updateDocument<Section>(COLLECTION_NAME, updatedSection.plainObject(), updatedSection.id);
+      await this._sectionGateway.putSection(updatedSection.plainObject());
       this.store.dispatch(actions.updateSection({ section: updatedSection.plainObject() }));
     } catch (error) {
       this.store.dispatch(ErrorStoreActions.setError({ errorType: ErrorTypeEnum.OverSectionNameLength }));
@@ -127,7 +128,7 @@ export class SectionUsecase {
   moveSection(sectionsHasTasks: SectionHasTasks[]) {
     sectionsHasTasks.forEach((sectionHasTasks, index) => {
       const section: Section = { id: sectionHasTasks.id, name: sectionHasTasks.name, userId: sectionHasTasks.userId, orderId: index + 1 };
-      this.databaseAdapter.updateDocument<Section>(COLLECTION_NAME, section, section.id);
+      this._sectionGateway.putSection(section);
     });
   }
 
