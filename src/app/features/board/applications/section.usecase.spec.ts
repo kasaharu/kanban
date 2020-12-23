@@ -1,20 +1,25 @@
 import { fakeAsync, flushMicrotasks, TestBed } from '@angular/core/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
+import { State as AppShellState } from '../../../core/app-shell/store/app-shell.store';
 import { Task } from '../../../domain/models';
 import { Section } from '../../../domain/section/section.vo';
 import { User } from '../../../domain/user/user';
-import { DatabaseAdapter } from '../../../infrastructures/adapters/database.adapter';
-import { State as AppShellState } from '../../../core/app-shell/store/app-shell.store';
+import { SectionGateway } from '../../../infrastructures/gateways/section.gateway';
+import { TaskGateway } from '../../../infrastructures/gateways/task.gateway';
 import { sectionFactory, taskFactory, userFactory } from '../../../testing/factories';
 import { ErrorTypeEnum } from '../presenters/helpers/error-message';
 import { actions, State as BoardState } from '../store/board.store';
 import { actions as ErrorStoreAction } from '../store/error.store';
 import { SectionUsecase } from './section.usecase';
 
-class MockDatabaseAdapter implements Partial<DatabaseAdapter> {
-  fetchCollectionWhere(): any {}
-  createDocument(): any {}
+class MockSectionGateway implements Partial<SectionGateway> {
+  getSections(): any {}
+  postSection(): any {}
+}
+
+class MockTaskGateway implements Partial<TaskGateway> {
+  getTasks(): any {}
 }
 
 interface MockStateType {
@@ -36,16 +41,22 @@ const initialState: MockStateType = {
 describe('SectionUsecase', () => {
   let usecase: SectionUsecase;
   let store: MockStore<{}>;
-  let dbAdapter: DatabaseAdapter;
+  let sectionGateway: SectionGateway;
+  let taskGateway: TaskGateway;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [provideMockStore({ initialState }), { provide: DatabaseAdapter, useClass: MockDatabaseAdapter }],
+      providers: [
+        provideMockStore({ initialState }),
+        { provide: SectionGateway, useClass: MockSectionGateway },
+        { provide: TaskGateway, useClass: MockTaskGateway },
+      ],
     });
 
     usecase = TestBed.inject(SectionUsecase);
     store = TestBed.inject(MockStore);
-    dbAdapter = TestBed.inject(DatabaseAdapter);
+    sectionGateway = TestBed.inject(SectionGateway);
+    taskGateway = TestBed.inject(TaskGateway);
   });
 
   it('should be created', () => {
@@ -69,10 +80,8 @@ describe('SectionUsecase', () => {
 
       store.setState({ appShell: { loggedInUser: user } });
 
-      // NOTE: 1 回目は Section[] の fetch
-      //       2 回目は Task[] の fetch
-      spyOn(dbAdapter, 'fetchCollectionWhere').and.returnValues(of(returnValueSections), of(returnValueTasks));
-
+      spyOn(sectionGateway, 'getSections').and.returnValue(of(returnValueSections));
+      spyOn(taskGateway, 'getTasks').and.returnValue(of(returnValueTasks));
       spyOn(store, 'dispatch');
 
       await usecase.fetchSections();
@@ -98,7 +107,7 @@ describe('SectionUsecase', () => {
       const addingSection: Section = sectionFactory({ name: 'new section #15', userId: 'user001' });
       store.setState({ appShell: { loggedInUser: user }, board: { sections: [], tasks: [] } });
       spyOn(store, 'dispatch');
-      spyOn(dbAdapter, 'createDocument').and.resolveTo(addingSection);
+      spyOn(sectionGateway, 'postSection').and.returnValue(Promise.resolve(addingSection));
 
       usecase.addSection(addingSection);
       flushMicrotasks();
