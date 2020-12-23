@@ -5,9 +5,8 @@ import { selectStore as selectAppShellStore } from '../../../core/app-shell/stor
 import { SectionHasTasks, Task } from '../../../domain/models';
 import { Section, SectionValueObject } from '../../../domain/section/section.vo';
 import { User } from '../../../domain/user/user';
-import { DatabaseAdapter } from '../../../infrastructures/adapters/database.adapter';
 import { SectionGateway } from '../../../infrastructures/gateways/section.gateway';
-import * as TaskDomain from '../domain/task';
+import { TaskGateway } from '../../../infrastructures/gateways/task.gateway';
 import { ErrorTypeEnum } from '../presenters/helpers/error-message';
 import { actions, selectStore } from '../store/board.store';
 import { actions as ErrorStoreActions } from '../store/error.store';
@@ -16,7 +15,7 @@ import { actions as ErrorStoreActions } from '../store/error.store';
   providedIn: 'root',
 })
 export class SectionUsecase {
-  constructor(private store: Store<{}>, private databaseAdapter: DatabaseAdapter, private readonly _sectionGateway: SectionGateway) {}
+  constructor(private store: Store<{}>, private readonly _sectionGateway: SectionGateway, private readonly _taskGateway: TaskGateway) {}
 
   private isLoggedIn(): Promise<User | null> {
     return selectAppShellStore(this.store, (state) => state.loggedInUser)
@@ -36,7 +35,7 @@ export class SectionUsecase {
     this.store.dispatch(actions.saveSections({ sections }));
 
     // NOTE: task 一覧を取得
-    const tasks$ = this.databaseAdapter.fetchCollectionWhere<Task>(TaskDomain.COLLECTION_NAME, { key: 'userId', value: loggedInUser.uid });
+    const tasks$ = this._taskGateway.getTasks(loggedInUser.uid);
     const tasks = await tasks$.pipe(take(1)).toPromise();
     this.store.dispatch(actions.saveTasks({ tasks }));
   }
@@ -90,7 +89,7 @@ export class SectionUsecase {
       return;
     }
 
-    const createdTask = await this.databaseAdapter.createDocument<Task>(TaskDomain.COLLECTION_NAME, {
+    const createdTask = await this._taskGateway.postTask({
       userId: user.uid,
       name: addingTask.name,
       sectionId: section.id,
@@ -102,26 +101,26 @@ export class SectionUsecase {
   }
 
   async deleteTask(taskId: string) {
-    const deletedTaskId = await this.databaseAdapter.deleteDocument<Task>(TaskDomain.COLLECTION_NAME, taskId);
+    const deletedTaskId = await this._taskGateway.deleteTask(taskId);
     this.store.dispatch(actions.deleteTask({ taskId: deletedTaskId }));
   }
 
   moveTask(tasks: Task[]) {
     tasks.forEach((task, index) => {
       const updatedTask: Task = { ...task, orderId: index + 1 };
-      this.databaseAdapter.updateDocument<Task>(TaskDomain.COLLECTION_NAME, updatedTask, updatedTask.id);
+      this._taskGateway.putTask(updatedTask);
     });
   }
 
   async transferTask(sourceTasks: Task[], destinationTasks: Task[], destinationSectionId: string) {
     destinationTasks.forEach((task, index) => {
       const updatedTask: Task = { ...task, orderId: index + 1, sectionId: destinationSectionId };
-      this.databaseAdapter.updateDocument<Task>(TaskDomain.COLLECTION_NAME, updatedTask, updatedTask.id);
+      this._taskGateway.putTask(updatedTask);
     });
 
     sourceTasks.forEach((task, index) => {
       const updatedTask: Task = { ...task, orderId: index + 1 };
-      this.databaseAdapter.updateDocument<Task>(TaskDomain.COLLECTION_NAME, updatedTask, updatedTask.id);
+      this._taskGateway.putTask(updatedTask);
     });
   }
 
