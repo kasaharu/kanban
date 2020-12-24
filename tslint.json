@@ -168,7 +168,6 @@
       }
     ],
     "unified-signatures": true,
-    "variable-name": true,
     "whitespace": [
       true,
       "check-branch",
