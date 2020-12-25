@@ -8,9 +8,8 @@ describe('ProfileIconComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProfileIconComponent ],
-    })
-    .compileComponents();
+      declarations: [ProfileIconComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
