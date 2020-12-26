@@ -23,6 +23,7 @@
 .section-name-field {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .section-name-form {
@@ -30,7 +31,6 @@
 }
 
 .section-delete-button {
-  height: 24px;
   width: 48px;
 }
 
