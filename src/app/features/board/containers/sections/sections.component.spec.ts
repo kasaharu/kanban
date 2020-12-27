@@ -13,7 +13,7 @@ class MockBoardQuery {
 }
 
 class MockSectionUsecase implements Partial<SectionUsecase> {
-  async fetchSections() {}
+  async fetchBoardItems() {}
   closeAlertDialog() {}
 }
 

@@ -25,7 +25,7 @@ export class SectionsComponent implements OnInit, OnDestroy {
   private _onDestroy$ = new Subject();
 
   ngOnInit(): void {
-    this.usecase.fetchSections();
+    this.usecase.fetchBoardItems();
     this.errorMessage$.pipe(takeUntil(this._onDestroy$)).subscribe((message) => {
       this.alertDialogService
         .show('エラーが発生しました', `${message}`)

@@ -24,7 +24,7 @@ export class SectionUsecase {
       .toPromise();
   }
 
-  async fetchSections() {
+  async fetchBoardItems() {
     const loggedInUser = await this.isLoggedIn();
     if (loggedInUser === null) {
       return;

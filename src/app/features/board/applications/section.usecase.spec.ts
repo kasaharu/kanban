@@ -63,11 +63,11 @@ describe('SectionUsecase', () => {
     expect(usecase).toBeTruthy();
   });
 
-  describe('fetchSections() method', () => {
+  describe('fetchBoardItems() method', () => {
     it('ユーザー情報を取得できてない場合 undefined が返る', async () => {
       spyOn(store, 'dispatch');
 
-      const result = await usecase.fetchSections();
+      const result = await usecase.fetchBoardItems();
 
       expect(result).toBeUndefined();
       expect(store.dispatch).not.toHaveBeenCalled();
@@ -84,7 +84,7 @@ describe('SectionUsecase', () => {
       spyOn(taskGateway, 'getTasks').and.returnValue(of(returnValueTasks));
       spyOn(store, 'dispatch');
 
-      await usecase.fetchSections();
+      await usecase.fetchBoardItems();
 
       expect(store.dispatch).toHaveBeenCalledWith(actions.saveSections({ sections: returnValueSections }));
       expect(store.dispatch).toHaveBeenCalledWith(actions.saveTasks({ tasks: returnValueTasks }));
