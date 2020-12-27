@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Task } from '../../domain/models';
-import { COLLECTION_NAME } from '../../features/board/domain/task';
+import { COLLECTION_NAME, Task } from '../../domain/task/task';
 import { DatabaseAdapter } from '../adapters/database.adapter';
 
 @Injectable({

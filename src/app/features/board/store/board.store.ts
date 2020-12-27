@@ -1,6 +1,6 @@
 import { createAction, createReducer, on, props, union } from '@ngrx/store';
-import { Task } from '../../../domain/models';
 import { Section } from '../../../domain/section/section.vo';
+import { Task } from '../../../domain/task/task';
 import { createFeatureStoreSelector } from '../../../shared/store/helpers/selector';
 
 // NOTE: State

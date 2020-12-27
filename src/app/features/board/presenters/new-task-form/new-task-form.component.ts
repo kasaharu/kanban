@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Task } from 'src/app/domain/models';
+import { Task } from '../../../../domain/task/task';
 
 @Component({
   selector: 'app-new-task-form',

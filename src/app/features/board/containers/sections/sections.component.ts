@@ -2,9 +2,10 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { AlertDialogService } from 'src/app/shared/alert-dialog/services/alert-dialog.service';
-import { SectionHasTasks, Task } from '../../../../domain/models';
+import { SectionHasTasks } from '../../../../domain/models';
 import { Section } from '../../../../domain/section/section.vo';
+import { Task } from '../../../../domain/task/task';
+import { AlertDialogService } from '../../../../shared/alert-dialog/services/alert-dialog.service';
 import { SectionQuery } from '../../applications/section.query';
 import { SectionUsecase } from '../../applications/section.usecase';
 

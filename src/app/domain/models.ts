@@ -1,10 +1,4 @@
-export interface Task {
-  id: string;
-  name: string;
-  sectionId: string;
-  userId: string;
-  orderId: number;
-}
+import { Task } from './task/task';
 
 export interface SectionHasTasks {
   id: string;
