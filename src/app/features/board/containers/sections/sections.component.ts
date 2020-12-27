@@ -1,5 +1,7 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { AlertDialogService } from 'src/app/shared/alert-dialog/services/alert-dialog.service';
 import { SectionHasTasks, Task } from '../../../../domain/models';
 import { Section } from '../../../../domain/section/section.vo';
@@ -12,19 +14,30 @@ import { SectionUsecase } from '../../applications/section.usecase';
   styleUrls: ['./sections.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SectionsComponent implements OnInit {
+export class SectionsComponent implements OnInit, OnDestroy {
   constructor(private query: SectionQuery, private usecase: SectionUsecase, private alertDialogService: AlertDialogService) {}
+
   sectionsHasTasks$ = this.query.sectionsHasTasks$;
   errorMessage$ = this.query.errorMessage$;
-  /* tslint:disable-next-line:variable-name */
   private _sectionIds!: string[];
+
+  private _onDestroy$ = new Subject();
 
   ngOnInit(): void {
     this.usecase.fetchSections();
-    this.errorMessage$.subscribe((message) => {
-      this.alertDialogService.show('エラーが発生しました', `${message}`).subscribe(() => this.usecase.closeAlertDialog());
+    this.errorMessage$.pipe(takeUntil(this._onDestroy$)).subscribe((message) => {
+      this.alertDialogService
+        .show('エラーが発生しました', `${message}`)
+        .pipe(takeUntil(this._onDestroy$))
+        .subscribe(() => this.usecase.closeAlertDialog());
     });
-    this.sectionsHasTasks$.subscribe((sectionsHasTasks) => (this._sectionIds = sectionsHasTasks.map((x) => x.id)));
+    this.sectionsHasTasks$
+      .pipe(takeUntil(this._onDestroy$))
+      .subscribe((sectionsHasTasks) => (this._sectionIds = sectionsHasTasks.map((x) => x.id)));
+  }
+
+  ngOnDestroy(): void {
+    this._onDestroy$.next();
   }
 
   // NOTE: task が section をまたいで移動するために必要
