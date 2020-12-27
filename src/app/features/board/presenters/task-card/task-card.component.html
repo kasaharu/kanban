@@ -1,4 +1,6 @@
 <div class="task-card">
   <div class="task-name">{{ task.name }}</div>
-  <button class="delete-button" (click)="onClick(task.id)">削除</button>
+  <div class="button-wrapper">
+    <button (click)="onClick(task.id)">削除</button>
+  </div>
 </div>

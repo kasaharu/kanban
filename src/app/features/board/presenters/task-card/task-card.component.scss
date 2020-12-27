@@ -3,6 +3,9 @@
 }
 
 .task-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   min-height: 88px;
   width: 280px;
   border: 1px solid #ccc;
@@ -14,10 +17,10 @@
 
 .task-name {
   margin-top: 8px;
+  overflow-wrap: break-word;
 }
 
-.delete-button {
-  position: absolute;
-  right: 8px;
-  bottom: 8px;
+.button-wrapper {
+  display: flex;
+  justify-content: flex-end;
 }
