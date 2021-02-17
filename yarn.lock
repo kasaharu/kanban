@@ -1760,10 +1760,10 @@
     jasmine "^3.3.1"
     typescript "~3.5.3"
 
-"@kasaharu/ng-workbox@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@kasaharu/ng-workbox/-/ng-workbox-0.2.0.tgz#40b840bb5b05feafde54423985fbff1ccb16c812"
-  integrity sha512-FpscCK7cpvgfHOOueDj+XPV5hy+L1/uCaxx9MH8aiOW7cLSUgz/FiB040SEtX5DjYiskwT4eHho1l2eh4s5pyg==
+"@kasaharu/ng-workbox@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@kasaharu/ng-workbox/-/ng-workbox-0.4.2.tgz#88164ac5e16e6b3a4dafb508daf88598a8598df0"
+  integrity sha512-ZP4iwwcgIDLRPXu9zY6vDMMgonBJLZrDZOnQv7QGBz3dERJxfvQhOrThYMOLixDM2lwnv+yBjGJOTiL+L/6z3Q==
   dependencies:
     tslib "^2.0.0"
 
