@@ -1,5 +1,5 @@
 <div *ngIf="user$ | async as user; else unLoggedInUser">
-  <h2>Hello {{ user.displayName }}!</h2>
+  <div>Hello {{ user.displayName }}!</div>
 
   <div class="contents">
     <a routerLink="/board">ボードへ</a>
@@ -8,5 +8,8 @@
 <ng-template #unLoggedInUser>
   <div>Welcome to Kanban</div>
   <div>ご利用には Google ログインが必要です</div>
-  <button (click)="login()">Login with Google</button>
+  <button class="login_button" (click)="login()">
+    <app-icon [iconName]="'login'" [size]="18"></app-icon>
+    <p>Login with Google</p>
+  </button>
 </ng-template>

@@ -1,8 +1,35 @@
+@import '../../../../../assets/styles/properties';
+
 :host {
   display: block;
+  width: 40%;
+  margin: auto;
 }
 
 .contents {
   display: flex;
   justify-content: space-between;
+}
+
+.login_button {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  height: 48px;
+  width: 480px;
+  border: 1px solid;
+  border-radius: 4px;
+}
+
+@media screen and (max-width: $p-breakpoint-xsmall) {
+  :host {
+    font-size: 12px;
+    width: 80%;
+  }
+
+  .login_button {
+    width: 100%;
+  }
 }
