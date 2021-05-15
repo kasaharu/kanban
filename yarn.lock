@@ -141,14 +141,14 @@
     ora "5.3.0"
     rxjs "6.6.3"
 
-"@angular/animations@~11.2.0", "@angular/animations@~11.2.1":
+"@angular/animations@~11.2.1":
   version "11.2.1"
   resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-11.2.1.tgz#970d79add4c2a4abc0ed91e6cf5920c65dda2d99"
   integrity sha512-U2gtMaiVfTNMn0FPpSDTgOgtYc45QUnQcc2Po40rCmgH7BGyJAOgmaXY9uv319Jjl+vNrX+bbXaZix73Zpjfyg==
   dependencies:
     tslib "^2.0.0"
 
-"@angular/cdk@^11.2.0", "@angular/cdk@^11.2.1":
+"@angular/cdk@^11.2.1":
   version "11.2.1"
   resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-11.2.1.tgz#c06aa5b0ac76706240a4851ff704d70cbc6f3bf5"
   integrity sha512-d+ERvvWqGykBm5ooWG8TmMjL6q6aOpUd13ha1sx960EfKJqNyideYUfPMp6xprTyxmUIUZ/G9AQ/pxnzrLGnsA==
@@ -185,7 +185,7 @@
     universal-analytics "0.4.23"
     uuid "8.3.2"
 
-"@angular/common@~11.2.0", "@angular/common@~11.2.1":
+"@angular/common@~11.2.1":
   version "11.2.1"
   resolved "https://registry.yarnpkg.com/@angular/common/-/common-11.2.1.tgz#4952cf1ae4734b1436dc262bf6d6b3338610b896"
   integrity sha512-6FuZvJkYq8ZD4Bi6n7zaok1BMe5ve3EZDXLM7cDl2Hktpc+z0/mIZtVYMR0zvf7VX48E4zUU039779ixy0zDMw==
@@ -218,7 +218,7 @@
   resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-9.0.0.tgz#87e0bef4c369b6cadae07e3a4295778fc93799d5"
   integrity sha512-ctjwuntPfZZT2mNj2NDIVu51t9cvbhl/16epc5xEwyzyDt76pX9UgwvY+MbXrf/C/FWwdtmNtfP698BKI+9leQ==
 
-"@angular/compiler@~11.2.0", "@angular/compiler@~11.2.1":
+"@angular/compiler@~11.2.1":
   version "11.2.1"
   resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-11.2.1.tgz#3ccca59b5075b2162525e31e0f2423c54d200986"
   integrity sha512-dejydNtCGMs06zP6aTJ4fYi3cyrXZ9GSS88DT/pZUC1ay9eZUTfm1tLH6NlCDPUwlDSUWKOWAIHwSBzHEkDJ6w==
@@ -230,7 +230,7 @@
   resolved "https://registry.yarnpkg.com/@angular/core/-/core-9.0.0.tgz#227dc53e1ac81824f998c6e76000b7efc522641e"
   integrity sha512-6Pxgsrf0qF9iFFqmIcWmjJGkkCaCm6V5QNnxMy2KloO3SDq6QuMVRbN9RtC8Urmo25LP+eZ6ZgYqFYpdD8Hd9w==
 
-"@angular/core@~11.2.0", "@angular/core@~11.2.1":
+"@angular/core@~11.2.1":
   version "11.2.1"
   resolved "https://registry.yarnpkg.com/@angular/core/-/core-11.2.1.tgz#d0bfd48cfe0d9e5340614ae364cba20c4cb084ac"
   integrity sha512-FfMMG9yWW1xfZmHp8NtXJlNbLrgZ5Fm7FguRfTAuH007gDoknm+V3INKGyQfYOsIlxuJCSzyEeM3270lmbzYaQ==
@@ -244,7 +244,7 @@
   dependencies:
     tslib "^2.0.0"
 
-"@angular/forms@~11.2.0", "@angular/forms@~11.2.1":
+"@angular/forms@~11.2.1":
   version "11.2.1"
   resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-11.2.1.tgz#c08d942a47e80f44f612447a8d1794ab1f0dd65d"
   integrity sha512-/Xy1DQCZkCs1qWudmxooscPmVDkOEsgy9YJIoAYzsrRNINOpggBxBYRO9dztRmp2yDvRSAFTylmfQyTOrWrK7Q==
@@ -256,21 +256,21 @@
   resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-11.2.1.tgz#527ad4739b35d1cc701026f0033aab0b088c770a"
   integrity sha512-xJ6UNn3bWWDDfjf7C3F2DXAv8m2LQznxQgsPKdtHbypw5wWDbUVEqFk5sSt81g2TRiFrGYbDa9mChaKx3rttUA==
 
-"@angular/platform-browser-dynamic@~11.2.0", "@angular/platform-browser-dynamic@~11.2.1":
+"@angular/platform-browser-dynamic@~11.2.1":
   version "11.2.1"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-11.2.1.tgz#0b4e80f29d477a0ce6ae840d4a0e9c5d920b316d"
   integrity sha512-7DEAwy3w2GqhVDe9e5AZoFFEd6e/cnACkz39R4VWY8YiSz/HFtOQ7lQPmjzkmXMEKuGVnQzFwD4aAQWXd/myQg==
   dependencies:
     tslib "^2.0.0"
 
-"@angular/platform-browser@~11.2.0", "@angular/platform-browser@~11.2.1":
+"@angular/platform-browser@~11.2.1":
   version "11.2.1"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-11.2.1.tgz#0b03c025a8e86d139dcd0301a4c3fb203e46d320"
   integrity sha512-wu1B6AY0Om1Pj3U7woLGNbuAgajKEg+B6IKIaCwXv03lID53hpMagyBiNJLLEL6PIRO33G3rPbRKW9gGEr52vg==
   dependencies:
     tslib "^2.0.0"
 
-"@angular/router@~11.2.0", "@angular/router@~11.2.1":
+"@angular/router@~11.2.1":
   version "11.2.1"
   resolved "https://registry.yarnpkg.com/@angular/router/-/router-11.2.1.tgz#7f7d62f312af5a578cee28d595559f9120e766ac"
   integrity sha512-YAq3zO8xdfjqEZ8Ur3go+5JXGIwpSTDj86dzZUMhTIsUuSVluBNdG1A+BQV2X5QNLh7VtdwfW5Npbjkn0Go/Cw==
@@ -7477,9 +7477,9 @@ lodash.values@^2.4.1:
     lodash.keys "~2.4.1"
 
 lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.5:
-  version "4.17.20"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
-  integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
 log-symbols@^2.2.0:
   version "2.2.0"
