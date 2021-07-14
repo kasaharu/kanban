@@ -52,7 +52,7 @@ jobs:
 
       - name: build kanban
         run: |
-          yarn build --prod kanban
+          yarn build kanban
         env:
           CI: true
       - name: unit test kanban
