@@ -73,12 +73,6 @@
                 }
               ],
               "outputHashing": "all",
-              "sourceMap": {
-                "scripts": true,
-                "styles": false,
-                "hidden": true,
-                "vendor": true
-              },
               "budgets": [
                 {
                   "type": "initial",
