@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "prestart": "yarn prebuild",
-    "start": "ng serve",
+    "start": "NG_PERSISTENT_BUILD_CACHE=1 ng serve",
     "prebuild": "ts-node scripts/prebuild.ts && ts-node scripts/prebuild.ts prod",
     "build": "ng build",
     "test": "ng test --code-coverage --watch false --progress false",
