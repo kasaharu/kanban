@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import firebase from 'firebase/app';
+import firebase from 'firebase/compat/app';
 import { take } from 'rxjs/operators';
 import { extractUserInfo } from '../../../domain/user/user';
 import { Authenticator } from '../../../infrastructures/adapters/authenticator';
