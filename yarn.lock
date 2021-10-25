@@ -166,6 +166,13 @@
     ora "5.4.1"
     rxjs "6.6.7"
 
+"@angular/animations@~12.0.1":
+  version "12.0.5"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-12.0.5.tgz#216930a7a2868734ad34f835b4bf2df40243bc30"
+  integrity sha512-BPdTCtgDJ9zNzHpuA6X3NmtzDiIt5SHZk840j0q3HCq6rP6C/oo2UnPT6w8YDOGMejDpWdHvTgXH4jVKDN1wCQ==
+  dependencies:
+    tslib "^2.1.0"
+
 "@angular/animations@~12.2.11":
   version "12.2.11"
   resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-12.2.11.tgz#ada712ba0c9d28d2609da8adb13badcc57638217"
@@ -173,7 +180,7 @@
   dependencies:
     tslib "^2.2.0"
 
-"@angular/cdk@^12.2.11":
+"@angular/cdk@^12.0.1", "@angular/cdk@^12.2.11":
   version "12.2.11"
   resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-12.2.11.tgz#e4f9f45508a0a808eba0b7f6df86e20c86df8306"
   integrity sha512-GgBB3NdVSv6RnDDOMspeLGg3uCbbmWIEIQ9VIqT5TWXWnljd2EANOQWdLu+fkmRzJn66FFdlTtJ6rHYoY/oBkA==
@@ -207,6 +214,13 @@
     symbol-observable "4.0.0"
     uuid "8.3.2"
 
+"@angular/common@~12.0.1":
+  version "12.0.5"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-12.0.5.tgz#05cd8fc14a0378dedcd84a6fc3024c4d0a897c0d"
+  integrity sha512-jKiPjWVL3jXVKgXwINlsF5O0r9gX/mAoa5UVy57O8jcg+ENbH9LLSOikgiF/0HPxk2uvRV5OYmbBgOY1xT41kQ==
+  dependencies:
+    tslib "^2.1.0"
+
 "@angular/common@~12.2.11":
   version "12.2.11"
   resolved "https://registry.yarnpkg.com/@angular/common/-/common-12.2.11.tgz#46b62009d57c187a9a838d9021dcd928073ebc3c"
@@ -239,6 +253,13 @@
   resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-9.0.0.tgz#87e0bef4c369b6cadae07e3a4295778fc93799d5"
   integrity sha512-ctjwuntPfZZT2mNj2NDIVu51t9cvbhl/16epc5xEwyzyDt76pX9UgwvY+MbXrf/C/FWwdtmNtfP698BKI+9leQ==
 
+"@angular/compiler@~12.0.1":
+  version "12.0.5"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-12.0.5.tgz#b69a1927253b18dcaf4bac2c1107b8552ee6649e"
+  integrity sha512-G255aP4hhQ04hSQ1/JgiKNeTzRCuLgK220lJXkHubpu+f67os5LArhFNxZaUC/EVa/sloOT7Fo5tn8C5gy7iLA==
+  dependencies:
+    tslib "^2.1.0"
+
 "@angular/compiler@~12.2.11":
   version "12.2.11"
   resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-12.2.11.tgz#bed059f42b4290f50d6daa464102a8e2bab9dc1b"
@@ -250,6 +271,13 @@
   version "9.0.0"
   resolved "https://registry.yarnpkg.com/@angular/core/-/core-9.0.0.tgz#227dc53e1ac81824f998c6e76000b7efc522641e"
   integrity sha512-6Pxgsrf0qF9iFFqmIcWmjJGkkCaCm6V5QNnxMy2KloO3SDq6QuMVRbN9RtC8Urmo25LP+eZ6ZgYqFYpdD8Hd9w==
+
+"@angular/core@~12.0.1":
+  version "12.0.5"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-12.0.5.tgz#a91751a13f575fd893abbdee257f60d0747038e7"
+  integrity sha512-uVYsZa1VqVw8vNcjUYgfjXBc1M3WaxLXoLnCsDvutJiln4csa8Yw8p7RqQSrZ6AgQ8o2LHD2JJ5kus3EDMwfcA==
+  dependencies:
+    tslib "^2.1.0"
 
 "@angular/core@~12.2.11":
   version "12.2.11"
@@ -277,6 +305,13 @@
     tslib "^2.0.0"
     winston "^3.0.0"
 
+"@angular/forms@~12.0.1":
+  version "12.0.5"
+  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-12.0.5.tgz#17e888667d644b03f4d67928f47bbf227fc6b4ee"
+  integrity sha512-Ew/fGPTsywoYnm6DFPA/DyLl4Sb+1/uzpledrbxUHzaSKIrnXFrjQiUTmsbbq+8qono3JzbUIblqH1DrNThYiA==
+  dependencies:
+    tslib "^2.1.0"
+
 "@angular/forms@~12.2.11":
   version "12.2.11"
   resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-12.2.11.tgz#7994d6fb659851d104fe61c17b7eac84edb942d8"
@@ -289,6 +324,13 @@
   resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-12.2.11.tgz#6d258bf5f926813df2a6bb82ec85b1155296725d"
   integrity sha512-ag0YlWvVmNQWKGB14SFgaPcWuYQJpr8OrD2JoY91P+WWpv6oawemHRVF1rvFjmPf9byXv4mnPK1h36qI7EJSpw==
 
+"@angular/platform-browser-dynamic@~12.0.1":
+  version "12.0.5"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-12.0.5.tgz#b55f6c739c15270902ae7b7f8a6ff56b8ae16b01"
+  integrity sha512-sYkOJxXj4vEZICT2oODkQF9wNaKoScSkiw2ooBYN0UX02mFKlWKa9vkzp6JmN1EF8YOWF0JnRqBPAi1WbOnAMw==
+  dependencies:
+    tslib "^2.1.0"
+
 "@angular/platform-browser-dynamic@~12.2.11":
   version "12.2.11"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-12.2.11.tgz#1340b35f5b3cdba118900da6bea87c8f90096dbf"
@@ -296,12 +338,26 @@
   dependencies:
     tslib "^2.2.0"
 
+"@angular/platform-browser@~12.0.1":
+  version "12.0.5"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-12.0.5.tgz#133c831acd00384651b2544a1c3df4d091c2218e"
+  integrity sha512-MLioK9gcdZOKINE8OmIHZICRnFySaWyCBeVbHS4Z4Vxgr+E2S2eO1IxBmGyQpJq1wDPBP9A/9LVLMUNbHu4Cdw==
+  dependencies:
+    tslib "^2.1.0"
+
 "@angular/platform-browser@~12.2.11":
   version "12.2.11"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-12.2.11.tgz#a6839f3859c6ff676ad405e2863f6dcbcbba928f"
   integrity sha512-uJEnVOK3M1SrCWJoW2jFx5F8pUCbSISai7dbTBVc+/Gx6e9ZuNzBVOooLvSzV96DurhTV7xGSXR5Ry75UNZ48A==
   dependencies:
     tslib "^2.2.0"
+
+"@angular/router@~12.0.1":
+  version "12.0.5"
+  resolved "https://registry.yarnpkg.com/@angular/router/-/router-12.0.5.tgz#c75dbbb1542e95d2922434f21097285927056f54"
+  integrity sha512-2jiaT+OxCmJbeJ0MTPmIHBsTFLysenvPZteozYsjcmUo9mOzJHAjqHLJvTC+Ri+E9xvnplh+8BPETRleV1pAFw==
+  dependencies:
+    tslib "^2.1.0"
 
 "@angular/router@~12.2.11":
   version "12.2.11"
@@ -1987,12 +2043,23 @@
     "@schematics/angular" "^12.0.1"
     typescript "~4.1.2"
 
-"@kasaharu/ng-workbox@^0.4.2":
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/@kasaharu/ng-workbox/-/ng-workbox-0.4.2.tgz#88164ac5e16e6b3a4dafb508daf88598a8598df0"
-  integrity sha512-ZP4iwwcgIDLRPXu9zY6vDMMgonBJLZrDZOnQv7QGBz3dERJxfvQhOrThYMOLixDM2lwnv+yBjGJOTiL+L/6z3Q==
+"@kasaharu/ng-workbox@0.1200.0":
+  version "0.1200.0"
+  resolved "https://registry.yarnpkg.com/@kasaharu/ng-workbox/-/ng-workbox-0.1200.0.tgz#c7525cb42f28c9c57183f1f3fad519a893540de5"
+  integrity sha512-urYrAfPyIjOapL1+FakWlE4BUOly8/aTVk7TWj/naP1e94oFy2ru1OWS+g277J+qYAdU7KYu/fWNs+ptHjTBww==
   dependencies:
+    "@angular/animations" "~12.0.1"
+    "@angular/cdk" "^12.0.1"
+    "@angular/common" "~12.0.1"
+    "@angular/compiler" "~12.0.1"
+    "@angular/core" "~12.0.1"
+    "@angular/forms" "~12.0.1"
+    "@angular/platform-browser" "~12.0.1"
+    "@angular/platform-browser-dynamic" "~12.0.1"
+    "@angular/router" "~12.0.1"
+    rxjs "~6.6.3"
     tslib "^2.0.0"
+    zone.js "~0.11.4"
 
 "@ngrx/store-devtools@^12.5.0":
   version "12.5.0"
