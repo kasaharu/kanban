@@ -1,5 +1,5 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ProfileIconComponent } from './profile-icon.component';
 
 describe('ProfileIconComponent', () => {
@@ -9,6 +9,7 @@ describe('ProfileIconComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ProfileIconComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });
 
