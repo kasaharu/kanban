@@ -3,21 +3,16 @@
   "version": 1,
   "newProjectRoot": "projects",
   "schematics": {
-    "@schematics/angular:class": {
-    },
+    "@schematics/angular:class": {},
     "@schematics/angular:component": {
       "style": "scss",
       "changeDetection": "OnPush",
       "displayBlock": true
     },
-    "@schematics/angular:directive": {
-    },
-    "@schematics/angular:module": {
-    },
-    "@schematics/angular:pipe": {
-    },
-    "@schematics/angular:service": {
-    }
+    "@schematics/angular:directive": {},
+    "@schematics/angular:module": {},
+    "@schematics/angular:pipe": {},
+    "@schematics/angular:service": {}
   },
   "projects": {
     "kanban": {
@@ -93,8 +88,7 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-          },
+          "options": {},
           "configurations": {
             "production": {
               "browserTarget": "kanban:build:production"
@@ -147,12 +141,22 @@
         "deploy": {
           "builder": "@angular/fire:deploy",
           "options": {}
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
   "defaultProject": "kanban",
   "cli": {
-    "analytics": false
+    "analytics": false,
+    "defaultCollection": "@angular-eslint/schematics"
   }
 }
