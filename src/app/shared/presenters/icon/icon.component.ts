@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { IconNameType, IconSizeType } from '../helpers/icon-properties';
 
 @Component({
@@ -7,9 +7,7 @@ import { IconNameType, IconSizeType } from '../helpers/icon-properties';
   styleUrls: ['./icon.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IconComponent implements OnInit {
-  constructor() {}
-
+export class IconComponent {
   // NOTE: https://material.io/resources/icons
   @Input()
   iconName: IconNameType = 'warning';
@@ -21,6 +19,4 @@ export class IconComponent implements OnInit {
   get colorClass() {
     return this.lightMode ? 'md-light' : 'md-dark';
   }
-
-  ngOnInit(): void {}
 }
