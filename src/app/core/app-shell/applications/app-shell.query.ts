@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { selectStore } from '../store/app-shell.store';
+import { createSelector, Store } from '@ngrx/store';
+import { selectLoggedInUser, selectReadyApp } from '../store/app-shell.store';
 
 @Injectable({
   providedIn: 'root',
@@ -8,8 +8,6 @@ import { selectStore } from '../store/app-shell.store';
 export class AppShellQuery {
   constructor(private store: Store<{}>) {}
 
-  readyApp$ = selectStore(this.store, (state) => state.readyApp);
-  loggedIn$ = selectStore(this.store, (state) => {
-    return state.loggedInUser ? true : false;
-  });
+  readyApp$ = this.store.select(createSelector(selectReadyApp, (readyApp) => readyApp));
+  loggedIn$ = this.store.select(createSelector(selectLoggedInUser, (loggedInUser) => (loggedInUser ? true : false)));
 }

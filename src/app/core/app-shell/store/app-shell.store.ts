@@ -1,6 +1,5 @@
-import { createAction, createReducer, on, props, union } from '@ngrx/store';
+import { createAction, createFeature, createReducer, on, props } from '@ngrx/store';
 import { User } from '../../../domain/user/user';
-import { createFeatureStoreSelector } from '../../../shared/store/helpers/selector';
 
 // NOTE: State
 export interface State {
@@ -19,20 +18,16 @@ const login = createAction('[AppShell] login', props<{ loggedInUser: User | null
 const logout = createAction('[AppShell] logout');
 
 export const actions = { initialize, login, logout };
-const actionsUnion = union(actions);
 
-// NOTE: Reducer
-const appShellReducer = createReducer(
-  initialState,
-  on(initialize, (state, { loggedInUser }) => ({ ...state, loggedInUser, readyApp: true })),
-  on(login, (state, { loggedInUser }) => ({ ...state, loggedInUser })),
-  on(logout, (state) => ({ ...state, loggedInUser: null })),
-);
-
-export default function reducer(state: State, action: typeof actionsUnion): State {
-  return appShellReducer(state, action);
-}
-
-// NOTE: Selectors
 export const featureName = 'appShell';
-export const selectStore = createFeatureStoreSelector<State>(featureName);
+export const appShellFeature = createFeature({
+  name: featureName,
+  reducer: createReducer(
+    initialState,
+    on(initialize, (state, { loggedInUser }) => ({ ...state, loggedInUser, readyApp: true })),
+    on(login, (state, { loggedInUser }) => ({ ...state, loggedInUser })),
+    on(logout, (state) => ({ ...state, loggedInUser: null })),
+  ),
+});
+
+export const { reducer, selectLoggedInUser, selectReadyApp } = appShellFeature;

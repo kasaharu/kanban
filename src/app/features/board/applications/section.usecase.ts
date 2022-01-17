@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { createSelector, Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
-import { selectStore as selectAppShellStore } from '../../../core/app-shell/store/app-shell.store';
+import { selectLoggedInUser } from '../../../core/app-shell/store/app-shell.store';
 import { SectionHasTasks } from '../../../domain/models';
 import { Section, SectionValueObject } from '../../../domain/section/section.vo';
 import { Task } from '../../../domain/task/task';
@@ -9,7 +9,7 @@ import { User } from '../../../domain/user/user';
 import { SectionGateway } from '../../../infrastructures/gateways/section.gateway';
 import { TaskGateway } from '../../../infrastructures/gateways/task.gateway';
 import { ErrorTypeEnum } from '../presenters/helpers/error-message';
-import { actions, selectStore } from '../store/board.store';
+import { actions, selectSections } from '../store/board.store';
 import { actions as ErrorStoreActions } from '../store/error.store';
 
 @Injectable({
@@ -19,7 +19,8 @@ export class SectionUsecase {
   constructor(private store: Store<{}>, private readonly _sectionGateway: SectionGateway, private readonly _taskGateway: TaskGateway) {}
 
   private isLoggedIn(): Promise<User | null> {
-    return selectAppShellStore(this.store, (state) => state.loggedInUser)
+    return this.store
+      .select(createSelector(selectLoggedInUser, (loggedInUser) => loggedInUser))
       .pipe(take(1))
       .toPromise();
   }
@@ -48,7 +49,8 @@ export class SectionUsecase {
       return;
     }
 
-    const sections: Section[] = await selectStore(this.store, (state) => state.sections)
+    const sections: Section[] = await this.store
+      .select(createSelector(selectSections, (s) => s))
       .pipe(take(1))
       .toPromise();
 

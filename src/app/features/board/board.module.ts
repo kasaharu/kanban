@@ -9,8 +9,8 @@ import { EditableSectionNameComponent } from './presenters/editable-section-name
 import { NewTaskFormComponent } from './presenters/new-task-form/new-task-form.component';
 import { SectionFormComponent } from './presenters/section-form/section-form.component';
 import { TaskCardComponent } from './presenters/task-card/task-card.component';
-import { default as boardStoreReducer, featureName as boardStoreName } from './store/board.store';
-import { default as errorStoreReducer, featureName as errorStoreName } from './store/error.store';
+import { boardFeature } from './store/board.store';
+import { errorFeature } from './store/error.store';
 
 @NgModule({
   declarations: [
@@ -21,13 +21,7 @@ import { default as errorStoreReducer, featureName as errorStoreName } from './s
     NewTaskFormComponent,
     EditableSectionNameComponent,
   ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    DragDropModule,
-    StoreModule.forFeature(boardStoreName, boardStoreReducer),
-    StoreModule.forFeature(errorStoreName, errorStoreReducer),
-  ],
+  imports: [CommonModule, ReactiveFormsModule, DragDropModule, StoreModule.forFeature(boardFeature), StoreModule.forFeature(errorFeature)],
   exports: [BoardPageComponent],
 })
 export class BoardModule {}
