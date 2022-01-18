@@ -27,14 +27,17 @@ export class SectionsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.usecase.fetchBoardItems();
     this.errorMessage$.pipe(takeUntil(this._onDestroy$)).subscribe((message) => {
+      if (message === '') {
+        return;
+      }
       this.alertDialogService
         .show('エラーが発生しました', `${message}`)
         .pipe(takeUntil(this._onDestroy$))
         .subscribe(() => this.usecase.closeAlertDialog());
     });
-    this.sectionsHasTasks$
-      .pipe(takeUntil(this._onDestroy$))
-      .subscribe((sectionsHasTasks) => (this._sectionIds = sectionsHasTasks.map((x) => x.id)));
+    this.sectionsHasTasks$.pipe(takeUntil(this._onDestroy$)).subscribe((sectionsHasTasks) => {
+      this._sectionIds = sectionsHasTasks.map((x) => x.id);
+    });
   }
 
   ngOnDestroy(): void {
