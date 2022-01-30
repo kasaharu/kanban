@@ -14,11 +14,11 @@ export class SectionQuery {
 
   // TODO: orderId 順にソートするロジックは domain 層に移動する
   private sections$ = this.store.select(
-    createSelector(selectSections, (sections) => (sections.length === 0 ? sections : sections.sort((a, b) => a.orderId - b.orderId))),
+    createSelector(selectSections, (sections) => (sections.length === 0 ? sections : [...sections].sort((a, b) => a.orderId - b.orderId))),
   );
 
   // TODO: orderId 順にソートするロジックは domain 層に移動する
-  private tasks$ = this.store.select(createSelector(selectTasks, (tasks) => tasks.sort((a, b) => a.orderId - b.orderId)));
+  private tasks$ = this.store.select(createSelector(selectTasks, (tasks) => [...tasks].sort((a, b) => a.orderId - b.orderId)));
 
   private combined$ = combineLatest([this.sections$, this.tasks$]);
 
