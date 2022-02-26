@@ -28,7 +28,6 @@
     "@angular/platform-browser": "~13.1.2",
     "@angular/platform-browser-dynamic": "~13.1.2",
     "@angular/router": "~13.1.2",
-    "@kasaharu/ng-workbox": "0.1301.0",
     "@ngrx/store": "^13.0.2",
     "@ngrx/store-devtools": "^13.0.2",
     "firebase": "^9.6.1",
