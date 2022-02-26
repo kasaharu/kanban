@@ -1,5 +1,5 @@
 import { ErrorTypeEnum, mappingErrorMessage } from '../presenters/helpers/error-message';
-import reducer, { actions, State } from './error.store';
+import { actions, reducer, State } from './error.store';
 
 describe('error reducer', () => {
   it('action type : saveError', () => {

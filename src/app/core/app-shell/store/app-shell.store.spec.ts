@@ -1,4 +1,4 @@
-import reducer, { actions, State } from './app-shell.store';
+import { actions, reducer, State } from './app-shell.store';
 
 describe('appShell reducer', () => {
   it('action type : initialize', () => {

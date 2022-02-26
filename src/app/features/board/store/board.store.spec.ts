@@ -1,5 +1,5 @@
 import { Section } from '../../../domain/section/section.vo';
-import reducer, { actions, initialState, State } from './board.store';
+import { actions, initialState, reducer, State } from './board.store';
 
 describe('board reducer', () => {
   it('action type : saveBoard', () => {
