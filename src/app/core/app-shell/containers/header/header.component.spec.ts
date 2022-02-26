@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { NgWorkboxComponentsModule } from '@kasaharu/ng-workbox/components';
 import { AppShellQuery } from '../../applications/app-shell.query';
 import { HeaderUsecase } from '../../applications/header.usecase';
 import { HeaderComponent } from './header.component';
@@ -16,7 +15,7 @@ describe('HeaderComponent', () => {
     waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [HeaderComponent],
-        imports: [RouterTestingModule, NgWorkboxComponentsModule],
+        imports: [RouterTestingModule],
         providers: [
           { provide: AppShellQuery, useClass: MockAppShellQuery },
           { provide: HeaderUsecase, useClass: MockHeaderUsecase },

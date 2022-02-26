@@ -1,6 +1,9 @@
-<ngw-header>
-  <a id="headerTitle" class="title" routerLink="/">{{ applicationName }}</a>
-  <nav id="headerNavigation">
+<header class="header">
+  <h1 class="title">
+    <a class="title" routerLink="/">{{ applicationName }}</a>
+  </h1>
+
+  <nav>
     <app-profile-icon *ngIf="loggedIn$ | async" (logoutButtonEmitter)="logout()"></app-profile-icon>
   </nav>
-</ngw-header>
+</header>
