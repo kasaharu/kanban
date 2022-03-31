@@ -8,19 +8,17 @@ class MockAppShellQuery implements Partial<AppShellQuery> {}
 class MockAppInitializeUsecase implements Partial<AppInitializer> {}
 
 describe('AppComponent', () => {
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [],
-        declarations: [AppComponent],
-        providers: [
-          { provide: AppShellQuery, useClass: MockAppShellQuery },
-          { provide: AppInitializer, useClass: MockAppInitializeUsecase },
-        ],
-        schemas: [NO_ERRORS_SCHEMA],
-      }).compileComponents();
-    }),
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [],
+      declarations: [AppComponent],
+      providers: [
+        { provide: AppShellQuery, useClass: MockAppShellQuery },
+        { provide: AppInitializer, useClass: MockAppInitializeUsecase },
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
+  }));
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);

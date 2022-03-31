@@ -9,9 +9,7 @@ export class DatabaseAdapter {
   constructor(private db: AngularFirestore) {}
 
   fetchCollectionWhere<T>(collectionName: string, where: { key: string; value: string }): Observable<T[]> {
-    return this.db
-      .collection<T>(collectionName, (ref) => ref.where(where.key, '==', where.value))
-      .valueChanges();
+    return this.db.collection<T>(collectionName, (ref) => ref.where(where.key, '==', where.value)).valueChanges();
   }
 
   async createDocument<T>(collectionName: string, item: T): Promise<T> {

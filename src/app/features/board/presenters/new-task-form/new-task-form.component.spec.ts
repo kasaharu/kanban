@@ -6,14 +6,12 @@ describe('NewTaskFormComponent', () => {
   let component: NewTaskFormComponent;
   let fixture: ComponentFixture<NewTaskFormComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [NewTaskFormComponent],
-        imports: [ReactiveFormsModule],
-      }).compileComponents();
-    }),
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [NewTaskFormComponent],
+      imports: [ReactiveFormsModule],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NewTaskFormComponent);
