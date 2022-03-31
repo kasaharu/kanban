@@ -6,14 +6,12 @@ describe('SectionFormComponent', () => {
   let component: SectionFormComponent;
   let fixture: ComponentFixture<SectionFormComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [SectionFormComponent],
-        imports: [ReactiveFormsModule],
-      }).compileComponents();
-    }),
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [SectionFormComponent],
+      imports: [ReactiveFormsModule],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SectionFormComponent);

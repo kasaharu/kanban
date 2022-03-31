@@ -11,18 +11,16 @@ describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [HeaderComponent],
-        imports: [RouterTestingModule],
-        providers: [
-          { provide: AppShellQuery, useClass: MockAppShellQuery },
-          { provide: HeaderUsecase, useClass: MockHeaderUsecase },
-        ],
-      }).compileComponents();
-    }),
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [HeaderComponent],
+      imports: [RouterTestingModule],
+      providers: [
+        { provide: AppShellQuery, useClass: MockAppShellQuery },
+        { provide: HeaderUsecase, useClass: MockHeaderUsecase },
+      ],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HeaderComponent);

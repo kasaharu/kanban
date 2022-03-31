@@ -6,14 +6,12 @@ describe('EditableSectionNameComponent', () => {
   let component: EditableSectionNameComponent;
   let fixture: ComponentFixture<EditableSectionNameComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [EditableSectionNameComponent],
-        imports: [ReactiveFormsModule],
-      }).compileComponents();
-    }),
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [EditableSectionNameComponent],
+      imports: [ReactiveFormsModule],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(EditableSectionNameComponent);

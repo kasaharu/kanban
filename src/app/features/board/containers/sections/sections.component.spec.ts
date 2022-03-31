@@ -26,21 +26,19 @@ describe('SectionsComponent', () => {
   let fixture: ComponentFixture<SectionsComponent>;
   let alertDialogService: AlertDialogService;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [SectionsComponent],
-        providers: [
-          { provide: SectionQuery, useClass: MockBoardQuery },
-          { provide: SectionUsecase, useClass: MockSectionUsecase },
-          { provide: AlertDialogService, useClass: MockAlertDialogService },
-        ],
-        schemas: [NO_ERRORS_SCHEMA],
-      }).compileComponents();
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [SectionsComponent],
+      providers: [
+        { provide: SectionQuery, useClass: MockBoardQuery },
+        { provide: SectionUsecase, useClass: MockSectionUsecase },
+        { provide: AlertDialogService, useClass: MockAlertDialogService },
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
 
-      alertDialogService = TestBed.inject(AlertDialogService);
-    }),
-  );
+    alertDialogService = TestBed.inject(AlertDialogService);
+  }));
 
   beforeEach(() => {
     spyOn(alertDialogService, 'show').and.returnValue(of(true));
