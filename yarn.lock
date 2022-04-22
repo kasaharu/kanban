@@ -2245,10 +2245,10 @@
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-4.0.2.tgz#9a03589f6aa00ef42a90a8d37f09c893efced14c"
   integrity sha512-mSPIWhDyQ4nzYdR6Ixy15VhVKMVw93mSUlQxxpVb4S9Hj90lBvg+7kkBw23uYcv8CESPPXit+u3cARYcPeC8Jg==
 
-"@types/jasmine@3.10.5":
-  version "3.10.5"
-  resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-3.10.5.tgz#ae155a9ec66e765c39646fb74c438cffcd6e3f78"
-  integrity sha512-RYxEJkk/RK1S6W0nMOx9Mxm5v2bKwAVjzTHiBcHkQskwKDqHKHjSU46jx/q9IffyuctNl8ebaAjb5/461faKqQ==
+"@types/jasmine@3.10.6":
+  version "3.10.6"
+  resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-3.10.6.tgz#8c8fe733d89813bf3dc3f9282d347fa1dbc90567"
+  integrity sha512-twY9adK/vz72oWxCWxzXaxoDtF9TpfEEsxvbc1ibjF3gMD/RThSuSud/GKUTR3aJnfbivAbC/vLqhY+gdWCHfA==
 
 "@types/jasminewd2@2.0.10":
   version "2.0.10"
@@ -2294,10 +2294,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.23.tgz#3b41a6e643589ac6442bdbd7a4a3ded62f33f7da"
   integrity sha512-UxDxWn7dl97rKVeVS61vErvw086aCYhDLyvRQZ5Rk65rZKepaFdm53GeqXaKBuOhED4e9uWq34IC3TdSdJJ2Gw==
 
-"@types/node@16.11.26":
-  version "16.11.26"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.26.tgz#63d204d136c9916fb4dcd1b50f9740fe86884e47"
-  integrity sha512-GZ7bu5A6+4DtG7q9GsoHXy3ALcgeIHP4NnL0Vv2wu0uUB/yQex26v0tf6/na1mm0+bS9Uw+0DFex7aaKr2qawQ==
+"@types/node@16.11.27":
+  version "16.11.27"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.27.tgz#5da19383bdbeda99bc0d09cfbb88cab7297ebc51"
+  integrity sha512-C1pD3kgLoZ56Uuy5lhfOxie4aZlA3UMGLX9rXteq4WitEZH6Rl80mwactt9QG0w0gLFlN/kLBTFnGXtDVWvWQw==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
