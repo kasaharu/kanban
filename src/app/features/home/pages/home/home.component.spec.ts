@@ -1,6 +1,9 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { HomeUsecase } from '../../applications/home.usecase';
 import { HomePageComponent } from './home.component';
+
+class MockHomeUsecase implements Partial<HomeUsecase> {}
 
 describe('HomePageComponent', () => {
   let component: HomePageComponent;
@@ -9,7 +12,8 @@ describe('HomePageComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [HomePageComponent],
-      schemas: [NO_ERRORS_SCHEMA],
+      providers: [{ provide: HomeUsecase, useClass: MockHomeUsecase }],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   }));
 
