@@ -1781,6 +1781,13 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@ngrx/component-store@^13.2.0":
+  version "13.2.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/component-store/-/component-store-13.2.0.tgz#1fbff82088409fa0a2b22e13e8d8638da2b7e879"
+  integrity sha512-+g4AVI59rrQewPUDmpnMQORlm1odUkfcdWmRdB8NuArPnMbU32Qd8/ROsxB2hWCw4bzLOHXWl9TR43864DuhhQ==
+  dependencies:
+    tslib "^2.0.0"
+
 "@ngrx/store-devtools@13.2.0":
   version "13.2.0"
   resolved "https://registry.yarnpkg.com/@ngrx/store-devtools/-/store-devtools-13.2.0.tgz#69193e32aee141397d7d2c11c43278e3fa5191e7"
