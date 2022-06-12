@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { BoardUsecase } from './board.usecase';
 
 @Component({
@@ -8,4 +8,13 @@ import { BoardUsecase } from './board.usecase';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [BoardUsecase],
 })
-export class BoardPageComponent {}
+export class BoardPageComponent implements OnInit {
+  constructor(private usecase: BoardUsecase) {}
+
+  sections$ = this.usecase.sections$;
+
+  ngOnInit(): void {
+    this.sections$.subscribe((val) => console.log(val));
+    this.usecase.fetchSections();
+  }
+}
