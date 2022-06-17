@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
 import firebase from 'firebase/compat/app';
-import { take } from 'rxjs/operators';
+import { combineLatest, Observable } from 'rxjs';
+import { map, take } from 'rxjs/operators';
+import { SectionHasTasks } from '../../../../domain/models';
 import { Section } from '../../../../domain/section/section.vo';
 import { Task } from '../../../../domain/task/task';
 import { extractUserInfo, User } from '../../../../domain/user/user';
@@ -29,10 +31,24 @@ export class BoardUsecase extends ComponentStore<BoardState> {
     super(initialState);
   }
 
-  readonly sections$ = this.select((state) => state.sections);
-  readonly saveSections = this.updater((state, sections: Section[]) => ({ ...state, sections }));
+  private readonly sections$ = this.select(({ sections }) => {
+    return sections.length === 0 ? sections : [...sections].sort((a, b) => a.orderId - b.orderId);
+  });
+  private readonly tasks$ = this.select(({ tasks }) => {
+    return [...tasks].sort((a, b) => a.orderId - b.orderId);
+  });
 
-  readonly tasks$ = this.select((state) => state.tasks);
+  private combined$ = combineLatest([this.sections$, this.tasks$]);
+  sectionsHasTasks$: Observable<SectionHasTasks[]> = this.combined$.pipe(
+    map(([sections, tasks]) => {
+      return sections.map((section) => {
+        const foundTasks = tasks.filter((task) => task.sectionId === section.id);
+        return { id: section.id, name: section.name, userId: section.userId, orderId: section.orderId, tasks: foundTasks };
+      });
+    }),
+  );
+
+  readonly saveSections = this.updater((state, sections: Section[]) => ({ ...state, sections }));
   readonly saveTasks = this.updater((state, tasks: Task[]) => ({ ...state, tasks }));
 
   async fetchBoardItem() {

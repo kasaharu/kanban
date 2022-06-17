@@ -11,12 +11,10 @@ import { BoardUsecase } from './board.usecase';
 export class BoardPageComponent implements OnInit {
   constructor(private usecase: BoardUsecase) {}
 
-  sections$ = this.usecase.sections$;
-  tasks$ = this.usecase.tasks$;
+  sectionsHasTasks$ = this.usecase.sectionsHasTasks$;
 
   ngOnInit(): void {
-    this.sections$.subscribe((val) => console.log(val));
-    this.tasks$.subscribe((val) => console.log(val));
+    this.sectionsHasTasks$.subscribe((val) => console.log(val));
     this.usecase.fetchBoardItem();
   }
 }
