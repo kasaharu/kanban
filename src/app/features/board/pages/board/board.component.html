@@ -1,1 +1,26 @@
-<div>hoge</div>
+<ng-container *ngIf="sectionsHasTasks$ | async as sections">
+  <div class="sections" cdkDropList [cdkDropListData]="sections" cdkDropListOrientation="horizontal">
+    <div class="section" cdkDropListGroup *ngFor="let section of sections" cdkDrag [cdkDragData]="section">
+      <div>
+        <div class="section-name-field">
+          <app-editable-section-name class="section-name-form" [name]="section.name"></app-editable-section-name>
+          <button class="section-delete-button">削除</button>
+        </div>
+        <app-new-task-form class="add-task-input"></app-new-task-form>
+        <div
+          id="{{ section.id }}"
+          class="task-wrapper"
+          cdkDropList
+          [cdkDropListData]="section.tasks"
+          [cdkDropListConnectedTo]="getConnectedList()"
+          [attr.data-section-id]="section.id"
+        >
+          <div *ngFor="let task of section.tasks" cdkDrag [cdkDragData]="task">
+            <app-task-card class="task" [task]="task"></app-task-card>
+          </div>
+          <div class="task-placeholder"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
