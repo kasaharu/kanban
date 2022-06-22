@@ -73,4 +73,11 @@ export class BoardUsecase extends ComponentStore<BoardState> {
     const tasks = await tasks$.pipe(take(1)).toPromise();
     this.saveTasks(tasks);
   }
+
+  moveSection(sectionsHasTasks: SectionHasTasks[]) {
+    sectionsHasTasks.forEach((sectionHasTasks, index) => {
+      const section: Section = { id: sectionHasTasks.id, name: sectionHasTasks.name, userId: sectionHasTasks.userId, orderId: index + 1 };
+      this._sectionGateway.putSection(section);
+    });
+  }
 }

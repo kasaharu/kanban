@@ -1,5 +1,11 @@
 <ng-container *ngIf="sectionsHasTasks$ | async as sections">
-  <div class="sections" cdkDropList [cdkDropListData]="sections" cdkDropListOrientation="horizontal">
+  <div
+    class="sections"
+    cdkDropList
+    [cdkDropListData]="sections"
+    cdkDropListOrientation="horizontal"
+    (cdkDropListDropped)="dropSection($event)"
+  >
     <div class="section" cdkDropListGroup *ngFor="let section of sections" cdkDrag [cdkDragData]="section">
       <div>
         <div class="section-name-field">
