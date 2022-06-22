@@ -20,6 +20,7 @@
           [cdkDropListData]="section.tasks"
           [cdkDropListConnectedTo]="getConnectedList()"
           [attr.data-section-id]="section.id"
+          (cdkDropListDropped)="dropTask($event)"
         >
           <div *ngFor="let task of section.tasks" cdkDrag [cdkDragData]="task">
             <app-task-card class="task" [task]="task"></app-task-card>

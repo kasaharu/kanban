@@ -80,4 +80,23 @@ export class BoardUsecase extends ComponentStore<BoardState> {
       this._sectionGateway.putSection(section);
     });
   }
+
+  moveTask(tasks: Task[]) {
+    tasks.forEach((task, index) => {
+      const updatedTask: Task = { ...task, orderId: index + 1 };
+      this._taskGateway.putTask(updatedTask);
+    });
+  }
+
+  async transferTask(sourceTasks: Task[], destinationTasks: Task[], destinationSectionId: string) {
+    destinationTasks.forEach((task, index) => {
+      const updatedTask: Task = { ...task, orderId: index + 1, sectionId: destinationSectionId };
+      this._taskGateway.putTask(updatedTask);
+    });
+
+    sourceTasks.forEach((task, index) => {
+      const updatedTask: Task = { ...task, orderId: index + 1 };
+      this._taskGateway.putTask(updatedTask);
+    });
+  }
 }

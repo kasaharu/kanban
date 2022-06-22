@@ -1,8 +1,9 @@
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { SectionHasTasks } from '../../../../domain/models';
+import { Task } from '../../../../domain/task/task';
 import { BoardUsecase } from './board.usecase';
 
 @Component({
@@ -39,5 +40,23 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   dropSection(event: CdkDragDrop<SectionHasTasks[]>) {
     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     this.usecase.moveSection(event.container.data);
+  }
+
+  dropTask(event: CdkDragDrop<Task[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      this.usecase.moveTask(event.container.data);
+    } else {
+      const destinationSectionId = event.container.element.nativeElement.dataset.sectionId;
+
+      // TODO: エラー処理を見直す
+      if (!destinationSectionId) {
+        console.error('移動先の sectionId が見つからない');
+        return;
+      }
+
+      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+      this.usecase.transferTask(event.previousContainer.data, event.container.data, destinationSectionId);
+    }
   }
 }
