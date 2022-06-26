@@ -8,7 +8,6 @@ import { Task } from '../../../../domain/task/task';
 import { BoardUsecase } from './board.usecase';
 
 @Component({
-  // template: `<app-sections></app-sections>`,
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
