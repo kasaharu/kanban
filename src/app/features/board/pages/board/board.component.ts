@@ -63,4 +63,10 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   addTask(task: Task, section: SectionHasTasks) {
     this.usecase.createTask(task, section);
   }
+
+  deleteTask(taskId: string) {
+    if (window.confirm('タスクを削除しますか？')) {
+      this.usecase.deleteTask(taskId);
+    }
+  }
 }

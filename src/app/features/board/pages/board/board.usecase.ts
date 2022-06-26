@@ -52,6 +52,7 @@ export class BoardUsecase extends ComponentStore<BoardState> {
   readonly saveTasks = this.updater((state, tasks: Task[]) => ({ ...state, tasks }));
 
   readonly addTask = this.updater((state, task: Task) => ({ ...state, tasks: [...state.tasks, task] }));
+  readonly removeTask = this.updater((state, taskId: string) => ({ ...state, tasks: state.tasks.filter((task) => task.id !== taskId) }));
 
   async fetchBoardItem() {
     const user: firebase.User | null = await firstValueFrom(this.authenticator.loggedInUser$.pipe(take(1)));
@@ -118,5 +119,10 @@ export class BoardUsecase extends ComponentStore<BoardState> {
     });
 
     this.addTask(createdTask);
+  }
+
+  async deleteTask(taskId: string) {
+    const deletedTaskId = await this._taskGateway.deleteTask(taskId);
+    this.removeTask(deletedTaskId);
   }
 }
