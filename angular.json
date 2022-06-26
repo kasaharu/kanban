@@ -154,12 +154,13 @@
       }
     }
   },
-  "defaultProject": "kanban",
   "cli": {
     "analytics": false,
-    "defaultCollection": "@angular-eslint/schematics",
     "cache": {
       "enabled": true
-    }
+    },
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }

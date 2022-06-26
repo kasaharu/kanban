@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { Task } from '../../../../domain/task/task';
 
 @Component({
@@ -9,7 +9,7 @@ import { Task } from '../../../../domain/task/task';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewTaskFormComponent {
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: UntypedFormBuilder) {}
   // TODO: 型の見直しが必要
   @Output()
   requestCreateTask = new EventEmitter<Task>();

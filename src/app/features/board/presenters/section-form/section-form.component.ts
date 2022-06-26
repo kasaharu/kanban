@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { Section } from '../../../../domain/section/section.vo';
 
 @Component({
@@ -9,7 +9,7 @@ import { Section } from '../../../../domain/section/section.vo';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SectionFormComponent {
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: UntypedFormBuilder) {}
   // TODO: 型の見直しが必要
   @Output()
   requestCreateSection = new EventEmitter<Section>();

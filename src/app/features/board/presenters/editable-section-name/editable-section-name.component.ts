@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { NAME_MAX_LENGTH } from '../../../../domain/section/section.vo';
 
 @Component({
@@ -9,7 +9,7 @@ import { NAME_MAX_LENGTH } from '../../../../domain/section/section.vo';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditableSectionNameComponent implements OnInit {
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: UntypedFormBuilder) {}
 
   @Input()
   name = '';
