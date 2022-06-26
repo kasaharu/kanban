@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
 import firebase from 'firebase/compat/app';
-import { combineLatest, Observable } from 'rxjs';
+import { combineLatest, firstValueFrom, Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { SectionHasTasks } from '../../../../domain/models';
 import { Section } from '../../../../domain/section/section.vo';
@@ -52,7 +52,7 @@ export class BoardUsecase extends ComponentStore<BoardState> {
   readonly saveTasks = this.updater((state, tasks: Task[]) => ({ ...state, tasks }));
 
   async fetchBoardItem() {
-    const user: firebase.User | null = await this.authenticator.loggedInUser$.pipe(take(1)).toPromise();
+    const user: firebase.User | null = await firstValueFrom(this.authenticator.loggedInUser$.pipe(take(1)));
     const loggedInUser = extractUserInfo(user);
     if (loggedInUser === null) {
       return;
@@ -64,13 +64,13 @@ export class BoardUsecase extends ComponentStore<BoardState> {
 
   async fetchSections(loggedInUser: User) {
     const sections$ = this._sectionGateway.getSections(loggedInUser.uid);
-    const sections = await sections$.pipe(take(1)).toPromise();
+    const sections = await firstValueFrom(sections$.pipe(take(1)));
     this.saveSections(sections);
   }
 
   async fetchTasks(loggedInUser: User) {
     const tasks$ = this._taskGateway.getTasks(loggedInUser.uid);
-    const tasks = await tasks$.pipe(take(1)).toPromise();
+    const tasks = await firstValueFrom(tasks$.pipe(take(1)));
     this.saveTasks(tasks);
   }
 

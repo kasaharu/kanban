@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { createSelector, Store } from '@ngrx/store';
+import { firstValueFrom } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { selectLoggedInUser } from '../../../core/app-shell/store/app-shell.store';
 import { SectionHasTasks } from '../../../domain/models';
@@ -19,10 +20,7 @@ export class SectionUsecase {
   constructor(private store: Store<{}>, private readonly _sectionGateway: SectionGateway, private readonly _taskGateway: TaskGateway) {}
 
   private isLoggedIn(): Promise<User | null> {
-    return this.store
-      .select(createSelector(selectLoggedInUser, (loggedInUser) => loggedInUser))
-      .pipe(take(1))
-      .toPromise();
+    return firstValueFrom(this.store.select(createSelector(selectLoggedInUser, (loggedInUser) => loggedInUser)).pipe(take(1)));
   }
 
   async fetchBoardItems() {
@@ -33,12 +31,12 @@ export class SectionUsecase {
 
     // NOTE: section 一覧を取得
     const sections$ = this._sectionGateway.getSections(loggedInUser.uid);
-    const sections = await sections$.pipe(take(1)).toPromise();
+    const sections = await firstValueFrom(sections$.pipe(take(1)));
     this.store.dispatch(actions.saveSections({ sections }));
 
     // NOTE: task 一覧を取得
     const tasks$ = this._taskGateway.getTasks(loggedInUser.uid);
-    const tasks = await tasks$.pipe(take(1)).toPromise();
+    const tasks = await firstValueFrom(tasks$.pipe(take(1)));
     this.store.dispatch(actions.saveTasks({ tasks }));
   }
 
@@ -49,10 +47,7 @@ export class SectionUsecase {
       return;
     }
 
-    const sections: Section[] = await this.store
-      .select(createSelector(selectSections, (s) => s))
-      .pipe(take(1))
-      .toPromise();
+    const sections: Section[] = await firstValueFrom(this.store.select(createSelector(selectSections, (s) => s)).pipe(take(1)));
 
     try {
       const newerSection = SectionValueObject.create(addingSection.name, user.uid, sections.length + 1);
