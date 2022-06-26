@@ -59,4 +59,8 @@ export class BoardPageComponent implements OnInit, OnDestroy {
       this.usecase.transferTask(event.previousContainer.data, event.container.data, destinationSectionId);
     }
   }
+
+  addTask(task: Task, section: SectionHasTasks) {
+    this.usecase.createTask(task, section);
+  }
 }

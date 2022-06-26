@@ -51,6 +51,8 @@ export class BoardUsecase extends ComponentStore<BoardState> {
   readonly saveSections = this.updater((state, sections: Section[]) => ({ ...state, sections }));
   readonly saveTasks = this.updater((state, tasks: Task[]) => ({ ...state, tasks }));
 
+  readonly addTask = this.updater((state, task: Task) => ({ ...state, tasks: [...state.tasks, task] }));
+
   async fetchBoardItem() {
     const user: firebase.User | null = await firstValueFrom(this.authenticator.loggedInUser$.pipe(take(1)));
     const loggedInUser = extractUserInfo(user);
@@ -98,5 +100,23 @@ export class BoardUsecase extends ComponentStore<BoardState> {
       const updatedTask: Task = { ...task, orderId: index + 1 };
       this._taskGateway.putTask(updatedTask);
     });
+  }
+
+  async createTask(addingTask: Task, section: SectionHasTasks) {
+    const user: firebase.User | null = await firstValueFrom(this.authenticator.loggedInUser$.pipe(take(1)));
+    const loggedInUser = extractUserInfo(user);
+    if (loggedInUser === null) {
+      return;
+    }
+
+    const createdTask = await this._taskGateway.postTask({
+      userId: loggedInUser.uid,
+      name: addingTask.name,
+      sectionId: section.id,
+      orderId: section.tasks.length + 1,
+      id: 'temporary',
+    });
+
+    this.addTask(createdTask);
   }
 }
