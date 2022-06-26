@@ -51,6 +51,7 @@ export class BoardUsecase extends ComponentStore<BoardState> {
   readonly saveSections = this.updater((state, sections: Section[]) => ({ ...state, sections }));
   readonly saveTasks = this.updater((state, tasks: Task[]) => ({ ...state, tasks }));
 
+  readonly createSection = this.updater((state, section: Section) => ({ ...state, sections: [...state.sections, section] }));
   readonly updateSection = this.updater((state, section: Section) => ({
     ...state,
     sections: state.sections.map((x) => (x.id === section.id ? section : x)),
@@ -90,6 +91,26 @@ export class BoardUsecase extends ComponentStore<BoardState> {
       const section: Section = { id: sectionHasTasks.id, name: sectionHasTasks.name, userId: sectionHasTasks.userId, orderId: index + 1 };
       this._sectionGateway.putSection(section);
     });
+  }
+
+  async addSection(addingSection: Section) {
+    const user: firebase.User | null = await firstValueFrom(this.authenticator.loggedInUser$.pipe(take(1)));
+    const loggedInUser = extractUserInfo(user);
+    if (loggedInUser === null) {
+      return;
+    }
+
+    const sections: Section[] = await firstValueFrom(this.sections$);
+
+    try {
+      const newerSection = SectionValueObject.create(addingSection.name, loggedInUser.uid, sections.length + 1);
+      const createdSection = await this._sectionGateway.postSection(newerSection.plainObject());
+      this.createSection(createdSection);
+    } catch (_) {
+      // TODO: セクション名が 15 文字(ErrorTypeEnum.OverSectionNameLength) を超えた場合にエラーメッセージを出す
+      // tslint:disable-next-line:no-console
+      console.log('セクション名が長すぎます');
+    }
   }
 
   async deleteSection(section: SectionHasTasks) {

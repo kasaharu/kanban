@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { SectionHasTasks } from '../../../../domain/models';
+import { Section } from '../../../../domain/section/section.vo';
 import { Task } from '../../../../domain/task/task';
 import { BoardUsecase } from './board.usecase';
 
@@ -40,6 +41,10 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   dropSection(event: CdkDragDrop<SectionHasTasks[]>) {
     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     this.usecase.moveSection(event.container.data);
+  }
+
+  addSection(section: Section) {
+    this.usecase.addSection(section);
   }
 
   deleteSection(section: SectionHasTasks) {
