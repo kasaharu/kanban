@@ -10,7 +10,7 @@
       <div>
         <div class="section-name-field">
           <app-editable-section-name class="section-name-form" [name]="section.name"></app-editable-section-name>
-          <button class="section-delete-button">削除</button>
+          <button class="section-delete-button" (click)="deleteSection(section)">削除</button>
         </div>
         <app-new-task-form class="add-task-input" (requestCreateTask)="addTask($event, section)"></app-new-task-form>
         <div

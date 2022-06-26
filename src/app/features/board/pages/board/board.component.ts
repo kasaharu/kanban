@@ -42,6 +42,12 @@ export class BoardPageComponent implements OnInit, OnDestroy {
     this.usecase.moveSection(event.container.data);
   }
 
+  deleteSection(section: SectionHasTasks) {
+    if (window.confirm('セクションを削除しますか？(紐づくタスクも削除されます)')) {
+      this.usecase.deleteSection(section);
+    }
+  }
+
   dropTask(event: CdkDragDrop<Task[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);

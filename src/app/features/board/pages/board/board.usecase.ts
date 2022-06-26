@@ -51,6 +51,10 @@ export class BoardUsecase extends ComponentStore<BoardState> {
   readonly saveSections = this.updater((state, sections: Section[]) => ({ ...state, sections }));
   readonly saveTasks = this.updater((state, tasks: Task[]) => ({ ...state, tasks }));
 
+  readonly removeSection = this.updater((state, sectionId: string) => ({
+    ...state,
+    sections: state.sections.filter((section) => section.id !== sectionId),
+  }));
   readonly addTask = this.updater((state, task: Task) => ({ ...state, tasks: [...state.tasks, task] }));
   readonly removeTask = this.updater((state, taskId: string) => ({ ...state, tasks: state.tasks.filter((task) => task.id !== taskId) }));
 
@@ -82,6 +86,18 @@ export class BoardUsecase extends ComponentStore<BoardState> {
       const section: Section = { id: sectionHasTasks.id, name: sectionHasTasks.name, userId: sectionHasTasks.userId, orderId: index + 1 };
       this._sectionGateway.putSection(section);
     });
+  }
+
+  async deleteSection(section: SectionHasTasks) {
+    const taskIds = section.tasks.map((task) => task.id);
+    // NOTE: 対象の Section に紐づく task を削除
+    taskIds.forEach((taskId) => {
+      this.deleteTask(taskId);
+    });
+
+    // NOTE: 対象の Section を削除
+    const deletedSectionId = await this._sectionGateway.deleteSection(section);
+    this.removeSection(deletedSectionId);
   }
 
   moveTask(tasks: Task[]) {
