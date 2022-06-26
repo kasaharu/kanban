@@ -48,6 +48,10 @@ export class BoardPageComponent implements OnInit, OnDestroy {
     }
   }
 
+  changeSectionName(newName: string, section: SectionHasTasks) {
+    this.usecase.updateSectionName(newName, section);
+  }
+
   dropTask(event: CdkDragDrop<Task[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);

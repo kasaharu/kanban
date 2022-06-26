@@ -4,7 +4,7 @@ import firebase from 'firebase/compat/app';
 import { combineLatest, firstValueFrom, Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { SectionHasTasks } from '../../../../domain/models';
-import { Section } from '../../../../domain/section/section.vo';
+import { Section, SectionValueObject } from '../../../../domain/section/section.vo';
 import { Task } from '../../../../domain/task/task';
 import { extractUserInfo, User } from '../../../../domain/user/user';
 import { Authenticator } from '../../../../infrastructures/adapters/authenticator';
@@ -51,6 +51,10 @@ export class BoardUsecase extends ComponentStore<BoardState> {
   readonly saveSections = this.updater((state, sections: Section[]) => ({ ...state, sections }));
   readonly saveTasks = this.updater((state, tasks: Task[]) => ({ ...state, tasks }));
 
+  readonly updateSection = this.updater((state, section: Section) => ({
+    ...state,
+    sections: state.sections.map((x) => (x.id === section.id ? section : x)),
+  }));
   readonly removeSection = this.updater((state, sectionId: string) => ({
     ...state,
     sections: state.sections.filter((section) => section.id !== sectionId),
@@ -98,6 +102,18 @@ export class BoardUsecase extends ComponentStore<BoardState> {
     // NOTE: 対象の Section を削除
     const deletedSectionId = await this._sectionGateway.deleteSection(section);
     this.removeSection(deletedSectionId);
+  }
+
+  async updateSectionName(newName: string, section: SectionHasTasks) {
+    try {
+      const updatedSection = SectionValueObject.create(newName, section.userId, section.orderId, section.id);
+      await this._sectionGateway.putSection(updatedSection.plainObject());
+      this.updateSection(updatedSection);
+    } catch (error) {
+      // TODO: セクション名が 15 文字(ErrorTypeEnum.OverSectionNameLength) を超えた場合にエラーメッセージを出す
+      // tslint:disable-next-line:no-console
+      console.log('セクション名が長すぎます');
+    }
   }
 
   moveTask(tasks: Task[]) {

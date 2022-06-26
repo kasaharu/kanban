@@ -9,7 +9,11 @@
     <div class="section" cdkDropListGroup *ngFor="let section of sections" cdkDrag [cdkDragData]="section">
       <div>
         <div class="section-name-field">
-          <app-editable-section-name class="section-name-form" [name]="section.name"></app-editable-section-name>
+          <app-editable-section-name
+            class="section-name-form"
+            [name]="section.name"
+            (editName)="changeSectionName($event, section)"
+          ></app-editable-section-name>
           <button class="section-delete-button" (click)="deleteSection(section)">削除</button>
         </div>
         <app-new-task-form class="add-task-input" (requestCreateTask)="addTask($event, section)"></app-new-task-form>
