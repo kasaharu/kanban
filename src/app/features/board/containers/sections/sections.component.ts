@@ -22,7 +22,7 @@ export class SectionsComponent implements OnInit, OnDestroy {
   errorMessage$ = this.query.errorMessage$;
   private _sectionIds!: string[];
 
-  private _onDestroy$ = new Subject();
+  private _onDestroy$ = new Subject<void>();
 
   ngOnInit(): void {
     this.usecase.fetchBoardItems();

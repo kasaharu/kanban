@@ -16,7 +16,7 @@ import { BoardUsecase } from './board.usecase';
 export class BoardPageComponent implements OnInit, OnDestroy {
   constructor(private usecase: BoardUsecase) {}
 
-  private _onDestroy$ = new Subject();
+  private _onDestroy$ = new Subject<void>();
   private _sectionIds!: string[];
 
   sectionsHasTasks$ = this.usecase.sectionsHasTasks$;
