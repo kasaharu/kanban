@@ -1,6 +1,15 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { BehaviorSubject } from 'rxjs';
+import { SectionHasTasks } from '../../../../domain/models';
 import { BoardPageComponent } from './board.component';
+import { BoardUsecase } from './board.usecase';
+
+class MockBoardUsecase implements Partial<BoardUsecase> {
+  sectionsHasTasks$ = new BehaviorSubject<SectionHasTasks[]>([]);
+
+  fetchBoardItem(): any {}
+}
 
 describe('BoardPageComponent', () => {
   let component: BoardPageComponent;
@@ -10,7 +19,11 @@ describe('BoardPageComponent', () => {
     TestBed.configureTestingModule({
       declarations: [BoardPageComponent],
       schemas: [NO_ERRORS_SCHEMA],
-    }).compileComponents();
+    })
+      .overrideComponent(BoardPageComponent, {
+        add: { providers: [{ provide: BoardUsecase, useClass: MockBoardUsecase }] },
+      })
+      .compileComponents();
   }));
 
   beforeEach(() => {
