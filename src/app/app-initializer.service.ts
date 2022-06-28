@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
-import { User } from './domain/user/user';
+import firebase from 'firebase/compat/app';
+import { firstValueFrom } from 'rxjs';
+import { take } from 'rxjs/operators';
+import { extractUserInfo, User } from './domain/user/user';
+import { Authenticator } from './infrastructures/adapters/authenticator';
 
 interface State {
   loggedInUser: User | null;
@@ -16,7 +20,7 @@ const initialState: State = {
   providedIn: 'root',
 })
 export class AppInitializerService extends ComponentStore<State> {
-  constructor() {
+  constructor(private authenticator: Authenticator) {
     super(initialState);
   }
 
@@ -25,4 +29,10 @@ export class AppInitializerService extends ComponentStore<State> {
 
   readonly activate = this.updater((state, loggedInUser: User | null) => ({ ...state, loggedInUser, readyApp: true }));
   readonly login = this.updater((state, loggedInUser: User | null) => ({ ...state, loggedInUser }));
+
+  async initialize() {
+    const user: firebase.User | null = await firstValueFrom(this.authenticator.loggedInUser$.pipe(take(1)));
+    const loggedInUser = extractUserInfo(user);
+    this.activate(loggedInUser);
+  }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppInitializer } from './core/app-shell/applications/app-initialize.usecase';
-import { AppShellQuery } from './core/app-shell/applications/app-shell.query';
+import { AppInitializerService } from './app-initializer.service';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +7,11 @@ import { AppShellQuery } from './core/app-shell/applications/app-shell.query';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private query: AppShellQuery, private usecase: AppInitializer) {}
+  constructor(private appInitializer: AppInitializerService) {}
 
-  readyApp$ = this.query.readyApp$;
+  readyApp$ = this.appInitializer.readyApp$;
 
   ngOnInit() {
-    this.usecase.initialize();
+    this.appInitializer.initialize();
   }
 }
