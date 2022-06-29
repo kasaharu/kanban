@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { provideMockStore } from '@ngrx/store/testing';
 import { Authenticator } from '../../../infrastructures/adapters/authenticator';
 import { HomeUsecase } from './home.usecase';
 
@@ -10,7 +9,7 @@ describe('HomeUsecase', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [provideMockStore(), { provide: Authenticator, useClass: MockAuthenticator }],
+      providers: [{ provide: Authenticator, useClass: MockAuthenticator }],
     });
     usecase = TestBed.inject(HomeUsecase);
   });
