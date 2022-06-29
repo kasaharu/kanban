@@ -1,22 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { actions } from '../../../core/app-shell/store/app-shell.store';
-import { extractUserInfo } from '../../../domain/user/user';
-import { Authenticator } from '../../../infrastructures/adapters/authenticator';
+import { AppInitializerService } from '../../../app-initializer.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HomeUsecase {
-  constructor(private store: Store<{}>, private authenticator: Authenticator) {}
+  constructor(private appInitializer: AppInitializerService) {}
 
-  user$ = this.authenticator.loggedInUser$;
+  user$ = this.appInitializer.loggedInUser$;
 
   async login() {
     try {
-      const userCredential = await this.authenticator.login();
-      const user = extractUserInfo(userCredential.user);
-      this.store.dispatch(actions.login({ loggedInUser: user }));
+      this.appInitializer.login();
     } catch (error) {
       console.error(error);
     }
