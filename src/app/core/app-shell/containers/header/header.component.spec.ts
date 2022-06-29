@@ -1,11 +1,9 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AppShellQuery } from '../../applications/app-shell.query';
-import { HeaderUsecase } from '../../applications/header.usecase';
+import { AppInitializerService } from '../../../../app-initializer.service';
 import { HeaderComponent } from './header.component';
 
-class MockAppShellQuery {}
-class MockHeaderUsecase {}
+class MockAppInitializerService implements Partial<AppInitializerService> {}
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -15,10 +13,7 @@ describe('HeaderComponent', () => {
     TestBed.configureTestingModule({
       declarations: [HeaderComponent],
       imports: [RouterTestingModule],
-      providers: [
-        { provide: AppShellQuery, useClass: MockAppShellQuery },
-        { provide: HeaderUsecase, useClass: MockHeaderUsecase },
-      ],
+      providers: [{ provide: AppInitializerService, useClass: MockAppInitializerService }],
     }).compileComponents();
   }));
 

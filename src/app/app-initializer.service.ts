@@ -29,10 +29,16 @@ export class AppInitializerService extends ComponentStore<State> {
 
   readonly activate = this.updater((state, loggedInUser: User | null) => ({ ...state, loggedInUser, readyApp: true }));
   readonly login = this.updater((state, loggedInUser: User | null) => ({ ...state, loggedInUser }));
+  readonly _logout = this.updater((state) => ({ ...state, loggedInUser: null }));
 
   async initialize() {
     const user: firebase.User | null = await firstValueFrom(this.authenticator.loggedInUser$.pipe(take(1)));
     const loggedInUser = extractUserInfo(user);
     this.activate(loggedInUser);
+  }
+
+  async logout(): Promise<void> {
+    await this.authenticator.logout();
+    this._logout();
   }
 }

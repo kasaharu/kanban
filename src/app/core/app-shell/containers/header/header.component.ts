@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AppShellQuery } from '../../applications/app-shell.query';
-import { HeaderUsecase } from '../../applications/header.usecase';
+import { AppInitializerService } from '../../../../app-initializer.service';
 
 @Component({
   selector: 'app-header',
@@ -10,13 +9,13 @@ import { HeaderUsecase } from '../../applications/header.usecase';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  constructor(private readonly _router: Router, private readonly _query: AppShellQuery, private readonly _usecase: HeaderUsecase) {}
+  constructor(private readonly _router: Router, private readonly _appInitializerService: AppInitializerService) {}
 
   applicationName = 'kanban';
-  loggedIn$ = this._query.loggedIn$;
+  loggedIn$ = this._appInitializerService.loggedIn$;
 
   async logout(): Promise<void> {
-    await this._usecase.logout();
+    await this._appInitializerService.logout();
     this._router.navigateByUrl('/home');
   }
 }
