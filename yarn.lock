@@ -1970,20 +1970,6 @@
   dependencies:
     tslib "^2.0.0"
 
-"@ngrx/store-devtools@14.0.0":
-  version "14.0.0"
-  resolved "https://registry.yarnpkg.com/@ngrx/store-devtools/-/store-devtools-14.0.0.tgz#d81dbc3fbe78111ad7004481e1ed2383a2b4245d"
-  integrity sha512-tn1tES3ok/JjpaybXQXcXnL2XaAUWQyRznvt3j7/YFodA4HvKB2KqXZp4G+CV7tQmoaDcMuBjF/VH6G7/Ti73g==
-  dependencies:
-    tslib "^2.0.0"
-
-"@ngrx/store@14.0.0":
-  version "14.0.0"
-  resolved "https://registry.yarnpkg.com/@ngrx/store/-/store-14.0.0.tgz#99cf20cc6780ed65be203994abb870e37bf800e9"
-  integrity sha512-Og3GID0d/9g+Y9c4mUkgF1Spmig73qqoeXFxQ8tQxWCiiqTxDU2bb19ZWOaooSRmMv3AhD6UTjLtlhLcfJBpKQ==
-  dependencies:
-    tslib "^2.0.0"
-
 "@ngtools/webpack@14.0.3":
   version "14.0.3"
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-14.0.3.tgz#799ba4eb28c0f8cca16fd7c9f774bd33240e0ca2"
