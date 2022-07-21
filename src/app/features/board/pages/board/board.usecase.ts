@@ -168,6 +168,8 @@ export class BoardUsecase extends ComponentStore<BoardState> {
       name: addingTask.name,
       sectionId: section.id,
       orderId: section.tasks.length + 1,
+      description: '',
+      dueData: '',
       id: 'temporary',
     });
 

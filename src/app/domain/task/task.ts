@@ -6,4 +6,6 @@ export interface Task {
   sectionId: string;
   userId: string;
   orderId: number;
+  dueData: string | null;
+  description: string;
 }
