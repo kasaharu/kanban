@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
-import firebase from 'firebase/compat/app';
 import { firstValueFrom } from 'rxjs';
-import { take } from 'rxjs/operators';
 import { extractUserInfo, User } from './domain/user/user';
 import { Authenticator } from './infrastructures/adapters/authenticator';
 
@@ -33,8 +31,7 @@ export class AppInitializerService extends ComponentStore<State> {
   readonly _logout = this.updater((state) => ({ ...state, loggedInUser: null }));
 
   async initialize() {
-    const user: firebase.User | null = await firstValueFrom(this.authenticator.loggedInUser$.pipe(take(1)));
-    const loggedInUser = extractUserInfo(user);
+    const loggedInUser = await firstValueFrom(this.authenticator.loggedInUser$);
     this.activate(loggedInUser);
   }
 

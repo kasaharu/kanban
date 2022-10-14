@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
-import firebase from 'firebase/compat/app';
 import { combineLatest, firstValueFrom, Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { SectionHasTasks } from '../../../../domain/models';
 import { Section, SectionValueObject } from '../../../../domain/section/section.vo';
 import { Task } from '../../../../domain/task/task';
-import { extractUserInfo, User } from '../../../../domain/user/user';
+import { User } from '../../../../domain/user/user';
 import { Authenticator } from '../../../../infrastructures/adapters/authenticator';
 import { SectionGateway } from '../../../../infrastructures/gateways/section.gateway';
 import { TaskGateway } from '../../../../infrastructures/gateways/task.gateway';
@@ -64,8 +63,7 @@ export class BoardUsecase extends ComponentStore<BoardState> {
   readonly removeTask = this.updater((state, taskId: string) => ({ ...state, tasks: state.tasks.filter((task) => task.id !== taskId) }));
 
   async fetchBoardItem() {
-    const user: firebase.User | null = await firstValueFrom(this.authenticator.loggedInUser$.pipe(take(1)));
-    const loggedInUser = extractUserInfo(user);
+    const loggedInUser = await firstValueFrom(this.authenticator.loggedInUser$);
     if (loggedInUser === null) {
       return;
     }
@@ -94,8 +92,7 @@ export class BoardUsecase extends ComponentStore<BoardState> {
   }
 
   async addSection(addingSection: Section) {
-    const user: firebase.User | null = await firstValueFrom(this.authenticator.loggedInUser$.pipe(take(1)));
-    const loggedInUser = extractUserInfo(user);
+    const loggedInUser = await firstValueFrom(this.authenticator.loggedInUser$);
     if (loggedInUser === null) {
       return;
     }
@@ -157,8 +154,7 @@ export class BoardUsecase extends ComponentStore<BoardState> {
   }
 
   async createTask(addingTask: Task, section: SectionHasTasks) {
-    const user: firebase.User | null = await firstValueFrom(this.authenticator.loggedInUser$.pipe(take(1)));
-    const loggedInUser = extractUserInfo(user);
+    const loggedInUser = await firstValueFrom(this.authenticator.loggedInUser$);
     if (loggedInUser === null) {
       return;
     }
