@@ -12,7 +12,13 @@
     "@schematics/angular:directive": {},
     "@schematics/angular:module": {},
     "@schematics/angular:pipe": {},
-    "@schematics/angular:service": {}
+    "@schematics/angular:service": {},
+    "@angular-eslint/schematics:application": {
+      "setParserOptionsProject": true
+    },
+    "@angular-eslint/schematics:library": {
+      "setParserOptionsProject": true
+    }
   },
   "projects": {
     "kanban": {
