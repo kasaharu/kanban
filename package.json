@@ -34,14 +34,14 @@
     "zone.js": "0.11.5"
   },
   "devDependencies": {
-    "@angular-devkit/architect": "0.1500.0",
-    "@angular-devkit/build-angular": "15.0.0",
+    "@angular-devkit/architect": "0.1500.5",
+    "@angular-devkit/build-angular": "15.0.5",
     "@angular-eslint/builder": "15.0.0",
     "@angular-eslint/eslint-plugin": "15.0.0",
     "@angular-eslint/eslint-plugin-template": "15.0.0",
     "@angular-eslint/schematics": "15.0.0",
     "@angular-eslint/template-parser": "15.0.0",
-    "@angular/cli": "15.0.0",
+    "@angular/cli": "15.0.5",
     "@angular/compiler-cli": "15.0.0",
     "@angular/language-service": "15.0.0",
     "@types/jasmine": "4.0.3",
