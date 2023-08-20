@@ -1,17 +1,20 @@
 {
   "extends": [
-    "config:base",
+    "config:recommended",
     "github>lacolaco/renovate-config:ng-update",
+    "github>lacolaco/renovate-config:angular-eslint",
     "github>lacolaco/renovate-config:automerge-types"
   ],
   "timezone": "Asia/Tokyo",
-  "assignees": ["kasaharu"],
-  "reviewers": ["kasaharu"],
   "schedule": ["every weekend"],
   "labels": ["renovate"],
   "lockFileMaintenance": {
     "enabled": true,
     "schedule": ["before 3am on the first day of the month"]
   },
+  "prConcurrentLimit": 0,
+  "rebaseWhen": "never",
+  "minimumReleaseAge": "3 days",
+  "configMigration": true,
   "packageRules": []
 }
