@@ -1,7 +1,6 @@
-import { OverlayModule } from '@angular/cdk/overlay';
 import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { AngularFireModule } from '@angular/fire/compat';
-import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
+import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 import ROUTES from './app/ROUTES';
 import { AppComponent } from './app/app.component';
@@ -12,8 +11,5 @@ if (environment.production) {
 }
 
 bootstrapApplication(AppComponent, {
-  providers: [
-    provideRouter(ROUTES),
-    importProvidersFrom(BrowserModule, OverlayModule, AngularFireModule.initializeApp(environment.firebase)),
-  ],
+  providers: [provideRouter(ROUTES), importProvidersFrom(AngularFireModule.initializeApp(environment.firebase))],
 }).catch((err) => console.error(err));
