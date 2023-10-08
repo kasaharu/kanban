@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { NgIf } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AppInitializerService } from '../../../../app-initializer.service';
 import { ProfileIconComponent } from '../../components/profile-icon/profile-icon.component';
-import { NgIf, AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -10,13 +10,13 @@ import { NgIf, AsyncPipe } from '@angular/common';
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [RouterLink, NgIf, ProfileIconComponent, AsyncPipe],
+  imports: [RouterLink, NgIf, ProfileIconComponent],
 })
 export class HeaderComponent {
   constructor(private readonly _router: Router, private readonly _appInitializerService: AppInitializerService) {}
 
   applicationName = 'kanban';
-  loggedIn$ = this._appInitializerService.loggedIn$;
+  $loggedIn = computed(() => this._appInitializerService.$loggedIn());
 
   async logout(): Promise<void> {
     await this._appInitializerService.logout();

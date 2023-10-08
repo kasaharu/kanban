@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, computed } from '@angular/core';
 import { AppInitializerService } from '../../../app-initializer.service';
 
 @Injectable({
@@ -7,7 +7,7 @@ import { AppInitializerService } from '../../../app-initializer.service';
 export class HomeUsecase {
   constructor(private appInitializer: AppInitializerService) {}
 
-  user$ = this.appInitializer.loggedInUser$;
+  $user = computed(() => this.appInitializer.$loggedInUser());
 
   async login() {
     try {

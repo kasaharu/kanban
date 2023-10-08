@@ -4,6 +4,6 @@
   </h1>
 
   <nav>
-    <app-profile-icon *ngIf="loggedIn$ | async" (logoutButtonEmitter)="logout()"></app-profile-icon>
+    <app-profile-icon *ngIf="$loggedIn" (logoutButtonEmitter)="logout()"></app-profile-icon>
   </nav>
 </header>

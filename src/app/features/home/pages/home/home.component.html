@@ -1,5 +1,5 @@
-<div *ngIf="user$ | async as user; else unLoggedInUser">
-  <div>Hello {{ user.displayName }}</div>
+<div *ngIf="$user(); else unLoggedInUser">
+  <div>Hello {{ $user()?.displayName }}</div>
   <div><a routerLink="/board">ボードへ移動する</a></div>
 </div>
 <ng-template #unLoggedInUser>

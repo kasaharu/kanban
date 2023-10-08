@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HomeUsecase } from '../../applications/home.usecase';
-import { IconComponent } from '../../../../shared/presenters/icon/icon.component';
+import { AsyncPipe, NgIf } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { NgIf, AsyncPipe } from '@angular/common';
+import { IconComponent } from '../../../../shared/presenters/icon/icon.component';
+import { HomeUsecase } from '../../applications/home.usecase';
 
 @Component({
   templateUrl: './home.component.html',
@@ -13,7 +13,7 @@ import { NgIf, AsyncPipe } from '@angular/common';
 })
 export class HomePageComponent {
   constructor(private homeUsecase: HomeUsecase) {}
-  user$ = this.homeUsecase.user$;
+  $user = computed(() => this.homeUsecase.$user());
 
   login() {
     this.homeUsecase.login();

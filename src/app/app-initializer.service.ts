@@ -1,7 +1,6 @@
-import { Injectable } from '@angular/core';
-import { ComponentStore } from '@ngrx/component-store';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import { extractUserInfo, User } from './domain/user/user';
+import { User, extractUserInfo } from './domain/user/user';
 import { Authenticator } from './infrastructures/adapters/authenticator';
 
 interface State {
@@ -17,32 +16,28 @@ const initialState: State = {
 @Injectable({
   providedIn: 'root',
 })
-export class AppInitializerService extends ComponentStore<State> {
-  constructor(private authenticator: Authenticator) {
-    super(initialState);
-  }
+export class AppInitializerService {
+  readonly #authenticator = inject(Authenticator);
 
-  readonly readyApp$ = this.select((state) => state.readyApp);
-  readonly loggedIn$ = this.select((state) => (state.loggedInUser ? true : false));
-  readonly loggedInUser$ = this.select((state) => state.loggedInUser);
+  readonly $state = signal<State>(initialState);
 
-  readonly activate = this.updater((state, loggedInUser: User | null) => ({ ...state, loggedInUser, readyApp: true }));
-  readonly _login = this.updater((state, loggedInUser: User | null) => ({ ...state, loggedInUser }));
-  readonly _logout = this.updater((state) => ({ ...state, loggedInUser: null }));
+  readonly $readyApp = computed(() => this.$state().readyApp);
+  readonly $loggedIn = computed(() => (this.$state().loggedInUser ? true : false));
+  readonly $loggedInUser = computed(() => this.$state().loggedInUser);
 
   async initialize() {
-    const loggedInUser = await firstValueFrom(this.authenticator.loggedInUser$);
-    this.activate(loggedInUser);
+    const loggedInUser = await firstValueFrom(this.#authenticator.loggedInUser$);
+    this.$state.set({ ...this.$state(), loggedInUser, readyApp: true });
   }
 
   async login() {
-    const userCredential = await this.authenticator.login();
+    const userCredential = await this.#authenticator.login();
     const user = extractUserInfo(userCredential.user);
-    this._login(user);
+    this.$state.set({ ...this.$state(), loggedInUser: user });
   }
 
   async logout(): Promise<void> {
-    await this.authenticator.logout();
-    this._logout();
+    await this.#authenticator.logout();
+    this.$state.set({ ...this.$state(), loggedInUser: null });
   }
 }

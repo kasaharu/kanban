@@ -1,5 +1,5 @@
-import { AsyncPipe, NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { NgIf } from '@angular/common';
+import { Component, OnInit, computed, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AppInitializerService } from './app-initializer.service';
 import { HeaderComponent } from './core/app-shell/containers/header/header.component';
@@ -9,14 +9,14 @@ import { HeaderComponent } from './core/app-shell/containers/header/header.compo
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [NgIf, RouterOutlet, AsyncPipe, HeaderComponent],
+  imports: [NgIf, RouterOutlet, HeaderComponent],
 })
 export class AppComponent implements OnInit {
-  constructor(private appInitializer: AppInitializerService) {}
+  #appInitializer = inject(AppInitializerService);
 
-  readyApp$ = this.appInitializer.readyApp$;
+  $readyApp = computed(() => this.#appInitializer.$readyApp());
 
   ngOnInit() {
-    this.appInitializer.initialize();
+    this.#appInitializer.initialize();
   }
 }
