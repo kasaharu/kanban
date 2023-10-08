@@ -8,9 +8,8 @@ describe('NewTaskFormComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [NewTaskFormComponent],
-      imports: [ReactiveFormsModule],
-    }).compileComponents();
+    imports: [ReactiveFormsModule, NewTaskFormComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

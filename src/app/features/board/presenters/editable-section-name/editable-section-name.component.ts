@@ -1,12 +1,14 @@
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { UntypedFormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { NAME_MAX_LENGTH } from '../../../../domain/section/section.vo';
 
 @Component({
-  selector: 'app-editable-section-name',
-  templateUrl: './editable-section-name.component.html',
-  styleUrls: ['./editable-section-name.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-editable-section-name',
+    templateUrl: './editable-section-name.component.html',
+    styleUrls: ['./editable-section-name.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [ReactiveFormsModule],
 })
 export class EditableSectionNameComponent implements OnInit {
   constructor(private fb: UntypedFormBuilder) {}

@@ -6,8 +6,7 @@ import { ProfileIconComponent } from './app-shell/components/profile-icon/profil
 import { HeaderComponent } from './app-shell/containers/header/header.component';
 
 @NgModule({
-  declarations: [HeaderComponent, ProfileIconComponent],
-  imports: [CommonModule, RouterModule, SharedModule],
-  exports: [HeaderComponent],
+    imports: [CommonModule, RouterModule, SharedModule, HeaderComponent, ProfileIconComponent],
+    exports: [HeaderComponent],
 })
 export class CoreModule {}

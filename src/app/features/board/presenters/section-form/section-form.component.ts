@@ -1,12 +1,14 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
-import { UntypedFormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Section } from '../../../../domain/section/section.vo';
 
 @Component({
-  selector: 'app-section-form',
-  templateUrl: './section-form.component.html',
-  styleUrls: ['./section-form.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-section-form',
+    templateUrl: './section-form.component.html',
+    styleUrls: ['./section-form.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [ReactiveFormsModule],
 })
 export class SectionFormComponent {
   constructor(private fb: UntypedFormBuilder) {}

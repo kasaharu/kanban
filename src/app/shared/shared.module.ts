@@ -4,8 +4,7 @@ import { AlertDialogComponent } from './alert-dialog/presenters/alert-dialog/ale
 import { IconComponent } from './presenters/icon/icon.component';
 
 @NgModule({
-  declarations: [AlertDialogComponent, IconComponent],
-  imports: [CommonModule],
-  exports: [AlertDialogComponent, IconComponent],
+    imports: [CommonModule, AlertDialogComponent, IconComponent],
+    exports: [AlertDialogComponent, IconComponent],
 })
 export class SharedModule {}

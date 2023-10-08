@@ -11,10 +11,10 @@ describe('HomePageComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [HomePageComponent],
-      providers: [{ provide: HomeUsecase, useClass: MockHomeUsecase }],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    }).compileComponents();
+    imports: [HomePageComponent],
+    providers: [{ provide: HomeUsecase, useClass: MockHomeUsecase }],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+}).compileComponents();
   }));
 
   beforeEach(() => {

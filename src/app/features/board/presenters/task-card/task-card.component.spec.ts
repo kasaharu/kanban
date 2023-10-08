@@ -7,8 +7,8 @@ describe('TaskCardComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [TaskCardComponent],
-    }).compileComponents();
+    imports: [TaskCardComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

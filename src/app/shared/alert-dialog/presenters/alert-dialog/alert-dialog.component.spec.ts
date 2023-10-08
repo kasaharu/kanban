@@ -8,8 +8,8 @@ xdescribe('AlertDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AlertDialogComponent],
-    }).compileComponents();
+    imports: [AlertDialogComponent],
+}).compileComponents();
   });
 
   beforeEach(() => {

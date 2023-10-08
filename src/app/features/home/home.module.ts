@@ -6,8 +6,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { HomePageComponent } from './pages/home/home.component';
 
 @NgModule({
-  declarations: [HomePageComponent],
-  imports: [CommonModule, BrowserModule, RouterModule, SharedModule],
-  exports: [HomePageComponent],
+    imports: [CommonModule, BrowserModule, RouterModule, SharedModule, HomePageComponent],
+    exports: [HomePageComponent],
 })
 export class HomeModule {}

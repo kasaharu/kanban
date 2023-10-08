@@ -8,9 +8,8 @@ describe('SectionFormComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [SectionFormComponent],
-      imports: [ReactiveFormsModule],
-    }).compileComponents();
+    imports: [ReactiveFormsModule, SectionFormComponent],
+}).compileComponents();
   }));
 
   beforeEach(() => {

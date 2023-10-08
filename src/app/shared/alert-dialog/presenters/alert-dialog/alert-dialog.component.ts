@@ -10,10 +10,11 @@ export const OVERLAY_REF = new InjectionToken<OverlayRef>('OVERLAY_REF');
 export const OVERLAY_DATA = new InjectionToken<AlertDialogData>('OVERLAY_DATA');
 
 @Component({
-  selector: 'app-alert-dialog',
-  templateUrl: './alert-dialog.component.html',
-  styleUrls: ['./alert-dialog.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-alert-dialog',
+    templateUrl: './alert-dialog.component.html',
+    styleUrls: ['./alert-dialog.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
 })
 export class AlertDialogComponent {
   constructor(

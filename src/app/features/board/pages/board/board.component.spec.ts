@@ -17,9 +17,9 @@ describe('BoardPageComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [BoardPageComponent],
-      schemas: [NO_ERRORS_SCHEMA],
-    })
+    imports: [BoardPageComponent],
+    schemas: [NO_ERRORS_SCHEMA],
+})
       .overrideComponent(BoardPageComponent, {
         add: { providers: [{ provide: BoardUsecase, useClass: MockBoardUsecase }] },
       })
