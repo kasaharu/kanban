@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { ComponentStore } from '@ngrx/component-store';
-import { combineLatest, firstValueFrom, Observable } from 'rxjs';
+import { Injectable, computed, signal } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
+import { Observable, combineLatest, firstValueFrom } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { SectionHasTasks } from '../../../../domain/models';
 import { Section, SectionValueObject } from '../../../../domain/section/section.vo';
@@ -21,23 +21,25 @@ export const initialState: BoardState = {
 };
 
 @Injectable()
-export class BoardUsecase extends ComponentStore<BoardState> {
+export class BoardUsecase {
   constructor(
     private authenticator: Authenticator,
     private readonly _sectionGateway: SectionGateway,
     private readonly _taskGateway: TaskGateway,
-  ) {
-    super(initialState);
-  }
+  ) {}
 
-  private readonly sections$ = this.select(({ sections }) => {
+  $state = signal<BoardState>(initialState);
+
+  private $sections = computed(() => {
+    const { sections } = this.$state();
     return sections.length === 0 ? sections : [...sections].sort((a, b) => a.orderId - b.orderId);
   });
-  private readonly tasks$ = this.select(({ tasks }) => {
+  private $tasks = computed(() => {
+    const { tasks } = this.$state();
     return [...tasks].sort((a, b) => a.orderId - b.orderId);
   });
 
-  private combined$ = combineLatest([this.sections$, this.tasks$]);
+  private combined$ = combineLatest([toObservable(this.$sections), toObservable(this.$tasks)]);
   sectionsHasTasks$: Observable<SectionHasTasks[]> = this.combined$.pipe(
     map(([sections, tasks]) => {
       return sections.map((section) => {
@@ -46,21 +48,6 @@ export class BoardUsecase extends ComponentStore<BoardState> {
       });
     }),
   );
-
-  readonly saveSections = this.updater((state, sections: Section[]) => ({ ...state, sections }));
-  readonly saveTasks = this.updater((state, tasks: Task[]) => ({ ...state, tasks }));
-
-  readonly createSection = this.updater((state, section: Section) => ({ ...state, sections: [...state.sections, section] }));
-  readonly updateSection = this.updater((state, section: Section) => ({
-    ...state,
-    sections: state.sections.map((x) => (x.id === section.id ? section : x)),
-  }));
-  readonly removeSection = this.updater((state, sectionId: string) => ({
-    ...state,
-    sections: state.sections.filter((section) => section.id !== sectionId),
-  }));
-  readonly addTask = this.updater((state, task: Task) => ({ ...state, tasks: [...state.tasks, task] }));
-  readonly removeTask = this.updater((state, taskId: string) => ({ ...state, tasks: state.tasks.filter((task) => task.id !== taskId) }));
 
   async fetchBoardItem() {
     const loggedInUser = await firstValueFrom(this.authenticator.loggedInUser$);
@@ -75,13 +62,13 @@ export class BoardUsecase extends ComponentStore<BoardState> {
   async fetchSections(loggedInUser: User) {
     const sections$ = this._sectionGateway.getSections(loggedInUser.uid);
     const sections = await firstValueFrom(sections$.pipe(take(1)));
-    this.saveSections(sections);
+    this.$state.set({ ...this.$state(), sections });
   }
 
   async fetchTasks(loggedInUser: User) {
     const tasks$ = this._taskGateway.getTasks(loggedInUser.uid);
     const tasks = await firstValueFrom(tasks$.pipe(take(1)));
-    this.saveTasks(tasks);
+    this.$state.set({ ...this.$state(), tasks });
   }
 
   moveSection(sectionsHasTasks: SectionHasTasks[]) {
@@ -97,12 +84,10 @@ export class BoardUsecase extends ComponentStore<BoardState> {
       return;
     }
 
-    const sections: Section[] = await firstValueFrom(this.sections$);
-
     try {
-      const newerSection = SectionValueObject.create(addingSection.name, loggedInUser.uid, sections.length + 1);
+      const newerSection = SectionValueObject.create(addingSection.name, loggedInUser.uid, this.$sections().length + 1);
       const createdSection = await this._sectionGateway.postSection(newerSection.plainObject());
-      this.createSection(createdSection);
+      this.$state.set({ ...this.$state(), sections: [...this.$state().sections, createdSection] });
     } catch (_) {
       // TODO: セクション名が 15 文字(ErrorTypeEnum.OverSectionNameLength) を超えた場合にエラーメッセージを出す
       // tslint:disable-next-line:no-console
@@ -119,14 +104,14 @@ export class BoardUsecase extends ComponentStore<BoardState> {
 
     // NOTE: 対象の Section を削除
     const deletedSectionId = await this._sectionGateway.deleteSection(section);
-    this.removeSection(deletedSectionId);
+    this.$state.set({ ...this.$state(), sections: this.$state().sections.filter((section) => section.id !== deletedSectionId) });
   }
 
   async updateSectionName(newName: string, section: SectionHasTasks) {
     try {
       const updatedSection = SectionValueObject.create(newName, section.userId, section.orderId, section.id);
       await this._sectionGateway.putSection(updatedSection.plainObject());
-      this.updateSection(updatedSection);
+      this.$state.set({ ...this.$state(), sections: this.$state().sections.map((x) => (x.id === updatedSection.id ? updatedSection : x)) });
     } catch (error) {
       // TODO: セクション名が 15 文字(ErrorTypeEnum.OverSectionNameLength) を超えた場合にエラーメッセージを出す
       // tslint:disable-next-line:no-console
@@ -168,12 +153,11 @@ export class BoardUsecase extends ComponentStore<BoardState> {
       dueData: '',
       id: 'temporary',
     });
-
-    this.addTask(createdTask);
+    this.$state.set({ ...this.$state(), tasks: [...this.$state().tasks, createdTask] });
   }
 
   async deleteTask(taskId: string) {
     const deletedTaskId = await this._taskGateway.deleteTask(taskId);
-    this.removeTask(deletedTaskId);
+    this.$state.set({ ...this.$state(), tasks: this.$state().tasks.filter((task) => task.id !== deletedTaskId) });
   }
 }
