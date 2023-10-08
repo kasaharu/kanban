@@ -1,14 +1,15 @@
+import { AsyncPipe, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { AppInitializerService } from './app-initializer.service';
 import { RouterOutlet } from '@angular/router';
-import { NgIf, AsyncPipe } from '@angular/common';
+import { AppInitializerService } from './app-initializer.service';
+import { HeaderComponent } from './core/app-shell/containers/header/header.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [NgIf, RouterOutlet, AsyncPipe],
+  imports: [NgIf, RouterOutlet, AsyncPipe, HeaderComponent],
 })
 export class AppComponent implements OnInit {
   constructor(private appInitializer: AppInitializerService) {}
