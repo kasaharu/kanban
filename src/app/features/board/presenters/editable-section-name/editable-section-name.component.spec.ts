@@ -8,8 +8,8 @@ describe('EditableSectionNameComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [ReactiveFormsModule, EditableSectionNameComponent],
-}).compileComponents();
+      imports: [ReactiveFormsModule, EditableSectionNameComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -13,23 +13,23 @@ import { NgIf, NgFor, AsyncPipe } from '@angular/common';
 import { SectionFormComponent } from '../../presenters/section-form/section-form.component';
 
 @Component({
-    templateUrl: './board.component.html',
-    styleUrls: ['./board.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [BoardUsecase],
-    standalone: true,
-    imports: [
-        SectionFormComponent,
-        NgIf,
-        CdkDropList,
-        NgFor,
-        CdkDropListGroup,
-        CdkDrag,
-        EditableSectionNameComponent,
-        NewTaskFormComponent,
-        TaskCardComponent,
-        AsyncPipe,
-    ],
+  templateUrl: './board.component.html',
+  styleUrls: ['./board.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [BoardUsecase],
+  standalone: true,
+  imports: [
+    SectionFormComponent,
+    NgIf,
+    CdkDropList,
+    NgFor,
+    CdkDropListGroup,
+    CdkDrag,
+    EditableSectionNameComponent,
+    NewTaskFormComponent,
+    TaskCardComponent,
+    AsyncPipe,
+  ],
 })
 export class BoardPageComponent implements OnInit, OnDestroy {
   constructor(private usecase: BoardUsecase) {}

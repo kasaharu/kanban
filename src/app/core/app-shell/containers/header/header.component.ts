@@ -5,17 +5,12 @@ import { ProfileIconComponent } from '../../components/profile-icon/profile-icon
 import { NgIf, AsyncPipe } from '@angular/common';
 
 @Component({
-    selector: 'app-header',
-    templateUrl: './header.component.html',
-    styleUrls: ['./header.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [
-        RouterLink,
-        NgIf,
-        ProfileIconComponent,
-        AsyncPipe,
-    ],
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [RouterLink, NgIf, ProfileIconComponent, AsyncPipe],
 })
 export class HeaderComponent {
   constructor(private readonly _router: Router, private readonly _appInitializerService: AppInitializerService) {}

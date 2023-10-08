@@ -8,10 +8,10 @@ class MockAppInitializerService implements Partial<AppInitializerService> {}
 describe('AppComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [AppComponent],
-    providers: [{ provide: AppInitializerService, useClass: MockAppInitializerService }],
-    schemas: [NO_ERRORS_SCHEMA],
-}).compileComponents();
+      imports: [AppComponent],
+      providers: [{ provide: AppInitializerService, useClass: MockAppInitializerService }],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
   }));
 
   it('should create the app', () => {

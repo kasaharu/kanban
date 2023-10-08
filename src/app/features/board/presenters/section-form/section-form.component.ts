@@ -3,12 +3,12 @@ import { UntypedFormBuilder, Validators, ReactiveFormsModule } from '@angular/fo
 import { Section } from '../../../../domain/section/section.vo';
 
 @Component({
-    selector: 'app-section-form',
-    templateUrl: './section-form.component.html',
-    styleUrls: ['./section-form.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [ReactiveFormsModule],
+  selector: 'app-section-form',
+  templateUrl: './section-form.component.html',
+  styleUrls: ['./section-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [ReactiveFormsModule],
 })
 export class SectionFormComponent {
   constructor(private fb: UntypedFormBuilder) {}

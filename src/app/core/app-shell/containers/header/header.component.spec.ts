@@ -11,9 +11,9 @@ describe('HeaderComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [RouterTestingModule, HeaderComponent],
-    providers: [{ provide: AppInitializerService, useClass: MockAppInitializerService }],
-}).compileComponents();
+      imports: [RouterTestingModule, HeaderComponent],
+      providers: [{ provide: AppInitializerService, useClass: MockAppInitializerService }],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

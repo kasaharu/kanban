@@ -3,12 +3,12 @@ import { UntypedFormBuilder, Validators, ReactiveFormsModule } from '@angular/fo
 import { Task } from '../../../../domain/task/task';
 
 @Component({
-    selector: 'app-new-task-form',
-    templateUrl: './new-task-form.component.html',
-    styleUrls: ['./new-task-form.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [ReactiveFormsModule],
+  selector: 'app-new-task-form',
+  templateUrl: './new-task-form.component.html',
+  styleUrls: ['./new-task-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [ReactiveFormsModule],
 })
 export class NewTaskFormComponent {
   constructor(private fb: UntypedFormBuilder) {}
