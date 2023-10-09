@@ -18,10 +18,10 @@ export class SectionGateway {
   }
 
   putSection(section: Section): Promise<void> {
-    return this._databaseAdapter.updateDocument<Section>(COLLECTION_NAME, section, section.id);
+    return this._databaseAdapter.updateDocument(COLLECTION_NAME, section, section.id);
   }
 
   deleteSection(section: Section) {
-    return this._databaseAdapter.deleteDocument<Section>(COLLECTION_NAME, section.id);
+    return this._databaseAdapter.deleteDocument(COLLECTION_NAME, section.id);
   }
 }

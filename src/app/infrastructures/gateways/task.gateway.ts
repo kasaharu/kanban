@@ -18,10 +18,10 @@ export class TaskGateway {
   }
 
   putTask(task: Task) {
-    return this._databaseAdapter.updateDocument<Task>(COLLECTION_NAME, task, task.id);
+    return this._databaseAdapter.updateDocument(COLLECTION_NAME, task, task.id);
   }
 
   deleteTask(taskId: string) {
-    return this._databaseAdapter.deleteDocument<Task>(COLLECTION_NAME, taskId);
+    return this._databaseAdapter.deleteDocument(COLLECTION_NAME, taskId);
   }
 }

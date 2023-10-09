@@ -1,30 +1,52 @@
-import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Injectable, inject } from '@angular/core';
+import {
+  CollectionReference,
+  Firestore,
+  collection,
+  collectionData,
+  deleteDoc,
+  doc,
+  query,
+  setDoc,
+  updateDoc,
+  where,
+} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DatabaseAdapter {
-  constructor(private db: AngularFirestore) {}
+  #firestore = inject(Firestore);
 
-  fetchCollectionWhere<T>(collectionName: string, where: { key: string; value: string }): Observable<T[]> {
-    return this.db.collection<T>(collectionName, (ref) => ref.where(where.key, '==', where.value)).valueChanges();
+  fetchCollectionWhere<T>(collectionName: string, whereParams: { key: string; value: string }): Observable<T[]> {
+    const collectionRef = collection(this.#firestore, collectionName) as CollectionReference<T>;
+    const refQuery = query(collectionRef, where(whereParams.key, '==', whereParams.value));
+    return collectionData(refQuery);
   }
 
   async createDocument<T>(collectionName: string, item: T): Promise<T> {
-    const id = this.db.createId();
+    const id = doc(collection(this.#firestore, '_')).id;
     const document = { ...item, id } as T;
-    await this.db.collection<T>(collectionName).doc(id).set(document);
+    this.createDocumentWithId(collectionName, id, document);
     return document;
   }
 
-  updateDocument<T>(collectionName: string, item: T, itemId: string): Promise<void> {
-    return this.db.doc<T>(`${collectionName}/${itemId}`).update(item);
+  async updateDocument(collectionName: string, item: any, itemId: string): Promise<void> {
+    const docRef = doc(this.#firestore, `${collectionName}/${itemId}`);
+    await updateDoc(docRef, item);
+    return;
   }
 
-  async deleteDocument<T>(collectionName: string, itemId: string): Promise<string> {
-    await this.db.doc<T>(`${collectionName}/${itemId}`).delete();
+  async deleteDocument(collectionName: string, itemId: string): Promise<string> {
+    const docRef = doc(this.#firestore, `${collectionName}/${itemId}`);
+    await deleteDoc(docRef);
     return itemId;
+  }
+
+  async createDocumentWithId<T>(collectionName: string, id: string, item: T): Promise<T> {
+    const collectionRef = collection(this.#firestore, collectionName) as CollectionReference<T>;
+    await setDoc(doc(collectionRef, id), item);
+    return item;
   }
 }
