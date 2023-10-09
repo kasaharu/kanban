@@ -1,23 +1,21 @@
-import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import firebase from 'firebase/compat/app';
-import { map, Observable } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { Auth, GoogleAuthProvider, signInWithPopup, signOut, user, UserCredential } from '@angular/fire/auth';
+import { map } from 'rxjs';
 import { extractUserInfo } from '../../domain/user/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Authenticator {
-  constructor(private angularFireAuth: AngularFireAuth) {}
+  readonly #auth = inject(Auth);
 
-  private _loggedInUser$: Observable<firebase.User | null> = this.angularFireAuth.user;
-  loggedInUser$ = this._loggedInUser$.pipe(map((u) => extractUserInfo(u)));
+  loggedInUser$ = user(this.#auth).pipe(map((u) => extractUserInfo(u)));
 
-  login(): Promise<firebase.auth.UserCredential> {
-    return this.angularFireAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  login(): Promise<UserCredential> {
+    return signInWithPopup(this.#auth, new GoogleAuthProvider());
   }
 
   logout(): Promise<void> {
-    return this.angularFireAuth.signOut();
+    return signOut(this.#auth);
   }
 }

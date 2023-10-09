@@ -1,4 +1,4 @@
-import firebase from 'firebase/compat/app';
+import { User as FirebaseUser } from '@angular/fire/auth';
 
 export interface User {
   // NOTE: firebase.User
@@ -10,7 +10,7 @@ export interface User {
   uid: string;
 }
 
-export const extractUserInfo = (user: firebase.User | null): User | null => {
+export const extractUserInfo = (user: FirebaseUser | null): User | null => {
   return user
     ? {
         displayName: user.displayName,

@@ -1,5 +1,7 @@
 import { enableProdMode, importProvidersFrom } from '@angular/core';
-import { AngularFireModule } from '@angular/fire/compat';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 import ROUTES from './app/ROUTES';
@@ -11,5 +13,12 @@ if (environment.production) {
 }
 
 bootstrapApplication(AppComponent, {
-  providers: [provideRouter(ROUTES), importProvidersFrom(AngularFireModule.initializeApp(environment.firebase))],
+  providers: [
+    provideRouter(ROUTES),
+    importProvidersFrom(
+      provideFirebaseApp(() => initializeApp(environment.firebase)),
+      provideAuth(() => getAuth()),
+      provideFirestore(() => getFirestore()),
+    ),
+  ],
 }).catch((err) => console.error(err));
