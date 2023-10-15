@@ -5,6 +5,7 @@ import { IconComponent } from '../../../../shared/presenters/icon/icon.component
 import { HomeUsecase } from './home.usecase';
 
 @Component({
+  selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

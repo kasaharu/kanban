@@ -1,18 +1,28 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
+import { RouterTestingHarness } from '@angular/router/testing';
+import ROUTES from '../../ROUTES';
+import { HomeComponent } from './containers/home/home.component';
+import HomePageComponent from './home-page.component';
 
-import { HomePageComponent } from './home-page.component';
+@Component({ selector: 'app-home', standalone: true, template: '' })
+class MockHomeComponent {}
 
 describe('HomePageComponent', () => {
+  let harness: RouterTestingHarness;
   let component: HomePageComponent;
-  let fixture: ComponentFixture<HomePageComponent>;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [HomePageComponent]
-    });
-    fixture = TestBed.createComponent(HomePageComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+      imports: [HomePageComponent],
+      providers: [provideRouter(ROUTES)],
+    }).overrideComponent(HomePageComponent, { remove: { imports: [HomeComponent] }, add: { imports: [MockHomeComponent] } });
+
+    harness = await RouterTestingHarness.create();
+    component = await harness.navigateByUrl('', HomePageComponent);
+
+    harness.detectChanges();
   });
 
   it('should create', () => {
