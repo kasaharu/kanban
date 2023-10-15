@@ -1,19 +1,25 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { signal } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { HomeUsecase } from '../../applications/home.usecase';
+import { provideRouter } from '@angular/router';
+import ROUTES from '../../../../ROUTES';
+import { AppInitializer } from '../../../../app-initializer';
+import { User } from '../../../../domain/user/user';
+import { userFactory } from '../../../../testing/factories';
 import { HomeComponent } from './home.component';
 
-class MockHomeUsecase implements Partial<HomeUsecase> {}
+// class MockHomeUsecase implements Partial<HomeUsecase> {}
+class MockAppInitializer implements Partial<AppInitializer> {
+  $loggedInUser = signal<User>(userFactory({}));
+}
 
-describe('HomePageComponent', () => {
+describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [HomeComponent],
-      providers: [{ provide: HomeUsecase, useClass: MockHomeUsecase }],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [provideRouter(ROUTES), { provide: AppInitializer, useClass: MockAppInitializer }],
     }).compileComponents();
   }));
 

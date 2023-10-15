@@ -1,8 +1,8 @@
 import { AsyncPipe, NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IconComponent } from '../../../../shared/presenters/icon/icon.component';
-import { HomeUsecase } from '../../applications/home.usecase';
+import { HomeUsecase } from './home.usecase';
 
 @Component({
   templateUrl: './home.component.html',
@@ -10,12 +10,14 @@ import { HomeUsecase } from '../../applications/home.usecase';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [NgIf, RouterLink, IconComponent, AsyncPipe],
+  providers: [HomeUsecase],
 })
 export class HomeComponent {
-  constructor(private homeUsecase: HomeUsecase) {}
-  $user = computed(() => this.homeUsecase.$user());
+  readonly #homeUsecase = inject(HomeUsecase);
+
+  $user = computed(() => this.#homeUsecase.$user());
 
   login() {
-    this.homeUsecase.login();
+    this.#homeUsecase.login();
   }
 }
