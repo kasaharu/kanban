@@ -1,5 +1,8 @@
+import { importProvidersFrom } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { AngularFireModule } from '@angular/fire/compat';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { provideAuth } from '@angular/fire/auth';
+import { getAuth } from '@firebase/auth';
 import { Authenticator } from './authenticator';
 
 // NOTE: テスト用のダミーデータ
@@ -11,7 +14,12 @@ describe('Authenticator', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AngularFireModule.initializeApp(firebaseEnv)],
+      providers: [
+        importProvidersFrom(
+          provideFirebaseApp(() => initializeApp(firebaseEnv)),
+          provideAuth(() => getAuth()),
+        ),
+      ],
     });
     authenticator = TestBed.inject(Authenticator);
   });
