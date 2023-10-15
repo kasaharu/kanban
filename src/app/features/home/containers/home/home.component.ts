@@ -11,7 +11,7 @@ import { HomeUsecase } from '../../applications/home.usecase';
   standalone: true,
   imports: [NgIf, RouterLink, IconComponent, AsyncPipe],
 })
-export class HomePageComponent {
+export class HomeComponent {
   constructor(private homeUsecase: HomeUsecase) {}
   $user = computed(() => this.homeUsecase.$user());
 
