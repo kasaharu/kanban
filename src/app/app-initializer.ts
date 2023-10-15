@@ -16,7 +16,7 @@ const initialState: State = {
 @Injectable({
   providedIn: 'root',
 })
-export class AppInitializerService {
+export class AppInitializer {
   readonly #authenticator = inject(Authenticator);
 
   readonly $state = signal<State>(initialState);

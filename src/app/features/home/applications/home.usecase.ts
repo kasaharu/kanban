@@ -1,11 +1,11 @@
 import { Injectable, computed } from '@angular/core';
-import { AppInitializerService } from '../../../app-initializer.service';
+import { AppInitializer } from '../../../app-initializer';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HomeUsecase {
-  constructor(private appInitializer: AppInitializerService) {}
+  constructor(private appInitializer: AppInitializer) {}
 
   $user = computed(() => this.appInitializer.$loggedInUser());
 

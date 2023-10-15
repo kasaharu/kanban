@@ -1,18 +1,17 @@
 import { TestBed } from '@angular/core/testing';
-
-import { AppInitializerService } from './app-initializer.service';
+import { AppInitializer } from './app-initializer';
 import { Authenticator } from './infrastructures/adapters/authenticator';
 
 class MockAuthenticator implements Partial<Authenticator> {}
 
-describe('AppInitializerService', () => {
-  let service: AppInitializerService;
+describe('AppInitializer', () => {
+  let service: AppInitializer;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [{ provide: Authenticator, useClass: MockAuthenticator }],
     });
-    service = TestBed.inject(AppInitializerService);
+    service = TestBed.inject(AppInitializer);
   });
 
   it('should be created', () => {

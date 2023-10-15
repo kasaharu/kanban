@@ -1,7 +1,7 @@
 import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { AppInitializerService } from '../../../../app-initializer.service';
+import { AppInitializer } from '../../../../app-initializer';
 import { ProfileIconComponent } from '../../components/profile-icon/profile-icon.component';
 
 @Component({
@@ -13,7 +13,7 @@ import { ProfileIconComponent } from '../../components/profile-icon/profile-icon
   imports: [RouterLink, NgIf, ProfileIconComponent],
 })
 export class HeaderComponent {
-  constructor(private readonly _router: Router, private readonly _appInitializerService: AppInitializerService) {}
+  constructor(private readonly _router: Router, private readonly _appInitializerService: AppInitializer) {}
 
   applicationName = 'kanban';
   $loggedIn = computed(() => this._appInitializerService.$loggedIn());

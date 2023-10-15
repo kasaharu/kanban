@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AppInitializerService } from '../../../../app-initializer.service';
+import { AppInitializer } from '../../../../app-initializer';
 import { HeaderComponent } from './header.component';
 
-class MockAppInitializerService implements Partial<AppInitializerService> {}
+class MockAppInitializer implements Partial<AppInitializer> {}
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -12,7 +12,7 @@ describe('HeaderComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, HeaderComponent],
-      providers: [{ provide: AppInitializerService, useClass: MockAppInitializerService }],
+      providers: [{ provide: AppInitializer, useClass: MockAppInitializer }],
     }).compileComponents();
   }));
 
