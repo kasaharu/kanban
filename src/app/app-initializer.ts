@@ -19,8 +19,7 @@ const initialState: State = {
 export class AppInitializer {
   readonly #authenticator = inject(Authenticator);
 
-  readonly $state = signal<State>(initialState);
-
+  private readonly $state = signal<State>(initialState);
   readonly $readyApp = computed(() => this.$state().readyApp);
   readonly $loggedIn = computed(() => (this.$state().loggedInUser ? true : false));
   readonly $loggedInUser = computed(() => this.$state().loggedInUser);

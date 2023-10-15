@@ -9,6 +9,7 @@ import { extractUserInfo } from '../../domain/user/user';
 export class Authenticator {
   readonly #auth = inject(Auth);
 
+  // Deprecated: Use `AppInitializer#$loggedInUser` instead.
   loggedInUser$ = user(this.#auth).pipe(map((u) => extractUserInfo(u)));
 
   login(): Promise<UserCredential> {
