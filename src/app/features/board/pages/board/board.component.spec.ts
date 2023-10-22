@@ -8,6 +8,7 @@ import { BoardUsecase } from './board.usecase';
 class MockBoardUsecase implements Partial<BoardUsecase> {
   sectionsHasTasks$ = new BehaviorSubject<SectionHasTasks[]>([]);
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-explicit-any
   fetchBoardItem(): any {}
 }
 

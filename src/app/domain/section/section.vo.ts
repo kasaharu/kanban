@@ -21,7 +21,7 @@ export class SectionValueObject implements Section {
   readonly userId: string;
   readonly orderId: number;
 
-  static create(name: string, userId: string, orderId: number, id: string = 'temporary'): SectionValueObject {
+  static create(name: string, userId: string, orderId: number, id = 'temporary'): SectionValueObject {
     if (name.length > NAME_MAX_LENGTH) {
       throw new Error('[kanban] over section name length');
     }

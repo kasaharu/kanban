@@ -32,6 +32,7 @@ export class DatabaseAdapter {
     return document;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async updateDocument(collectionName: string, item: any, itemId: string): Promise<void> {
     const docRef = doc(this.#firestore, `${collectionName}/${itemId}`);
     await updateDoc(docRef, item);

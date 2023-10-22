@@ -3,6 +3,7 @@ import { DatabaseAdapter } from '../adapters/database.adapter';
 import { SectionGateway } from './section.gateway';
 
 class MockDatabaseAdapter implements Partial<DatabaseAdapter> {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-explicit-any
   fetchCollectionWhere(): any {}
 }
 
