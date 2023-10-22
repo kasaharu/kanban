@@ -2,7 +2,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BehaviorSubject } from 'rxjs';
 import { SectionHasTasks } from '../../../../domain/models';
-import { BoardPageComponent } from './board.component';
+import { BoardComponent } from './board.component';
 import { BoardUsecase } from './board.usecase';
 
 class MockBoardUsecase implements Partial<BoardUsecase> {
@@ -13,22 +13,22 @@ class MockBoardUsecase implements Partial<BoardUsecase> {
 }
 
 describe('BoardPageComponent', () => {
-  let component: BoardPageComponent;
-  let fixture: ComponentFixture<BoardPageComponent>;
+  let component: BoardComponent;
+  let fixture: ComponentFixture<BoardComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [BoardPageComponent],
+      imports: [BoardComponent],
       schemas: [NO_ERRORS_SCHEMA],
     })
-      .overrideComponent(BoardPageComponent, {
+      .overrideComponent(BoardComponent, {
         add: { providers: [{ provide: BoardUsecase, useClass: MockBoardUsecase }] },
       })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BoardPageComponent);
+    fixture = TestBed.createComponent(BoardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

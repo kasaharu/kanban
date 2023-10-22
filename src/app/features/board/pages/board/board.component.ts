@@ -1,16 +1,16 @@
-import { CdkDragDrop, moveItemInArray, transferArrayItem, CdkDropList, CdkDropListGroup, CdkDrag } from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { SectionHasTasks } from '../../../../domain/models';
 import { Section } from '../../../../domain/section/section.vo';
 import { Task } from '../../../../domain/task/task';
-import { BoardUsecase } from './board.usecase';
-import { TaskCardComponent } from '../../presenters/task-card/task-card.component';
-import { NewTaskFormComponent } from '../../presenters/new-task-form/new-task-form.component';
 import { EditableSectionNameComponent } from '../../presenters/editable-section-name/editable-section-name.component';
-import { NgIf, NgFor, AsyncPipe } from '@angular/common';
+import { NewTaskFormComponent } from '../../presenters/new-task-form/new-task-form.component';
 import { SectionFormComponent } from '../../presenters/section-form/section-form.component';
+import { TaskCardComponent } from '../../presenters/task-card/task-card.component';
+import { BoardUsecase } from './board.usecase';
 
 @Component({
   templateUrl: './board.component.html',
@@ -31,7 +31,7 @@ import { SectionFormComponent } from '../../presenters/section-form/section-form
     AsyncPipe,
   ],
 })
-export class BoardPageComponent implements OnInit, OnDestroy {
+export class BoardComponent implements OnInit, OnDestroy {
   constructor(private usecase: BoardUsecase) {}
 
   private _onDestroy$ = new Subject<void>();
