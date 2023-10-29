@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { BoardPageComponent } from './board-page.component';
+import BoardPageComponent from './board-page.component';
 
 describe('BoardPageComponent', () => {
   let component: BoardPageComponent;

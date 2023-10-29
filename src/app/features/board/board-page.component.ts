@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-board-page',
@@ -8,4 +8,4 @@ import { CommonModule } from '@angular/common';
   templateUrl: './board-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BoardPageComponent {}
+export default class BoardPageComponent {}
