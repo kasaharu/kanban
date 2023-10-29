@@ -1,3 +1,16 @@
 :host {
   display: block;
+  margin: 12px;
+}
+
+input {
+  height: 40px;
+  width: 360px;
+  line-height: 24px;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.hint-block {
+  height: 16px;
 }

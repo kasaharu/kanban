@@ -1,4 +1,5 @@
-<app-section-form class="new-section" (requestCreateSection)="addSection($event)"></app-section-form>
+<app-section-form (requestCreateSection)="addSection($event)"></app-section-form>
+
 <ng-container *ngIf="$sectionsHasTasks()">
   <div
     class="sections"

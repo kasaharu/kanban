@@ -35,14 +35,14 @@ export class BoardUsecase {
     });
   }
 
-  async addSection(addingSection: Section) {
+  async addSection(sectionName: string) {
     const loggedInUser = await firstValueFrom(this.#authenticator.loggedInUser$);
     if (loggedInUser === null) {
       return;
     }
 
     try {
-      const newerSection = SectionValueObject.create(addingSection.name, loggedInUser.uid, this.#store.$sectionsHasTasks().length + 1);
+      const newerSection = SectionValueObject.create(sectionName, loggedInUser.uid, this.#store.$sectionsHasTasks().length + 1);
       const createdSection = await this.#sectionGateway.postSection(newerSection.plainObject());
       this.#store.addSection(createdSection);
     } catch (_) {

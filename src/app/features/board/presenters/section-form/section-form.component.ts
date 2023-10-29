@@ -1,6 +1,7 @@
+import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
-import { UntypedFormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Section } from '../../../../domain/section/section.vo';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NAME_MAX_LENGTH } from '../../../../domain/section/section.vo';
 
 @Component({
   selector: 'app-section-form',
@@ -8,19 +9,23 @@ import { Section } from '../../../../domain/section/section.vo';
   styleUrls: ['./section-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [NgIf, ReactiveFormsModule],
 })
 export class SectionFormComponent {
-  constructor(private fb: UntypedFormBuilder) {}
-  // TODO: 型の見直しが必要
-  @Output()
-  requestCreateSection = new EventEmitter<Section>();
+  @Output() requestCreateSection = new EventEmitter<string>();
+  nameMaxLength = NAME_MAX_LENGTH;
 
-  placeholderText = 'セクションを作成';
-  sectionForm = this.fb.group({ id: [''], name: ['', Validators.required] });
+  sectionForm = new FormGroup({
+    name: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.maxLength(this.nameMaxLength)] }),
+  });
 
   onSubmit() {
-    this.requestCreateSection.emit(this.sectionForm.value);
+    if (this.sectionForm.invalid) {
+      return;
+    }
+
+    const { name } = this.sectionForm.getRawValue();
+    this.requestCreateSection.emit(name);
     this.sectionForm.reset();
   }
 }

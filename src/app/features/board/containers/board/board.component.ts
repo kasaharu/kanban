@@ -3,7 +3,6 @@ import { NgFor, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, computed, inject } from '@angular/core';
 import { Subject } from 'rxjs';
 import { SectionHasTasks } from '../../../../domain/models';
-import { Section } from '../../../../domain/section/section.vo';
 import { Task } from '../../../../domain/task/task';
 import { EditableSectionNameComponent } from '../../presenters/editable-section-name/editable-section-name.component';
 import { NewTaskFormComponent } from '../../presenters/new-task-form/new-task-form.component';
@@ -58,8 +57,8 @@ export class BoardComponent implements OnInit, OnDestroy {
     this.usecase.moveSection(event.container.data);
   }
 
-  addSection(section: Section) {
-    this.usecase.addSection(section);
+  addSection(sectionName: string) {
+    this.usecase.addSection(sectionName);
   }
 
   deleteSection(section: SectionHasTasks) {

@@ -1,3 +1,6 @@
 <form [formGroup]="sectionForm" (ngSubmit)="onSubmit()">
-  <input type="text" formControlName="name" [placeholder]="placeholderText" />
+  <input type="text" formControlName="name" [placeholder]="'セクションを作成'" />
+  <div class="hint-block">
+    <p *ngIf="sectionForm.controls.name.errors?.['maxlength']">{{ nameMaxLength }}文字以内で入力してください</p>
+  </div>
 </form>
