@@ -8,7 +8,7 @@ describe('BoardViewComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [BoardViewComponent]
+      imports: [BoardViewComponent],
     });
     fixture = TestBed.createComponent(BoardViewComponent);
     component = fixture.componentInstance;
