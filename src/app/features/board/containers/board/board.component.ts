@@ -13,6 +13,7 @@ import { TaskCardComponent } from '../../presenters/task-card/task-card.componen
 import { BoardUsecase } from './board.usecase';
 
 @Component({
+  selector: 'app-board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
