@@ -1,39 +1,14 @@
 <app-section-form (requestCreateSection)="addSection($event)"></app-section-form>
 
 <ng-container *ngIf="$sectionsHasTasks()">
-  <div
-    class="sections"
-    cdkDropList
-    [cdkDropListData]="$sectionsHasTasks()"
-    cdkDropListOrientation="horizontal"
-    (cdkDropListDropped)="dropSection($event)"
-  >
-    <div class="section" cdkDropListGroup *ngFor="let section of $sectionsHasTasks()" cdkDrag [cdkDragData]="section">
-      <div>
-        <div class="section-name-field">
-          <app-editable-section-name
-            class="section-name-form"
-            [name]="section.name"
-            (editName)="changeSectionName($event, section)"
-          ></app-editable-section-name>
-          <button class="section-delete-button" (click)="deleteSection(section)">削除</button>
-        </div>
-        <app-new-task-form class="add-task-input" (requestCreateTask)="addTask($event, section)"></app-new-task-form>
-        <div
-          id="{{ section.id }}"
-          class="task-wrapper"
-          cdkDropList
-          [cdkDropListData]="section.tasks"
-          [cdkDropListConnectedTo]="getConnectedList()"
-          [attr.data-section-id]="section.id"
-          (cdkDropListDropped)="dropTask($event)"
-        >
-          <div *ngFor="let task of section.tasks" cdkDrag [cdkDragData]="task">
-            <app-task-card class="task" [task]="task" (requestClick)="deleteTask($event)"></app-task-card>
-          </div>
-          <div class="task-placeholder"></div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <app-board-view
+    [sections]="$sectionsHasTasks()"
+    [connectedListIds]="$sectionIds()"
+    (sectionDropped)="dropSection($event)"
+    (taskDropped)="dropTask($event)"
+    (nameEdited)="changeSectionName($event)"
+    (sectionDeleted)="deleteSection($event)"
+    (taskAdded)="addTask($event)"
+    (taskDeleted)="deleteTask($event)"
+  ></app-board-view>
 </ng-container>
