@@ -3,6 +3,7 @@ import { Authenticator } from '../../../../infrastructures/adapters/authenticato
 import { SectionGateway } from '../../../../infrastructures/gateways/section.gateway';
 import { TaskGateway } from '../../../../infrastructures/gateways/task.gateway';
 
+import { BoardStore } from './board.store';
 import { BoardUsecase } from './board.usecase';
 
 class MockAuthenticator implements Partial<Authenticator> {}
@@ -16,6 +17,7 @@ describe('BoardUsecase', () => {
     TestBed.configureTestingModule({
       providers: [
         BoardUsecase,
+        BoardStore,
         { provide: Authenticator, useClass: MockAuthenticator },
         { provide: SectionGateway, useClass: MockSectionGateway },
         { provide: TaskGateway, useClass: MockTaskGateway },

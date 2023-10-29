@@ -1,8 +1,7 @@
 import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, computed, inject } from '@angular/core';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { SectionHasTasks } from '../../../../domain/models';
 import { Section } from '../../../../domain/section/section.vo';
 import { Task } from '../../../../domain/task/task';
@@ -10,6 +9,7 @@ import { EditableSectionNameComponent } from '../../presenters/editable-section-
 import { NewTaskFormComponent } from '../../presenters/new-task-form/new-task-form.component';
 import { SectionFormComponent } from '../../presenters/section-form/section-form.component';
 import { TaskCardComponent } from '../../presenters/task-card/task-card.component';
+import { BoardStore } from './board.store';
 import { BoardUsecase } from './board.usecase';
 
 @Component({
@@ -17,7 +17,7 @@ import { BoardUsecase } from './board.usecase';
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [BoardUsecase],
+  providers: [BoardUsecase, BoardStore],
   standalone: true,
   imports: [
     SectionFormComponent,
@@ -29,21 +29,18 @@ import { BoardUsecase } from './board.usecase';
     EditableSectionNameComponent,
     NewTaskFormComponent,
     TaskCardComponent,
-    AsyncPipe,
   ],
 })
 export class BoardComponent implements OnInit, OnDestroy {
+  #store = inject(BoardStore);
   constructor(private usecase: BoardUsecase) {}
 
   private _onDestroy$ = new Subject<void>();
-  private _sectionIds!: string[];
 
-  sectionsHasTasks$ = this.usecase.sectionsHasTasks$;
+  $sectionsHasTasks = computed(() => this.#store.$sectionsHasTasks());
+  private _$sectionIds = computed(() => this.$sectionsHasTasks().map((x) => x.id));
 
   ngOnInit(): void {
-    this.sectionsHasTasks$.pipe(takeUntil(this._onDestroy$)).subscribe((sectionsHasTasks) => {
-      this._sectionIds = sectionsHasTasks.map((x) => x.id);
-    });
     this.usecase.fetchBoardItem();
   }
 
@@ -53,7 +50,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   // NOTE: task が section をまたいで移動するために必要
   getConnectedList() {
-    return this._sectionIds;
+    return this._$sectionIds();
   }
 
   dropSection(event: CdkDragDrop<SectionHasTasks[]>) {
