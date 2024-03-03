@@ -97,10 +97,10 @@
           "options": {},
           "configurations": {
             "production": {
-              "browserTarget": "kanban:build:production"
+              "buildTarget": "kanban:build:production"
             },
             "development": {
-              "browserTarget": "kanban:build:development"
+              "buildTarget": "kanban:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -108,7 +108,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "kanban:build"
+            "buildTarget": "kanban:build"
           }
         },
         "test": {
