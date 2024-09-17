@@ -33,12 +33,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/kanban",
+            "outputPath": {
+              "base": "dist/kanban"
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "src/polyfills.ts"
+            ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
@@ -57,7 +60,8 @@
               "@firebase/functions",
               "@firebase/performance",
               "@firebase/remote-config"
-            ]
+            ],
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -83,11 +87,9 @@
             },
             "development": {
               "optimization": false,
-              "buildOptimizer": false,
               "sourceMap": true,
               "extractLicenses": false,
-              "namedChunks": true,
-              "vendorChunk": true
+              "namedChunks": true
             }
           },
           "defaultConfiguration": "production"
