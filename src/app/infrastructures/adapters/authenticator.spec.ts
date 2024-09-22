@@ -1,4 +1,3 @@
-import { importProvidersFrom } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth } from '@angular/fire/auth';
@@ -14,12 +13,7 @@ describe('Authenticator', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        importProvidersFrom(
-          provideFirebaseApp(() => initializeApp(firebaseEnv)),
-          provideAuth(() => getAuth()),
-        ),
-      ],
+      imports: [provideFirebaseApp(() => initializeApp(firebaseEnv)), provideAuth(() => getAuth())],
     });
     authenticator = TestBed.inject(Authenticator);
   });
