@@ -109,6 +109,8 @@ export class BoardUsecase {
       description: '',
       dueDate: '',
       id: 'temporary',
+      isCompleted: false,
+      createdAt: Date.now(),
     });
     this.#store.createTask(createdTask);
   }

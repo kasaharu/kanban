@@ -8,4 +8,6 @@ export interface Task {
   orderId: number;
   dueDate: string | null;
   description: string;
+  isCompleted: boolean;
+  createdAt: number; // NOTE: 経過時間ミリ秒で管理
 }
