@@ -14,7 +14,7 @@ import { HeaderComponent } from './core/app-shell/containers/header/header.compo
 export class AppComponent implements OnInit {
   #appInitializer = inject(AppInitializer);
 
-  $readyApp = computed(() => this.#appInitializer.$readyApp());
+  $readyApp = computed(() => this.#appInitializer.readyApp());
 
   ngOnInit() {
     this.#appInitializer.initialize();

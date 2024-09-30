@@ -7,10 +7,10 @@ import { User } from '../../../../domain/user/user';
 import { userFactory } from '../../../../testing/factories';
 import { HomeComponent } from './home.component';
 
-// class MockHomeUsecase implements Partial<HomeUsecase> {}
-class MockAppInitializer implements Partial<AppInitializer> {
-  $loggedInUser = signal<User>(userFactory({}));
-}
+const appInitializer = {
+  loggedInUser: signal<User>(userFactory({})),
+  readyApp: signal(true),
+};
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -19,7 +19,7 @@ describe('HomeComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [HomeComponent],
-      providers: [provideRouter(routes), { provide: AppInitializer, useClass: MockAppInitializer }],
+      providers: [provideRouter(routes), { provide: AppInitializer, useValue: appInitializer }],
     }).compileComponents();
   }));
 

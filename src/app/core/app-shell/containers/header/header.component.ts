@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AppInitializer } from '../../../../app-initializer';
 import { ProfileIconComponent } from '../../components/profile-icon/profile-icon.component';
@@ -13,16 +13,14 @@ import { ProfileIconComponent } from '../../components/profile-icon/profile-icon
   imports: [RouterLink, NgIf, ProfileIconComponent],
 })
 export class HeaderComponent {
-  constructor(
-    private readonly _router: Router,
-    private readonly _appInitializerService: AppInitializer,
-  ) {}
+  private readonly appInitializer = inject(AppInitializer);
+  constructor(private readonly _router: Router) {}
 
   applicationName = 'kanban';
-  $loggedIn = computed(() => this._appInitializerService.$loggedIn());
+  $loggedIn = computed(() => this.appInitializer.loggedIn());
 
   async logout(): Promise<void> {
-    await this._appInitializerService.logout();
+    await this.appInitializer.logout();
     this._router.navigateByUrl('/home');
   }
 }

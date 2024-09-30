@@ -5,7 +5,7 @@ import { AppInitializer } from '../../../../app-initializer';
 export class HomeUsecase {
   readonly #appInitializer = inject(AppInitializer);
 
-  $user = computed(() => this.#appInitializer.$loggedInUser());
+  $user = computed(() => this.#appInitializer.loggedInUser());
 
   async login() {
     try {
