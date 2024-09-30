@@ -13,7 +13,10 @@ import { ProfileIconComponent } from '../../components/profile-icon/profile-icon
   imports: [RouterLink, NgIf, ProfileIconComponent],
 })
 export class HeaderComponent {
-  constructor(private readonly _router: Router, private readonly _appInitializerService: AppInitializer) {}
+  constructor(
+    private readonly _router: Router,
+    private readonly _appInitializerService: AppInitializer,
+  ) {}
 
   applicationName = 'kanban';
   $loggedIn = computed(() => this._appInitializerService.$loggedIn());
