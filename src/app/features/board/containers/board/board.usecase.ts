@@ -107,7 +107,7 @@ export class BoardUsecase {
       sectionId: section.id,
       orderId: section.tasks.length + 1,
       description: '',
-      dueData: '',
+      dueDate: '',
       id: 'temporary',
     });
     this.#store.createTask(createdTask);

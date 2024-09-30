@@ -6,6 +6,6 @@ export interface Task {
   sectionId: string;
   userId: string;
   orderId: number;
-  dueData: string | null;
+  dueDate: string | null;
   description: string;
 }
