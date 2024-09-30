@@ -42,7 +42,7 @@ export class BoardUsecase {
     }
 
     try {
-      const newerSection = SectionValueObject.create(sectionName, loggedInUser.uid, this.#store.$sectionsHasTasks().length + 1);
+      const newerSection = SectionValueObject.create(sectionName, loggedInUser.uid, this.#store.sectionsHasTasks().length + 1);
       const createdSection = await this.#sectionGateway.postSection(newerSection.plainObject());
       this.#store.addSection(createdSection);
     } catch (_) {

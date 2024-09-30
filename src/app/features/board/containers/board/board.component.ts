@@ -21,7 +21,7 @@ export class BoardComponent implements OnInit {
   #store = inject(BoardStore);
   constructor(private usecase: BoardUsecase) {}
 
-  $sectionsHasTasks = computed(() => this.#store.$sectionsHasTasks());
+  $sectionsHasTasks = computed(() => this.#store.sectionsHasTasks());
   // NOTE: task が section をまたいで移動するために必要
   $sectionIds = computed(() => this.$sectionsHasTasks().map((x) => x.id));
 
