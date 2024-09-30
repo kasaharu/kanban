@@ -9,8 +9,8 @@ import { DatabaseAdapter } from '../adapters/database.adapter';
 export class SectionGateway {
   constructor(private readonly _databaseAdapter: DatabaseAdapter) {}
 
-  getSections(userId: string): Observable<Section[]> {
-    return this._databaseAdapter.fetchCollectionWhere<Section>(COLLECTION_NAME, { key: 'userId', value: userId });
+  getSections(ownerId: string): Observable<Section[]> {
+    return this._databaseAdapter.fetchCollectionWhere<Section>(COLLECTION_NAME, { key: 'ownerId', value: ownerId });
   }
 
   postSection(section: Section): Promise<Section> {

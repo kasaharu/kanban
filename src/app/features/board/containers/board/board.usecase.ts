@@ -30,7 +30,7 @@ export class BoardUsecase {
 
   moveSection(sectionsHasTasks: SectionHasTasks[]) {
     sectionsHasTasks.forEach((sectionHasTasks, index) => {
-      const section: Section = { id: sectionHasTasks.id, name: sectionHasTasks.name, userId: sectionHasTasks.userId, orderId: index + 1 };
+      const section: Section = { id: sectionHasTasks.id, name: sectionHasTasks.name, ownerId: sectionHasTasks.ownerId, orderId: index + 1 };
       this.#sectionGateway.putSection(section);
     });
   }
@@ -66,7 +66,7 @@ export class BoardUsecase {
 
   async updateSectionName(newName: string, section: SectionHasTasks) {
     try {
-      const updatedSection = SectionValueObject.create(newName, section.userId, section.orderId, section.id);
+      const updatedSection = SectionValueObject.create(newName, section.ownerId, section.orderId, section.id);
       await this.#sectionGateway.putSection(updatedSection.plainObject());
       this.#store.updateSection(updatedSection);
     } catch (error) {

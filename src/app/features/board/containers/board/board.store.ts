@@ -20,9 +20,9 @@ export const BoardStore = signalStore(
   withState(initialState),
   withComputed((state) => ({
     sectionsHasTasks: computed(() => {
-      return [...state._sections()].sort(sortByOrderIdAsc).map(({ id, name, userId, orderId }) => {
+      return [...state._sections()].sort(sortByOrderIdAsc).map(({ id, name, ownerId, orderId }) => {
         const tasks = [...state._tasks()].sort(sortByOrderIdAsc).filter((task) => task.sectionId === id);
-        const result: SectionHasTasks = { id, name, userId, orderId, tasks };
+        const result: SectionHasTasks = { id, name, ownerId, orderId, tasks };
         return result;
       });
     }),

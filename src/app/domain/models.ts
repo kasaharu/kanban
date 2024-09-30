@@ -3,7 +3,7 @@ import { Task } from './task/task';
 export interface SectionHasTasks {
   id: string;
   name: string;
-  userId: string;
+  ownerId: string;
   orderId: number;
   tasks: Task[];
 }
