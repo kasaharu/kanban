@@ -34,7 +34,7 @@ a {
   appearance: none;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (width <= 600px) {
   .header {
     padding: 0 12px;
     font-size: 0.8rem;
