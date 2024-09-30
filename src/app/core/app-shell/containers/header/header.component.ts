@@ -14,13 +14,13 @@ import { ProfileIconComponent } from '../../components/profile-icon/profile-icon
 })
 export class HeaderComponent {
   private readonly appInitializer = inject(AppInitializer);
-  constructor(private readonly _router: Router) {}
+  private readonly router = inject(Router);
 
   applicationName = 'kanban';
   $loggedIn = computed(() => this.appInitializer.loggedIn());
 
   async logout(): Promise<void> {
     await this.appInitializer.logout();
-    this._router.navigateByUrl('/home');
+    this.router.navigateByUrl('/home');
   }
 }
