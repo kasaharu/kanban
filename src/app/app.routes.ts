@@ -5,10 +5,8 @@ import HomePageComponent from './features/home/home-page.component';
 
 const redirectUnauthorizedToHome = () => redirectUnauthorizedTo(['home']);
 
-const ROUTES: Routes = [
+export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomePageComponent },
   { path: 'board', component: BoardPageComponent, ...canActivate(redirectUnauthorizedToHome) },
 ];
-
-export default ROUTES;

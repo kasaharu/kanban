@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
-import ROUTES from '../../ROUTES';
+import { routes } from '../../app.routes';
 import { HomeComponent } from './containers/home/home.component';
 import HomePageComponent from './home-page.component';
 
@@ -16,7 +16,7 @@ describe('HomePageComponent', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [HomePageComponent],
-      providers: [provideRouter(ROUTES)],
+      providers: [provideRouter(routes)],
     }).overrideComponent(HomePageComponent, { remove: { imports: [HomeComponent] }, add: { imports: [MockHomeComponent] } });
 
     harness = await RouterTestingHarness.create();

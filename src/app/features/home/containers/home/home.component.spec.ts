@@ -1,8 +1,8 @@
 import { signal } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
-import ROUTES from '../../../../ROUTES';
 import { AppInitializer } from '../../../../app-initializer';
+import { routes } from '../../../../app.routes';
 import { User } from '../../../../domain/user/user';
 import { userFactory } from '../../../../testing/factories';
 import { HomeComponent } from './home.component';
@@ -19,7 +19,7 @@ describe('HomeComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [HomeComponent],
-      providers: [provideRouter(ROUTES), { provide: AppInitializer, useClass: MockAppInitializer }],
+      providers: [provideRouter(routes), { provide: AppInitializer, useClass: MockAppInitializer }],
     }).compileComponents();
   }));
 

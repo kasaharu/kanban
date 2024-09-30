@@ -1,8 +1,8 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
-import ROUTES from './ROUTES';
 import { AppInitializer } from './app-initializer';
 import { AppComponent } from './app.component';
+import { routes } from './app.routes';
 
 class MockAppInitializer implements Partial<AppInitializer> {}
 
@@ -10,7 +10,7 @@ describe('AppComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [AppComponent],
-      providers: [provideRouter(ROUTES), { provide: AppInitializer, useClass: MockAppInitializer }],
+      providers: [provideRouter(routes), { provide: AppInitializer, useClass: MockAppInitializer }],
     }).compileComponents();
   }));
 
