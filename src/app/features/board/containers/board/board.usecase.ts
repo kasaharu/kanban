@@ -102,7 +102,7 @@ export class BoardUsecase {
     }
 
     const createdTask = await this.#taskGateway.postTask({
-      userId: loggedInUser.uid,
+      ownerId: loggedInUser.uid,
       name: addingTask.name,
       sectionId: section.id,
       orderId: section.tasks.length + 1,

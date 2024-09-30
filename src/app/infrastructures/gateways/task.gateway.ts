@@ -9,8 +9,8 @@ import { DatabaseAdapter } from '../adapters/database.adapter';
 export class TaskGateway {
   constructor(private readonly _databaseAdapter: DatabaseAdapter) {}
 
-  getTasks(userId: string): Observable<Task[]> {
-    return this._databaseAdapter.fetchCollectionWhere<Task>(COLLECTION_NAME, { key: 'userId', value: userId });
+  getTasks(ownerId: string): Observable<Task[]> {
+    return this._databaseAdapter.fetchCollectionWhere<Task>(COLLECTION_NAME, { key: 'ownerId', value: ownerId });
   }
 
   postTask(task: Task) {
