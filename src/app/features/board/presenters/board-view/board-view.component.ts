@@ -1,5 +1,4 @@
 import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup } from '@angular/cdk/drag-drop';
-import { NgFor } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { SectionHasTasks } from '../../../../domain/models';
 import { Task } from '../../../../domain/task/task';
@@ -10,7 +9,7 @@ import { TaskCardComponent } from '../task-card/task-card.component';
 @Component({
   selector: 'app-board-view',
   standalone: true,
-  imports: [NgFor, EditableSectionNameComponent, NewTaskFormComponent, TaskCardComponent, CdkDrag, CdkDropList, CdkDropListGroup],
+  imports: [EditableSectionNameComponent, NewTaskFormComponent, TaskCardComponent, CdkDrag, CdkDropList, CdkDropListGroup],
   templateUrl: './board-view.component.html',
   styleUrls: ['./board-view.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

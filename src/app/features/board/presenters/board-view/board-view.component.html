@@ -5,31 +5,35 @@
   [cdkDropListData]="sections"
   (cdkDropListDropped)="sectionDrop($event)"
 >
-  <div class="section" *ngFor="let section of sections" cdkDropListGroup cdkDrag [cdkDragData]="section">
-    <div>
-      <div class="section-name-field">
-        <app-editable-section-name
-          class="section-name-form"
-          [name]="section.name"
-          (editName)="editName($event, section)"
-        ></app-editable-section-name>
-        <button class="section-delete-button" (click)="deleteSection(section)">削除</button>
-      </div>
-      <app-new-task-form class="add-task-input" (requestCreateTask)="addTask($event, section)"></app-new-task-form>
-      <div
-        id="{{ section.id }}"
-        class="task-wrapper"
-        cdkDropList
-        [cdkDropListData]="section.tasks"
-        [cdkDropListConnectedTo]="connectedListIds"
-        [attr.data-section-id]="section.id"
-        (cdkDropListDropped)="taskDrop($event)"
-      >
-        <div *ngFor="let task of section.tasks" cdkDrag [cdkDragData]="task">
-          <app-task-card class="task" [task]="task" (requestClick)="deleteTask($event)"></app-task-card>
+  @for (section of sections; track section.id) {
+    <div class="section" cdkDropListGroup cdkDrag [cdkDragData]="section">
+      <div>
+        <div class="section-name-field">
+          <app-editable-section-name
+            class="section-name-form"
+            [name]="section.name"
+            (editName)="editName($event, section)"
+          ></app-editable-section-name>
+          <button class="section-delete-button" (click)="deleteSection(section)">削除</button>
         </div>
-        <div class="task-placeholder"></div>
+        <app-new-task-form class="add-task-input" (requestCreateTask)="addTask($event, section)"></app-new-task-form>
+        <div
+          id="{{ section.id }}"
+          class="task-wrapper"
+          cdkDropList
+          [cdkDropListData]="section.tasks"
+          [cdkDropListConnectedTo]="connectedListIds"
+          [attr.data-section-id]="section.id"
+          (cdkDropListDropped)="taskDrop($event)"
+        >
+          @for (task of section.tasks; track task.id) {
+            <div cdkDrag [cdkDragData]="task">
+              <app-task-card class="task" [task]="task" (requestClick)="deleteTask($event)"></app-task-card>
+            </div>
+          }
+          <div class="task-placeholder"></div>
+        </div>
       </div>
     </div>
-  </div>
+  }
 </div>
