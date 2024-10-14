@@ -12,9 +12,9 @@ export class TaskCardComponent {
   @Input()
   task!: Task;
   @Output()
-  requestClick = new EventEmitter<string>();
+  deleteButtonClicked = new EventEmitter<string>();
 
-  onClick(taskId: string) {
-    this.requestClick.emit(taskId);
+  onDeleteButtonClick(taskId: string) {
+    this.deleteButtonClicked.emit(taskId);
   }
 }
