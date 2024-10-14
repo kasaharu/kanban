@@ -19,39 +19,39 @@ import { BoardUsecase } from './board.usecase';
 })
 export class BoardComponent implements OnInit {
   #store = inject(BoardStore);
-  constructor(private usecase: BoardUsecase) {}
+  #usecase = inject(BoardUsecase);
 
   $sectionsHasTasks = computed(() => this.#store.sectionsHasTasks());
   // NOTE: task が section をまたいで移動するために必要
   $sectionIds = computed(() => this.$sectionsHasTasks().map((x) => x.id));
 
   ngOnInit(): void {
-    this.usecase.fetchBoardItem();
+    this.#usecase.fetchBoardItem();
   }
 
   dropSection(event: CdkDragDrop<SectionHasTasks[]>) {
     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    this.usecase.moveSection(event.container.data);
+    this.#usecase.moveSection(event.container.data);
   }
 
   addSection(sectionName: string) {
-    this.usecase.addSection(sectionName);
+    this.#usecase.addSection(sectionName);
   }
 
   deleteSection(section: SectionHasTasks) {
     if (window.confirm('セクションを削除しますか？(紐づくタスクも削除されます)')) {
-      this.usecase.deleteSection(section);
+      this.#usecase.deleteSection(section);
     }
   }
 
   changeSectionName(event: { newName: string; section: SectionHasTasks }) {
-    this.usecase.updateSectionName(event.newName, event.section);
+    this.#usecase.updateSectionName(event.newName, event.section);
   }
 
   dropTask(event: CdkDragDrop<Task[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-      this.usecase.moveTask(event.container.data);
+      this.#usecase.moveTask(event.container.data);
     } else {
       const destinationSectionId = event.container.element.nativeElement.dataset.sectionId;
 
@@ -62,17 +62,17 @@ export class BoardComponent implements OnInit {
       }
 
       transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
-      this.usecase.transferTask(event.previousContainer.data, event.container.data, destinationSectionId);
+      this.#usecase.transferTask(event.previousContainer.data, event.container.data, destinationSectionId);
     }
   }
 
   addTask(event: { task: Task; section: SectionHasTasks }) {
-    this.usecase.createTask(event.task, event.section);
+    this.#usecase.createTask(event.task, event.section);
   }
 
   deleteTask(taskId: string) {
     if (window.confirm('タスクを削除しますか？')) {
-      this.usecase.deleteTask(taskId);
+      this.#usecase.deleteTask(taskId);
     }
   }
 }
