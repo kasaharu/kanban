@@ -1,10 +1,10 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, computed, inject } from '@angular/core';
 import { SectionHasTasks } from '../../../../domain/models';
 import { Task } from '../../../../domain/task/task';
 import { BoardViewComponent } from '../../presenters/board-view/board-view.component';
 import { SectionFormComponent } from '../../presenters/section-form/section-form.component';
+import { TaskDetailComponent } from '../../presenters/task-detail/task-detail.component';
 import { BoardStore } from './board.store';
 import { BoardUsecase } from './board.usecase';
 
@@ -15,7 +15,7 @@ import { BoardUsecase } from './board.usecase';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [BoardUsecase, BoardStore],
   standalone: true,
-  imports: [NgIf, SectionFormComponent, BoardViewComponent],
+  imports: [SectionFormComponent, BoardViewComponent, TaskDetailComponent],
 })
 export class BoardComponent implements OnInit {
   #store = inject(BoardStore);
@@ -24,6 +24,7 @@ export class BoardComponent implements OnInit {
   $sectionsHasTasks = computed(() => this.#store.sectionsHasTasks());
   // NOTE: task が section をまたいで移動するために必要
   $sectionIds = computed(() => this.$sectionsHasTasks().map((x) => x.id));
+  $showTaskDetail = computed(() => this.#store.showTaskDetail());
 
   ngOnInit(): void {
     this.#usecase.fetchBoardItem();

@@ -7,11 +7,13 @@ import { Task } from '../../../../domain/task/task';
 type BoardState = {
   _sections: Section[];
   _tasks: Task[];
+  _showTaskDetail: boolean;
 };
 
 const initialState: BoardState = {
   _sections: [],
   _tasks: [],
+  _showTaskDetail: false,
 };
 
 const sortByOrderIdAsc = (a: { orderId: number }, b: { orderId: number }) => a.orderId - b.orderId;
@@ -26,6 +28,7 @@ export const BoardStore = signalStore(
         return result;
       });
     }),
+    showTaskDetail: computed(() => state._showTaskDetail()),
   })),
   withMethods((store) => ({
     setSections(sections: Section[]): void {

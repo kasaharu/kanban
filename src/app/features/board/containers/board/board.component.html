@@ -1,14 +1,22 @@
-<app-section-form (requestCreateSection)="addSection($event)"></app-section-form>
+<div class="board-wrapper">
+  <app-section-form (requestCreateSection)="addSection($event)"></app-section-form>
 
-<ng-container *ngIf="$sectionsHasTasks()">
-  <app-board-view
-    [sections]="$sectionsHasTasks()"
-    [connectedListIds]="$sectionIds()"
-    (sectionDropped)="dropSection($event)"
-    (taskDropped)="dropTask($event)"
-    (nameEdited)="changeSectionName($event)"
-    (sectionDeleted)="deleteSection($event)"
-    (taskAdded)="addTask($event)"
-    (taskDeleted)="deleteTask($event)"
-  ></app-board-view>
-</ng-container>
+  @if ($sectionsHasTasks()) {
+    <app-board-view
+      [sections]="$sectionsHasTasks()"
+      [connectedListIds]="$sectionIds()"
+      (sectionDropped)="dropSection($event)"
+      (taskDropped)="dropTask($event)"
+      (nameEdited)="changeSectionName($event)"
+      (sectionDeleted)="deleteSection($event)"
+      (taskAdded)="addTask($event)"
+      (taskDeleted)="deleteTask($event)"
+    ></app-board-view>
+  }
+</div>
+
+@if ($showTaskDetail()) {
+  <div class="task-detail-wrapper">
+    <app-task-detail></app-task-detail>
+  </div>
+}
