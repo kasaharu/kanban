@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { Task } from '../../../../domain/task/task';
 
 @Component({
@@ -14,7 +14,13 @@ export class TaskCardComponent {
   @Output()
   deleteButtonClicked = new EventEmitter<string>();
 
-  onDeleteButtonClick(taskId: string) {
+  @HostListener('click') onCardClick() {
+    console.log('Click the card');
+  }
+
+  onDeleteButtonClick(taskId: string, event: Event) {
     this.deleteButtonClicked.emit(taskId);
+    event.stopPropagation();
+    event.preventDefault();
   }
 }
