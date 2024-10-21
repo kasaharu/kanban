@@ -76,4 +76,8 @@ export class BoardComponent implements OnInit {
       this.#usecase.deleteTask(taskId);
     }
   }
+
+  selectTask(taskId: string) {
+    this.#usecase.selectTask(taskId);
+  }
 }

@@ -23,6 +23,7 @@ export class BoardViewComponent {
   @Output() sectionDeleted = new EventEmitter<SectionHasTasks>();
   @Output() taskAdded = new EventEmitter<{ task: Task; section: SectionHasTasks }>();
   @Output() taskDeleted = new EventEmitter<string>();
+  @Output() taskSelected = new EventEmitter<string>();
 
   sectionDrop(event: CdkDragDrop<SectionHasTasks[]>) {
     this.sectionDropped.emit(event);
@@ -46,5 +47,9 @@ export class BoardViewComponent {
 
   deleteTask(taskId: string) {
     this.taskDeleted.emit(taskId);
+  }
+
+  selectTask(taskId: string) {
+    this.taskSelected.emit(taskId);
   }
 }

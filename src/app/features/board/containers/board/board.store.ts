@@ -7,13 +7,13 @@ import { Task } from '../../../../domain/task/task';
 type BoardState = {
   _sections: Section[];
   _tasks: Task[];
-  _showTaskDetail: boolean;
+  _selectedTaskId: string;
 };
 
 const initialState: BoardState = {
   _sections: [],
   _tasks: [],
-  _showTaskDetail: false,
+  _selectedTaskId: '',
 };
 
 const sortByOrderIdAsc = (a: { orderId: number }, b: { orderId: number }) => a.orderId - b.orderId;
@@ -28,7 +28,7 @@ export const BoardStore = signalStore(
         return result;
       });
     }),
-    showTaskDetail: computed(() => state._showTaskDetail()),
+    showTaskDetail: computed(() => state._selectedTaskId() !== ''),
   })),
   withMethods((store) => ({
     setSections(sections: Section[]): void {
@@ -54,6 +54,10 @@ export const BoardStore = signalStore(
     },
     deleteTask(taskId: string): void {
       patchState(store, { _tasks: store._tasks().filter((task) => task.id !== taskId) });
+    },
+    selectTask(taskId: string): void {
+      console.log(taskId);
+      patchState(store, { _selectedTaskId: taskId });
     },
   })),
 );

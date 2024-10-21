@@ -28,7 +28,12 @@
         >
           @for (task of section.tasks; track task.id) {
             <div cdkDrag [cdkDragData]="task">
-              <app-task-card class="task" [task]="task" (deleteButtonClicked)="deleteTask($event)"></app-task-card>
+              <app-task-card
+                class="task"
+                [task]="task"
+                (cardClicked)="selectTask($event)"
+                (deleteButtonClicked)="deleteTask($event)"
+              ></app-task-card>
             </div>
           }
           <div class="task-placeholder"></div>

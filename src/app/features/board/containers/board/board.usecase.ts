@@ -119,4 +119,8 @@ export class BoardUsecase {
     const deletedTaskId = await this.#taskGateway.deleteTask(taskId);
     this.#store.deleteTask(deletedTaskId);
   }
+
+  selectTask(taskId: string) {
+    this.#store.selectTask(taskId);
+  }
 }

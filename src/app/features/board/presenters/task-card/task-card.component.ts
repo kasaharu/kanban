@@ -9,13 +9,12 @@ import { Task } from '../../../../domain/task/task';
   standalone: true,
 })
 export class TaskCardComponent {
-  @Input()
-  task!: Task;
-  @Output()
-  deleteButtonClicked = new EventEmitter<string>();
+  @Input() task!: Task;
+  @Output() deleteButtonClicked = new EventEmitter<string>();
+  @Output() cardClicked = new EventEmitter<string>();
 
   @HostListener('click') onCardClick() {
-    console.log('Click the card');
+    this.cardClicked.emit(this.task.id);
   }
 
   onDeleteButtonClick(taskId: string, event: Event) {
